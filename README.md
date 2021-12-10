@@ -14,7 +14,7 @@ This project is for practice and activity submission to Fullspeed Technologies I
 
 #### $ npm start<br>
 
-### For server (ExpressJS)
+### For server (Spring Boot)
 
 #### Open server folder via IntelliJ then run<br>
 
