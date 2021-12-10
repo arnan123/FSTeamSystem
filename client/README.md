@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Folder Structure
+
+The folder structure would have the
+- Assets = global assets like images , company logo , etc.
+- Components = Reusable components , layouts , Form components and buttons.
+- Pages = For Single Application Pages
+- Utils = Helpers , Constants , Themes
+
 ## Available Scripts
 
 In the project directory, you can run:
