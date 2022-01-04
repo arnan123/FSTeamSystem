@@ -16,7 +16,7 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId", length = 10)
+    @Column(name = "userId")
     private int id;
 
     @Column(name="firstName", nullable = false, length = 64)
@@ -33,8 +33,9 @@ public class User {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teamId",referencedColumnName = "teamId",nullable = false)
+    @JoinColumn(name = "teamID",referencedColumnName = "teamID",nullable = false)
     private Team team;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = false)

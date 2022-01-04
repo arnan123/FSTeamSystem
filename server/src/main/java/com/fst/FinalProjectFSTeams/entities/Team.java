@@ -17,8 +17,8 @@ import java.util.List;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "teamId", length = 3)
-    private int id;
+    @Column(name = "teamId")
+    private byte id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adminId",referencedColumnName = "userId",nullable = false)

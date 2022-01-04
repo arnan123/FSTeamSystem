@@ -16,8 +16,8 @@ import java.util.Date;
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "deptId", length = 2)
-    private int id;
+    @Column(name = "deptId")
+    private byte id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "approverId",referencedColumnName = "userId",nullable = false)

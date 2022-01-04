@@ -16,8 +16,8 @@ import java.util.Date;
 public class Holiday {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "holidayId", length = 4)
-    private int id;
+    @Column(name = "holidayId")
+    private byte id;
 
     @Column(name = "holidayName", length = 255, nullable = false)
     private String name;

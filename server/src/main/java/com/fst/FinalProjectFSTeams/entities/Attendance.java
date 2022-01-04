@@ -14,7 +14,7 @@ import java.util.Date;
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "attendanceId", length = 10)
+    @Column(name = "attendanceId")
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -30,16 +30,16 @@ public class Attendance {
     private Date timeEnded;
 
     @Column(name="elapsedBreak", nullable = false)
-    private int elapsedBreak;
+    private byte elapsedBreak;
 
     @Column(name="underTime", nullable = false)
-    private int underTime;
+    private byte underTime;
 
     @Column(name="overTime", nullable = false)
-    private int overTime;
+    private byte overTime;
 
     @Column(name="tardiness", nullable = false)
-    private int tardiness;
+    private byte tardiness;
 
     @Column(name="approved", nullable = false)
     private boolean approved = true;

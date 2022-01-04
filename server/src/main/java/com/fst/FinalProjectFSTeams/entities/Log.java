@@ -14,7 +14,7 @@ import java.util.Date;
 public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "logId", length = 10)
+    @Column(name = "logId")
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -34,16 +34,16 @@ public class Log {
     private Date timeEnded;
 
     @Column(name="elapsedBreak", nullable = false)
-    private int elapsedBreak;
+    private byte elapsedBreak;
 
     @Column(name="underTime", nullable = false)
-    private int underTime;
+    private byte underTime;
 
     @Column(name="overTime", nullable = false)
-    private int overTime;
+    private byte overTime;
 
     @Column(name="tardiness", nullable = false)
-    private int tardiness;
+    private byte tardiness;
 
     @Basic(optional = false)
     @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

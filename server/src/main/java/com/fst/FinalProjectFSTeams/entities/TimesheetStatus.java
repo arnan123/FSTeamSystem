@@ -14,8 +14,8 @@ import java.util.Date;
 public class TimesheetStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "timesheetId", length = 5)
-    private int id;
+    @Column(name = "timesheetId")
+    private byte id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = false)
