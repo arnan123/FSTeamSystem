@@ -1,10 +1,16 @@
 package com.fst.FinalProjectFSTeams.service;
 
 import com.fst.FinalProjectFSTeams.entities.*;
+import com.fst.FinalProjectFSTeams.enums.Status;
 import com.fst.FinalProjectFSTeams.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -15,80 +21,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TeamRepository teamRepository;
 
-    @Autowired
-    private DepartmentRepository departmentRepository;
-
-    @Autowired
-    private AttendanceRepository attendanceRepository;
-
-    @Autowired
-    private HolidayRepository holidayRepository;
-
-    @Override
-    public void timeIn(Integer userID,Attendance attendance){
-
-    }
-
-    @Override
-    public void timeOut(Integer userID,Attendance attendance){
-
-    }
-
-    @Override
-    public void resumeWork(Integer userID,Attendance attendance){
-
-    }
-
-    @Override
-    public void startLunchBreak(Integer userID,Attendance attendance){
-
-    }
-
-    @Override
-    public void applyOvertime(Integer userID,Attendance attendance){
-
-    }
-
-    @Override
-    public void viewDTR(Integer userID,Attendance attendance){
-
-    }
 
 
-
-
-
-
-    // admin & super admin
-    @Override
-    public void approveOTEmployee(Integer attendanceID){
-        Attendance attendance = attendanceRepository.findById(attendanceID).get();
-        attendance.setApproved(true);
-    }
-
-    @Override
-    public Team saveTeam(Team team){
-        return teamRepository.save(team);
-    }
-
-    @Override
-    public Team updateTeam(Team team, Integer teamID){
-        Team oldTeam = teamRepository.findById(teamID).orElse(team);
-        oldTeam.setName(team.getName());
-        oldTeam.setUpdateDate(team.getUpdateDate());
-        teamRepository.save(oldTeam);
-        return oldTeam;
-    }
-
-    @Override
-    public void deleteTeam(Integer id){
-        teamRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Team> readTeams(){
-        return teamRepository.findAll();
-    }
 
     @Override
     public User saveUser(User user){
@@ -110,35 +44,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Department saveDepartment(Department department){
-        return departmentRepository.save(department);
+    public User disableEmployee(User user, Integer id){
+        User oldUser = userRepository.findById(id).orElse(user);
+        oldUser.setStatus(Status.INACTIVE);
+        userRepository.save(oldUser);
+
+        return oldUser;
     }
 
     @Override
-    public Department updateDepartment(Department department, Integer deptID){
-        Department oldDept = departmentRepository.findById(deptID).orElse(department);
-        oldDept.setName(department.getName());
-        oldDept.setType(department.getType());
-        oldDept.setUpdateDate(department.getUpdateDate());
-        oldDept.setActiveInd(department.isActiveInd()); // not sure if isActiveInd()
-        departmentRepository.save(oldDept);
-        return oldDept;
+    public void assignEmployeesToTeam(Team team, String employeeIds){
+
+        String[] strArray = employeeIds.split(",");
+        User[] user =  new User[strArray.length];
+        int[] array =  new int[strArray.length];
+
+        for( int i = 0; i < strArray.length; i++){
+            array[i] = Integer.parseInt(strArray[i]);
+            user[i] = userRepository.findById(array[i]).get();
+            user[i].setTeam(team);
+            userRepository.save(user[i]);
+        }
+
+
     }
 
-    @Override
-    public void deleteDepartment(Integer id){
-        departmentRepository.deleteById(id);
-    }
 
-    @Override
-    public Holiday saveHoliday(Holiday holiday){
-        return holidayRepository.save(holiday);
-    }
 
-    @Override
-    public void deleteHoliday(Integer id){
-        holidayRepository.deleteById(id);
-    }
+
 
 
 }

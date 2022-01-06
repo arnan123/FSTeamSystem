@@ -17,10 +17,10 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "deptId")
-    private byte id;
+    private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "approverId",referencedColumnName = "userId",nullable = false)
+    @JoinColumn(name = "approverId",referencedColumnName = "userId")
     private User user;
 
     @Column(name="departmentName", nullable = false, length = 64)

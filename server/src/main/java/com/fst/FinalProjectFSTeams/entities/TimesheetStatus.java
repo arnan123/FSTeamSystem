@@ -15,7 +15,7 @@ public class TimesheetStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "timesheetId")
-    private byte id;
+    private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = false)
