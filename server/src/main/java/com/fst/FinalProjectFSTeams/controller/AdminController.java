@@ -52,9 +52,10 @@ public class AdminController {
     }
 
 
-    @PutMapping("/team/{employeeIds}")
-    public void assignEmployeesToTeam(@RequestBody Team team, String employeeIds){
-        userService.assignEmployeesToTeam(team,employeeIds);
+    @PutMapping("/team/{id}")
+    @ResponseBody
+    public void assignEmployeesToTeam(@PathVariable Integer id,@RequestParam String employeeIds){
+        userService.assignEmployeesToTeam(id,employeeIds);
     }
 
 

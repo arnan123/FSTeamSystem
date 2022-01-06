@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void assignEmployeesToTeam(Team team, String employeeIds){
-
+    public void assignEmployeesToTeam(Integer teamId, String employeeIds){
+        Team team = teamRepository.findById(teamId).get();
         String[] strArray = employeeIds.split(",");
         User[] user =  new User[strArray.length];
         int[] array =  new int[strArray.length];
