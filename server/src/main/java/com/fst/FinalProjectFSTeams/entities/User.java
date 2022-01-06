@@ -33,12 +33,12 @@ public class User {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teamId",referencedColumnName = "teamId",nullable = false)
+    @JoinColumn(name = "teamId",referencedColumnName = "teamId",nullable = true)
     private Team team;
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = false)
+    @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = true)
     private Department department;
 
     @Basic(optional = false)

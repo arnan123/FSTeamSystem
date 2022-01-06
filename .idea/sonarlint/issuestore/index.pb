@@ -25,10 +25,6 @@ Nserver/src/main/java/com/fst/FinalProjectFSTeams/repository/LogRepository.java
 Userver/src/main/java/com/fst/FinalProjectFSTeams/repository/DepartmentRepository.java,6\1\61ff6b32ad77c49a950f73071790ae442c5ce18b
 …
 Userver/src/main/java/com/fst/FinalProjectFSTeams/repository/AttendanceRepository.java,a\3\a3cb3eef8038db0e048e2542117e262cb215e896
-r
-Bserver/src/main/java/com/fst/FinalProjectFSTeams/enums/Status.java,d\1\d12e4f5851fbbca40f99825501473e3bb894e47c
-p
-@server/src/main/java/com/fst/FinalProjectFSTeams/enums/Role.java,e\8\e80efd3eb3df9f9bda15a56b0005f28739e1f349
 …
 Userver/src/main/java/com/fst/FinalProjectFSTeams/controller/AttendanceController.java,1\1\114fd8fe20f8266b78505c7216167ccade9ec87a
 |
