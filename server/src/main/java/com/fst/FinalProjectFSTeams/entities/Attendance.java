@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @Entity
 @Table(name = "attendance")
 @Data
@@ -14,7 +15,7 @@ import java.util.Date;
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "attendanceId", length = 10)
+    @Column(name = "attendanceId")
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -43,4 +44,8 @@ public class Attendance {
 
     @Column(name="approved", nullable = false)
     private boolean approved = true;
+
+    @Basic(optional = false)
+    @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date insertDate;
 }
