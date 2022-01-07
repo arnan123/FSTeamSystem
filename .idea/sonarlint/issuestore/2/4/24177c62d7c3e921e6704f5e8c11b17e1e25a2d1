@@ -1,0 +1,13 @@
+
+[
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(Ö¬ô¦üÿÿÿÿ
+V
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(”—ª·
+c
+java:S1128"FRemove this unused import 'com.fst.FinalProjectFSTeams.entities.Team'.(¸ÀÛµ8Óë—òâ/
+O
+java:S1128
+"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8×²ğñâ/
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Óë—òâ/
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥öİ…
