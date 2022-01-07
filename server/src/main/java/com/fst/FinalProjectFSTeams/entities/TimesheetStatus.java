@@ -14,7 +14,7 @@ import java.util.Date;
 public class TimesheetStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "timesheetId", length = 5)
+    @Column(name = "timesheetId")
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)

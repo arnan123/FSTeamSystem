@@ -1,5 +1,7 @@
 package com.fst.FinalProjectFSTeams.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +19,14 @@ import java.util.List;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "teamId", length = 3)
+    @Column(name = "teamId")
     private int id;
 
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "adminId",referencedColumnName = "userId",nullable = false)
+    @JoinColumn(name = "adminId",referencedColumnName = "userId",nullable = true)
     private User user;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = true)

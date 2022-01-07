@@ -14,7 +14,7 @@ import java.util.Date;
 public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "logId", length = 10)
+    @Column(name = "logId")
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)

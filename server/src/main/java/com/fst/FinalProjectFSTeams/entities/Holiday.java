@@ -16,7 +16,7 @@ import java.util.Date;
 public class Holiday {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "holidayId", length = 4)
+    @Column(name = "holidayId")
     private int id;
 
     @Column(name = "holidayName", length = 255, nullable = false)
