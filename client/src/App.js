@@ -2,9 +2,14 @@ import React from 'react';
 import Login from './pages/Login';
 import Employee from './pages/Employee';
 import Navbar from './components/Navbar';
-import EmployeeDTR from './pages/EmployeeDTR';
-import EmployeeHoliday from './pages/EmployeeHoliday';
-import AdminDTR from "./pages/AdminDTR";
+import AdminDTR from './pages/AdminDTR';
+import AdminHolidays from './pages/AdminHolidays';
+import AdminHolidaysList from './pages/AdminHolidaysList';
+import AdminEmployees from './pages/AdminEmployees';
+import AdminTeams from './pages/AdminTeams';
+import AdminDepartments from './pages/AdminDepartments';
+import EmployeeDTR from "./pages/EmployeeDTR"
+import EmployeeHoliday from "./pages/EmployeeHoliday"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import {
@@ -16,10 +21,10 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 
 const LinkItems = [
-  { name: 'Daily Time Record', icon: FiClock, address:"/"},
-  { name: 'Departments', icon: FiGrid , address:"/departments"  },
-  { name: 'Employees', icon: FiUsers, address:"/employees" },
-  { name: 'Holidays', icon: FiWatch, address:"/holidays" },
+  { name: 'Daily Time Record', icon: FiClock, address:"/admin/dtr"},
+  { name: 'Departments', icon: FiGrid , address:"/admin/departments"  },
+  { name: 'Employees', icon: FiUsers, address:"/admin/employees" },
+  { name: 'Holidays', icon: FiWatch, address:"/admin/holidays" },
 ];
 
 function App() {
@@ -39,6 +44,12 @@ function App() {
                   element={<EmployeeHoliday />}
                 />
                 <Route path="/admin/dtr" element={<AdminDTR onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                <Route path="/admin/departments" element={<AdminDepartments onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                <Route path="/admin/employees" element={<AdminEmployees onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                <Route path="/admin/holidays" element={<AdminHolidays onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                <Route path="/admin/holidays/list" element={<AdminHolidaysList onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                <Route path="/admin/departments/teams" element={<AdminTeams onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                
               </Routes>
       </BrowserRouter>
     </ChakraProvider>
