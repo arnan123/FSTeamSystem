@@ -11,8 +11,8 @@ function Navbar() {
 
   return (
     <>
-      <Grid templateColumns="repeat(10, 1fr)" paddingTop={2} paddingLeft={2}>
-        <GridItem colStart={1} h="10">
+      <Grid templateColumns="repeat(13,1fr)" paddingTop={2}>
+        <GridItem colStart={1}>
           <Box
             position={'fixed'}
             p="4"
@@ -25,9 +25,9 @@ function Navbar() {
           </Box>
         </GridItem>
 
-        <GridItem colEnd={12} h="10">
-          <Box p="4" h={'8vh'}>
-            <HStack spacing={'2vh'}>
+        <GridItem colEnd={12}>
+          <Box p="4" h={'8vh'} position={'sticky'}>
+            <HStack>
               <NotificationPop />
               <Avatar />
             </HStack>

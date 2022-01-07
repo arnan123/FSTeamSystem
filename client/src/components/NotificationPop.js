@@ -10,6 +10,7 @@ import {
   PopoverCloseButton,
   VStack,
   Box,
+  Button,
 } from '@chakra-ui/react';
 import { BellIcon } from '@chakra-ui/icons';
 
@@ -18,7 +19,9 @@ export default function NotificationPop() {
     <>
       <Popover>
         <PopoverTrigger>
-          <Icon as={BellIcon} w={7} h={7} />
+          <Button variant={'ghost'} w={7} h={7}>
+            <Icon as={BellIcon} w={7} h={7} color={'white'} />
+          </Button>
         </PopoverTrigger>
         <PopoverContent>
           <PopoverArrow />

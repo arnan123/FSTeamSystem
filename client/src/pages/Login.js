@@ -16,7 +16,7 @@ function Login() {
     return <Navigate to="/employees" replace={true} />;
   } else {
     return (
-      <VStack spacing={20} marginTop={40}>
+      <VStack spacing={20} marginTop={'20%'}>
         <Helmet bodyAttributes={{ style: 'background-color :#212b3d' }} />
         <LoginLogo />
         <Loginbutton />
