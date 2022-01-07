@@ -12,4 +12,5 @@ public interface UserService {
     public User disableEmployee(User user, Integer userID);
 
     public void assignEmployeesToTeam(Integer teamId, String employeeIds);
+    public void removeEmployeesFromTeam(Integer teamId, String employeeIds);
 }

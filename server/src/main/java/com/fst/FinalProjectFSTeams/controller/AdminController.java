@@ -31,31 +31,18 @@ public class AdminController {
     }
 
 
-    @GetMapping("/teams")
-    public List<Team> readTeams(){
-        return teamService.readTeams();
-    }
-
-    @PostMapping("/addTeam/{id}")
-    public void addTeam(@PathVariable Integer id,@RequestBody Team team){
-        teamService.saveTeam(team,id);
-    }
-
-    @PutMapping("/updateTeam/{id}")
-    public void updateTeam(@PathVariable Integer id, @RequestBody Team team){
-        teamService.updateTeam(team,id);
-    }
-
-    @DeleteMapping("/deleteTeam/{id}")
-    public void deleteTeam(@PathVariable Integer id){
-        teamService.deleteTeam(id);
-    }
 
 
-    @PutMapping("/team/{id}")
+    @PutMapping("/assignTeam/{id}")
     @ResponseBody
     public void assignEmployeesToTeam(@PathVariable Integer id,@RequestParam String employeeIds){
         userService.assignEmployeesToTeam(id,employeeIds);
+    }
+
+    @PutMapping("/removeEmployeeFromTeam/{teamId}")
+    @ResponseBody
+    public void removeEmployeesFromTeam(@PathVariable Integer teamId,@RequestParam String employeeIds){
+        userService.removeEmployeesFromTeam(teamId,employeeIds);
     }
 
 

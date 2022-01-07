@@ -10,7 +10,7 @@ public interface AttendanceService {
     public void resumeWork(Integer userID,Attendance attendance);
     public void startLunchBreak(Integer userID,Attendance attendance);
     public void applyOvertime(Integer userID,Attendance attendance);
-    public void viewDTR(Integer userID,Attendance attendance);
-    public void approveOTEmployee(Integer attendanceID);
+    public List<Attendance> viewAttendance(Integer userID);
+
 
 }

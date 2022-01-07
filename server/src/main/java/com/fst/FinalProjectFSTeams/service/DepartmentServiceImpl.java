@@ -2,7 +2,9 @@ package com.fst.FinalProjectFSTeams.service;
 
 import com.fst.FinalProjectFSTeams.entities.Department;
 import com.fst.FinalProjectFSTeams.entities.Team;
+import com.fst.FinalProjectFSTeams.entities.User;
 import com.fst.FinalProjectFSTeams.repository.DepartmentRepository;
+import com.fst.FinalProjectFSTeams.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,11 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+
     @Override
     public Department saveDepartment(Department department){
         return departmentRepository.save(department);
@@ -37,5 +44,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> readDepartments(){
         return departmentRepository.findAll();
+    }
+
+    @Override
+    public void assignApproverToDepartment(Integer deptId, Integer approverId){
+        Department department = departmentRepository.findById(deptId).get();
+        User user = userRepository.findById(approverId).get();
+        department.setUser(user);
+        departmentRepository.save(department);
     }
 }

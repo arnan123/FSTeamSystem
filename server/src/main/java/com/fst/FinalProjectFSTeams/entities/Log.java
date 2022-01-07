@@ -34,16 +34,16 @@ public class Log {
     private Date timeEnded;
 
     @Column(name="elapsedBreak", nullable = false)
-    private byte elapsedBreak;
+    private int elapsedBreak;
 
     @Column(name="underTime", nullable = false)
-    private byte underTime;
+    private int underTime;
 
     @Column(name="overTime", nullable = false)
-    private byte overTime;
+    private int overTime;
 
     @Column(name="tardiness", nullable = false)
-    private byte tardiness;
+    private int tardiness;
 
     @Basic(optional = false)
     @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

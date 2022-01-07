@@ -11,4 +11,6 @@ public interface DepartmentService {
     public Department updateDepartment(Department department, Integer deptID);
     public void deleteDepartment(Integer id);
     public List<Department> readDepartments();
+
+    public void assignApproverToDepartment(Integer deptId, Integer approverId);
 }

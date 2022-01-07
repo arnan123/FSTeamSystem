@@ -32,6 +32,8 @@ public class TeamServiceImpl implements  TeamService{
 
     @Override
     public void deleteTeam(Integer id){
+        Team team =teamRepository.findById(id).get();
+        team.setDepartment(null);
         teamRepository.deleteById(id);
     }
 

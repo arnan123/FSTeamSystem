@@ -18,18 +18,6 @@ public class SuperAdminController extends AdminController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private DepartmentService departmentService;
-
-    @GetMapping("/departments")
-    public List<Department> readDepartments(){
-        return departmentService.readDepartments();
-    }
-
-    @PostMapping("/addDepartment")
-    public void addDepartment(@RequestBody Department department){
-        departmentService.saveDepartment(department);
-    }
 
 
 }

@@ -65,10 +65,21 @@ public class UserServiceImpl implements UserService {
             user[i].setTeam(team);
             userRepository.save(user[i]);
         }
-
-
     }
+    @Override
+    public void removeEmployeesFromTeam(Integer teamId, String employeeIds){
+        Team team = teamRepository.findById(teamId).get();
+        String[] strArray = employeeIds.split(",");
+        User[] user =  new User[strArray.length];
+        int[] array =  new int[strArray.length];
 
+        for( int i = 0; i < strArray.length; i++){
+            array[i] = Integer.parseInt(strArray[i]);
+            user[i] = userRepository.findById(array[i]).get();
+            user[i].setTeam(null);
+            userRepository.save(user[i]);
+        }
+    }
 
 
 

@@ -1,14 +1,0 @@
-
-œ
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©“„ýýÿÿÿÿ
-œ
-java:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(öÒƒÔøÿÿÿÿ
-—
-java:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³¦½©
-œ
-java:S1186-"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( ‚”×üÿÿÿÿ
-q
-java:S4144"VUpdate this method so that its implementation is not identical to "timeIn" on line 16.(Ç´õñúÿÿÿÿ
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Á°£ø
-R
-java:S36556"7Call "Optional#isPresent()" before accessing the value.(‡ÐæÉÿÿÿÿÿ
