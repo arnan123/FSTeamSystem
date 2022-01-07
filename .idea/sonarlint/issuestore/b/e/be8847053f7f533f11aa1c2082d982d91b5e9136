@@ -1,6 +1,0 @@
-
-\
-java:S1128"FRemove this unused import 'com.fst.FinalProjectFSTeams.entities.User'.(©›Íµ
-e
-java:S1128"JRemove this unused import 'org.springframework.data.jpa.repository.Query'.(Äºöïþÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ýøô’øÿÿÿÿ
