@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance,Integer>{
-    @Query(value = "SELECT * FROM attendance a INNER JOIN user u ON a.userId = u.userId",nativeQuery = true)
+    @Query(value = "SELECT * FROM attendance a WHERE a.user_id = :userId",nativeQuery = true)
     List<Attendance> viewDTR(int userId);
 }

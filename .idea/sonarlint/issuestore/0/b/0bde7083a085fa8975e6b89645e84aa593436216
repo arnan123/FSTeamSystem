@@ -1,14 +1,0 @@
-
-n
-java:S1128"LRemove this unused import 'com.fst.FinalProjectFSTeams.entities.Department'.(ÙëşÛÿÿÿÿÿ8­ÎÃòâ/
-c
-java:S1128"FRemove this unused import 'com.fst.FinalProjectFSTeams.entities.Team'.(¸ÀÛµ8³¶Åâ/
-o
-java:S1128"RRemove this unused import 'com.fst.FinalProjectFSTeams.service.DepartmentService'.(¨¢Ïô8®ÎÃòâ/
-n
-java:S1128"LRemove this unused import 'com.fst.FinalProjectFSTeams.service.TeamService'.(”Ê¢øøÿÿÿÿ8³¶Åâ/
-{
-java:S1128	"YRemove this unused import 'org.springframework.boot.autoconfigure.kafka.KafkaProperties'.(´ÖĞÄùÿÿÿÿ8°ÂàÆâ/
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8®ÎÃòâ/
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥öİ…
