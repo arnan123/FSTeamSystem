@@ -1,24 +1,15 @@
 import React from 'react';
 import {
   Flex,
-  Circle,
   Box,
   Image,
   Link,
   useColorModeValue,
 } from '@chakra-ui/react';
 import DeleteModal from './DeleteModal.js';
+import {PropTypes} from 'prop-types';
 
-const data = {
-  imageURL:
-    'https://i.ibb.co/6BvPD2L/logo.png',
-  name: 'Department 1',
-  price: 4.5,
-  rating: 4.2,
-  numReviews: 34,
-};
-
-export default function Card() {
+export default function Card({departments}) {
   return (
     <Flex px="10" w="full" alignItems="center" display="block">
       <Box
@@ -28,19 +19,9 @@ export default function Card() {
         rounded="lg"
         shadow="lg"
         position="relative">
-        {data.isNew && (
-          <Circle
-            size="10px"
-            position="absolute"
-            top={2}
-            right={2}
-            bg="red.200"
-          />
-        )}
-        <DeleteModal/>
+        <DeleteModal id={departments.id}/>
         <Image
-          src={data.imageURL}
-          alt={`Picture of ${data.name}`}
+          src="https://i.ibb.co/6BvPD2L/logo.png"
           roundedTop="lg"
           boxShadow="md"
         />
@@ -52,10 +33,14 @@ export default function Card() {
               as="h4"
               lineHeight="tight"
               isTruncated>
-              <Link href="/admin/departments/teams">{data.name}</Link>
+              <Link fontSize="sm" href={" departments/" + departments.id}>{departments.name}</Link>
             </Box>
         </Box>
       </Box>
     </Flex>
   );
+}
+
+Card.propTypes={
+  departments:PropTypes.any
 }

@@ -21,10 +21,10 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 
 const LinkItems = [
-  { name: 'Daily Time Record', icon: FiClock, address:"/admin/dtr"},
-  { name: 'Departments', icon: FiGrid , address:"/admin/departments"  },
-  { name: 'Employees', icon: FiUsers, address:"/admin/employees" },
-  { name: 'Holidays', icon: FiWatch, address:"/admin/holidays" },
+  { name: 'Daily Time Record', icon: FiClock, address:"/"},
+  { name: 'Departments', icon: FiGrid , address:"/departments"  },
+  { name: 'Employees', icon: FiUsers, address:"/employees" },
+  { name: 'Holidays', icon: FiWatch, address:"/holidays" },
 ];
 
 function App() {
@@ -43,12 +43,12 @@ function App() {
                   path="/employees/holiday"
                   element={<EmployeeHoliday />}
                 />
-                <Route path="/admin/dtr" element={<AdminDTR onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
-                <Route path="/admin/departments" element={<AdminDepartments onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                <Route path="/admin/dtr" element={<AdminDTR />}/>
+                <Route path="/admin/departments" element={<AdminDepartments />}/>
                 <Route path="/admin/employees" element={<AdminEmployees onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
                 <Route path="/admin/holidays" element={<AdminHolidays onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
                 <Route path="/admin/holidays/list" element={<AdminHolidaysList onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
-                <Route path="/admin/departments/teams" element={<AdminTeams onOpen={onOpen} isOpen={isOpen} onClose={onClose} LinkItems={LinkItems} />}/>
+                <Route path="/admin/departments/:id" element={<AdminTeams LinkItems={LinkItems}/>}/>
                 
               </Routes>
       </BrowserRouter>

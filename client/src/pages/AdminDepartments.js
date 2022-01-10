@@ -1,42 +1,69 @@
-import React,  { useEffect } from 'react';
+import React,  { useEffect, useState } from 'react';
 import {
   useColorModeValue,
   Box,
   SimpleGrid,
   Drawer,
   DrawerContent,
+  useDisclosure,
+  ChakraProvider,
+  theme
 } from '@chakra-ui/react';
-import {PropTypes} from 'prop-types';
+import {
+  FiWatch,
+  FiGrid,
+  FiUsers,
+  FiClock,
+} from 'react-icons/fi';
+import axios from 'axios';
 import Card from "../components/AdminDepartments/Card.js";
 import AddModal from "../components/AdminDepartments/AddModal.js"; 
 import Header from "../components/Header.js";
 import Sidebar from "../components/Sidebar.js";
 
-export default function AdminDepartments(props){
+const LinkItems = [
+  { name: 'Daily Time Record', icon: FiClock, address:"/"},
+  { name: 'Departments', icon: FiGrid , address:"/departments"  },
+  { name: 'Employees', icon: FiUsers, address:"/employees" },
+  { name: 'Holidays', icon: FiWatch, address:"/holidays" },
+];
+
+export default function AdminDepartments(){
+
+  const [departments,setDepartments] = useState([]);
+
   useEffect(() => {
     document.title="Departments";
   });
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/department/view").then((response) => {
+      setDepartments(response.data);
+    });
+  },[]);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <>
-    <Sidebar
-        onClose={() => props.onClose}
-        LinkItems={props.LinkItems}
+    <ChakraProvider theme={theme}>
+      <Sidebar
+        onClose={() => onClose}
+        LinkItems={LinkItems}
         display={{ base: 'none', md: 'block' }}
       />
       <Drawer
         autoFocus={false}
-        isOpen={props.isOpen}
+        isOpen={isOpen}
         placement="left"
-        onClose={props.onClose}
+        onClose={onClose}
         returnFocusOnClose={false}
-        onOverlayClick={props.onClose}
+        onOverlayClick={onClose}
         size="full">
         <DrawerContent>
-          <Sidebar onClose={props.onClose} />
+          <Sidebar onClose={onClose} LinkItems={LinkItems} />
         </DrawerContent>
       </Drawer>
-    <Header onOpen={props.onOpen} headerTitle="Departments"/>
-    <Box
+      <Header onOpen={onOpen} headerTitle={"Departments"}/>
+      <Box
       minHeight="full"
       ml={{ base: 0, md: 60 }}
       bg={useColorModeValue('white', 'gray.900')}
@@ -46,19 +73,11 @@ export default function AdminDepartments(props){
         <AddModal/>
       </Box>
       <SimpleGrid minChildWidth='50vh' spacing='4vh'>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+      {departments.map((department) => (
+        <Card key={department.id} departments={department}/>
+      ))}
       </SimpleGrid>
     </Box>
-    </>
+    </ChakraProvider>
   );
-}
-
-
-AdminDepartments.propTypes={
-  onOpen: PropTypes.any, isOpen: PropTypes.any, onClose: PropTypes.any, LinkItems: PropTypes.any
 }

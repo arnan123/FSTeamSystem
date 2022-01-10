@@ -4,16 +4,20 @@ import {
   OrderedList,
   Box
 } from '@chakra-ui/react'
+import {PropTypes} from 'prop-types';
 
-export default function ListTeam(){
+export default function ListTeam({employees}){
   return(
     <Box display="block">
       <OrderedList>
-      <ListItem fontSize="xl">Rayl Xylem</ListItem>
-      <ListItem fontSize="xl">Rayl Xylem</ListItem>
-      <ListItem fontSize="xl">Rayl Xylem</ListItem>
-      <ListItem fontSize="xl">Rayl Xylem</ListItem>
+      {employees.map((employee) => (
+        <ListItem key="" fontSize="xl">{employee.firstName} {employee.lastName}</ListItem>
+      ))}
     </OrderedList>
     </Box>
   );
+}
+
+ListTeam.propTypes={
+  employees: PropTypes.any
 }

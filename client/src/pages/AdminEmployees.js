@@ -6,7 +6,7 @@ import {
   DrawerContent
 } from '@chakra-ui/react';
 import {PropTypes} from 'prop-types';
-import Table from "../components/AdminEmployees/Table.js";
+import TableData from "../components/AdminEmployees/Table.js";
 import Header from "../components/Header.js";
 import AddModal from "../components/AdminEmployees/AddModal.js";
 import DeleteModal from '../components/AdminEmployees/DeleteModal.js';
@@ -16,6 +16,7 @@ export default function AdminEmployees(props){
   useEffect(() => {
     document.title="Employees";
   });
+  
   return (
     <>
     <Sidebar
@@ -48,7 +49,7 @@ export default function AdminEmployees(props){
           <AddModal/>
           <DeleteModal/>
       </Box>
-      <Table/>
+      <TableData/>
     </Box>
     </>
   );
