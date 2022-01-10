@@ -41,4 +41,9 @@ public class TeamServiceImpl implements  TeamService{
     public List<Team> readTeams(){
         return teamRepository.findAll();
     }
+
+    @Override
+    public List<Team> viewTeamsPerDept(Integer deptId){
+        return teamRepository.viewTeamsPerDept(deptId);
+    }
 }

@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User disableEmployee(User user, Integer id){
-        User oldUser = userRepository.findById(id).orElse(user);
+    public User disableEmployee( Integer id){
+        User oldUser = userRepository.findById(id).get();
         oldUser.setStatus(Status.INACTIVE);
         userRepository.save(oldUser);
 

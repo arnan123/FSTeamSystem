@@ -9,7 +9,7 @@ public interface UserService {
 
     public User saveUser(User user);
     public User updateEmployee(User user, Integer userID);
-    public User disableEmployee(User user, Integer userID);
+    public User disableEmployee(Integer userID);
 
     public void assignEmployeesToTeam(Integer teamId, String employeeIds);
     public void removeEmployeesFromTeam(Integer teamId, String employeeIds);

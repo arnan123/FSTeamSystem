@@ -9,4 +9,5 @@ public interface TeamService {
     public Team updateTeam(Team team, Integer teamID);
     public void deleteTeam(Integer id);
     public List<Team> readTeams();
+    public List<Team> viewTeamsPerDept(Integer deptId);
 }

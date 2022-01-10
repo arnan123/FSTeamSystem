@@ -13,7 +13,7 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
-    @GetMapping("/teams")
+    @GetMapping("/viewTeams")
     public List<Team> readTeams(){
         return teamService.readTeams();
     }
@@ -34,4 +34,8 @@ public class TeamController {
         teamService.deleteTeam(id);
     }
 
+    @GetMapping("/teamsPerDept/{deptId}")
+    public List<Team> viewTeamsPerDept(@PathVariable Integer deptId){
+        return teamService.viewTeamsPerDept(deptId);
+    }
 }

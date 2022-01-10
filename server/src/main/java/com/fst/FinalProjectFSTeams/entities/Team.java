@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -38,11 +40,11 @@ public class Team {
 
     @Basic(optional = false)
     @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date insertDate;
+    private LocalDateTime insertDate;
 
     @Basic(optional = false)
     @Column(name = "updateDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @Column(name="activeInd")
     private boolean activeInd = true;

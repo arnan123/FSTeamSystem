@@ -1,4 +1,4 @@
 
-]
-java:S2094"BRemove this empty class, write its code or make it an "interface".(οΟ‡ώÿÿÿÿ
+V
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(€ΐ©κ
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥φέ…
