@@ -28,7 +28,7 @@ public class DepartmentController {
     public void deleteDepartment(@PathVariable Integer deptId){
         departmentService.deleteDepartment(deptId);
     }
-    
+
     @PutMapping("/assignApprover/{deptId}/{approverId}")
     public void assignApproverToDepartment(@PathVariable Integer deptId, @PathVariable Integer approverId){
         departmentService.assignApproverToDepartment(deptId,approverId);

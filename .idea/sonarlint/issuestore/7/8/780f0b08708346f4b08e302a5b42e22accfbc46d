@@ -1,27 +1,0 @@
-
-Z
-java:S1854G"8Remove this useless assignment to local variable "team".(û¶½‘ıÿÿÿÿ8¸ááñâ/
-K
-java:S1481G")Remove this unused "team" local variable.(û¶½‘ıÿÿÿÿ8¹ááñâ/
-K
-java:S1128	"/Remove this unused import 'java.sql.Timestamp'.(èò½+8»ááñâ/
-P
-java:S1128
-".Remove this unused import 'java.time.Instant'.(Â‚éñÿÿÿÿÿ8¼ááñâ/
-R
-java:S1128"0Remove this unused import 'java.time.LocalTime'.(à®øÃùÿÿÿÿ8¼ááñâ/
-J
-java:S1128"-Remove this unused import 'java.time.ZoneId'.( Æ½“8¼ááñâ/
-O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8¼ááñâ/
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¼ááñâ/
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Á°£ø
-R
-java:S3655@"7Call "Optional#isPresent()" before accessing the value.(şù×Êüÿÿÿÿ
-Y
-java:S3655G"7Call "Optional#isPresent()" before accessing the value.(û¶½‘ıÿÿÿÿ8šØÛñâ/
-R
-java:S36559"7Call "Optional#isPresent()" before accessing the value.(û¶½‘ıÿÿÿÿ
-Y
-java:S3655N"7Call "Optional#isPresent()" before accessing the value.(şù×Êüÿÿÿÿ8šØÛñâ/
