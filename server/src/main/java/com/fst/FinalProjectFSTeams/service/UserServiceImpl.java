@@ -81,6 +81,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public List<User> displayEmployeesFromTeam(Integer teamId){
+        return userRepository.getEmployeesByTeam(teamId);
+    }
 
 
 

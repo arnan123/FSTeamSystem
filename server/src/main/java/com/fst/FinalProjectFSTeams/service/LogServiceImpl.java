@@ -27,75 +27,23 @@ public class LogServiceImpl implements LogService{
 
     @Autowired
     private UserRepository userRepository;
-    @Override
-    public void timeIn(Integer userId, String timeIn, Integer attendanceId){
-        User user = userRepository.findById(userId).get();
+
+    public void createLog(Log log, Integer attendanceId, Integer userId){
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
-        Log log = new Log();
-
-
-    }
-
-    @Override
-    public void timeOut(Integer userId,String timeOut,Integer logId,Integer attendanceId){
         User user = userRepository.findById(userId).get();
-        Attendance attendance = attendanceRepository.findById(attendanceId).get();
         LocalDateTime date = LocalDateTime.now();
-        LocalTime out = LocalTime.parse(timeOut);
-        float  hours = 0;
 
-        long x = attendance.getTimeStarted().until(out, ChronoUnit.HOURS);
-        long y = attendance.getTimeStarted().until(out, ChronoUnit.MINUTES);
-//        System.out.println(attendance.getElapsedBreak());
-//        System.out.println(y);
-        if(attendance.getElapsedBreak() <= 60){
-            hours = (float)x - 1; // 1h lunchbreak
-        }else{
+        log.setInsertDate(date);
+        logRepository.save(log);
 
-            hours = (float)x - (attendance.getElapsedBreak()/60);
-        }
-
-
-//        System.out.println(hours);
-        float mins = (8 - ((float)y - attendance.getElapsedBreak())/60 )*60;
-//        System.out.println(mins);
-        if(hours == 8){
-            System.out.print("Good job!");
-        }else if( hours > 8){
-            System.out.print("hustle hard");
-            attendance.setOverTime(mins);
-        }else{
-            System.out.println("Byee");
-            attendance.setUnderTime(mins);
-        }
-        attendance.setTimeEnded(out);
-        attendance.setInsertDate(date);
+        attendance.setTimeStarted(log.getTimeStarted());
+        attendance.setElapsedBreak(log.getElapsedBreak());
+        attendance.setTimeEnded(log.getTimeEnded());
         attendance.setUser(user);
         attendance.setApproved(false);
+        attendance.setOverTime(log.getOverTime());
+        attendance.setUnderTime(log.getUnderTime());
+        attendance.setTardiness(log.getTardiness());
         attendanceRepository.save(attendance);
     }
-
-
-    @Override
-    public void elapsedBreak(Integer userId,Integer logId,Integer attendanceId, Integer duration){
-        User user = userRepository.findById(userId).get();
-        Attendance attendance = attendanceRepository.findById(attendanceId).get();
-
-        attendance.setUser(user);
-        attendance.setElapsedBreak(duration);
-        attendanceRepository.save(attendance);
-
-    }
-
-
-
-    @Override
-    public List<Attendance> viewAttendance(Integer userId) {
-        User user = userRepository.findById(userId).get();
-        return attendanceRepository.viewDTR(userId);
-    }
-
-
-
-
 }

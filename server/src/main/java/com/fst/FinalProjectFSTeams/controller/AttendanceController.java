@@ -15,8 +15,6 @@ public class AttendanceController {
     @Autowired
     private AttendanceService attendanceService;
 
-    @Autowired
-    private UserService userService;
 
     @PutMapping("/timeIn/{userId}")
     @ResponseBody

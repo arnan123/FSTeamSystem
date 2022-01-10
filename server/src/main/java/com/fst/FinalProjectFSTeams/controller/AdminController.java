@@ -45,5 +45,8 @@ public class AdminController {
         userService.removeEmployeesFromTeam(teamId,employeeIds);
     }
 
-
+    @GetMapping("/viewEmployeesFromTeam/{teamId}")
+    public List<User> viewEmployeesFromTeam(@PathVariable Integer teamId){
+        return  userService.displayEmployeesFromTeam(teamId);
+    }
 }
