@@ -29,8 +29,6 @@ Mserver/src/main/java/com/fst/FinalProjectFSTeams/service/UserServiceImpl.java,
 Oserver/src/main/java/com/fst/FinalProjectFSTeams/repository/TeamRepository.java,b\e\be8847053f7f533f11aa1c2082d982d91b5e9136
 y
 Iserver/src/main/java/com/fst/FinalProjectFSTeams/service/TeamService.java,4\a\4aad424e7d1d96ac67541f59e5e52d9e4e6bfa4e
-
-Oserver/src/main/java/com/fst/FinalProjectFSTeams/controller/TeamController.java,d\8\d842724242c874b87d2f370748bfa23fc96f9313
 ƒ
 Sserver/src/main/java/com/fst/FinalProjectFSTeams/service/DepartmentServiceImpl.java,3\c\3c62c5612bbe906e11e32f5f3d5ece758ee9dc20
 
