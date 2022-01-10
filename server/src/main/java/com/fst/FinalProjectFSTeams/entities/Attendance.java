@@ -1,10 +1,15 @@
 package com.fst.FinalProjectFSTeams.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -22,30 +27,31 @@ public class Attendance {
     @JoinColumn(name = "userId",referencedColumnName = "userId",nullable = false)
     private User user;
 
-    @Basic(optional = false)
-    @Column(name = "timeStarted",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date timeStarted;
 
-    @Basic(optional = false)
-    @Column(name = "timeEnded",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date timeEnded;
 
-    @Column(name="elapsedBreak", nullable = false)
-    private int elapsedBreak;
+    @Column(name="timeStarted", nullable = false)
+    private LocalTime timeStarted;
 
-    @Column(name="underTime", nullable = false)
-    private int underTime;
+    @Column(name="timeEnded", nullable = false)
+    private LocalTime timeEnded;
 
-    @Column(name="overTime", nullable = false)
-    private int overTime;
 
-    @Column(name="tardiness", nullable = false)
-    private int tardiness;
+    @Column(name="elapsedBreak", nullable = true)
+    private float elapsedBreak;
+
+    @Column(name="underTime", nullable = true)
+    private float underTime;
+
+    @Column(name="overTime", nullable = true)
+    private float overTime;
+
+    @Column(name="tardiness", nullable = true)
+    private float tardiness;
 
     @Column(name="approved", nullable = false)
     private boolean approved = true;
 
     @Basic(optional = false)
     @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date insertDate;
+    private LocalDateTime insertDate;
 }

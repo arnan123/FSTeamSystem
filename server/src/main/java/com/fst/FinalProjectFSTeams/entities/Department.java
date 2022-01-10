@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -32,11 +34,11 @@ public class Department {
 
     @Basic(optional = false)
     @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date insertDate;
+    private LocalDateTime insertDate;
 
     @Basic(optional = false)
     @Column(name = "updateDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date updateDate;
+    private Date  updateDate;
 
     @Column(name="activeInd")
     private boolean activeInd = true;

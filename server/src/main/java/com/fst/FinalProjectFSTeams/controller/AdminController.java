@@ -26,8 +26,8 @@ public class AdminController {
     }
 
     @PutMapping("/disableEmployee/{id}")
-    public void disableEmployee(@PathVariable Integer id, @RequestBody User user){
-        userService.disableEmployee(user,id);
+    public void disableEmployee(@PathVariable Integer id){
+        userService.disableEmployee(id);
     }
 
 

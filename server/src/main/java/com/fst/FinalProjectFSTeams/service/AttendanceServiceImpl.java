@@ -4,17 +4,26 @@ import com.fst.FinalProjectFSTeams.entities.Attendance;
 import com.fst.FinalProjectFSTeams.entities.User;
 import com.fst.FinalProjectFSTeams.repository.AttendanceRepository;
 import com.fst.FinalProjectFSTeams.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @Primary
@@ -26,53 +35,103 @@ public class AttendanceServiceImpl implements AttendanceService{
     private UserRepository userRepository;
 
     @Override
-    public void timeIn(Integer userId,Attendance attendance){
+    public void timeIn(Integer userId,String timeIn){
         User user = userRepository.findById(userId).get();
+        Attendance attendance = new Attendance();
+        LocalTime flexTime = LocalTime.parse("10:00");
+        LocalTime in = LocalTime.parse(timeIn);
+        LocalTime temp = LocalTime.parse("00:00");
+        LocalDateTime date = LocalDateTime.now();
+        int result = in.compareTo(flexTime);
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-//        int  time = LocalTime.now(ZoneId.of("GMT+8")).getMinute();
-        int flexTime = LocalDate.now().atTime(10,0).getMinute();
+        if(result > 0){
+            long tardiness = flexTime.until(in, ChronoUnit.MINUTES);
+            int late = (int) tardiness;
+            attendance.setTardiness(late);
+            System.out.println("You are late about "+tardiness+"minutes");
+        }else{
+            System.out.println("Successfully time in");
+        }
 
-        attendance.setTimeStarted(timestamp);
-        attendance.setElapsedBreak(0);
-        attendance.setOverTime(0);
-        attendance.setTimeEnded(null);
-        attendance.setTardiness(flexTime);
-        System.out.println(attendance.getTardiness());
-        attendance.setUnderTime(0);
-        attendance.setApproved(false);
+        attendance.setTimeStarted(in);
+        attendance.setInsertDate(date);
+        attendance.setTimeEnded(temp);
         attendance.setUser(user);
-
-        attendanceRepository.save(attendance);
-
-    }
-
-    @Override
-    public void timeOut(Integer userID,Attendance attendance){
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        attendance.setTimeStarted(timestamp);
+        attendance.setApproved(false);
         attendanceRepository.save(attendance);
     }
 
     @Override
-    public void resumeWork(Integer userID,Attendance attendance){
+    public void timeOut(Integer userId,String timeOut, Integer attendanceId){
+        User user = userRepository.findById(userId).get();
+        Attendance attendance = attendanceRepository.findById(attendanceId).get();
+        LocalDateTime date = LocalDateTime.now();
+        LocalTime out = LocalTime.parse(timeOut);
+        float  hours = 0;
+
+        long x = attendance.getTimeStarted().until(out, ChronoUnit.HOURS);
+        long y = attendance.getTimeStarted().until(out, ChronoUnit.MINUTES);
+//        System.out.println(attendance.getElapsedBreak());
+//        System.out.println(y);
+        if(attendance.getElapsedBreak() <= 60){
+             hours = (float)x - 1; // 1h lunchbreak
+        }else{
+
+             hours = (float)x - (attendance.getElapsedBreak()/60);
+        }
+
+
+//        System.out.println(hours);
+        float mins = (8 - ((float)y - attendance.getElapsedBreak())/60 )*60;
+//        System.out.println(mins);
+        if(hours == 8){
+            System.out.print("Good job!");
+        }else if( hours > 8){
+            System.out.print("hustle hard");
+            attendance.setOverTime(mins);
+        }else{
+            System.out.println("Byee");
+            attendance.setUnderTime(mins);
+        }
+        attendance.setTimeEnded(out);
+        attendance.setInsertDate(date);
+        attendance.setUser(user);
+        attendance.setApproved(false);
+        attendanceRepository.save(attendance);
 
     }
 
-    @Override
-    public void startLunchBreak(Integer userID,Attendance attendance){
 
+
+    @Override
+    public void elapsedBreak(Integer userId,Integer attendanceId, Integer duration){
+        User user = userRepository.findById(userId).get();
+        Attendance attendance = attendanceRepository.findById(attendanceId).get();
+
+        attendance.setUser(user);
+        attendance.setElapsedBreak(duration);
+        attendanceRepository.save(attendance);
+    }
+
+
+    @Override
+    public List<Attendance> viewAttendance(Integer userId) {
+        User user = userRepository.findById(userId).get();
+        return attendanceRepository.viewDTR(userId);
     }
 
     @Override
-    public void applyOvertime(Integer userID,Attendance attendance){
+    public void  approveAttendanceOfEmployee(Integer userId, String attendanceIds){
+        String[] strArray = attendanceIds.split(",");
+        Attendance[] attendances =  new Attendance[strArray.length];
+        int[] array =  new int[strArray.length];
 
-    }
-
-    @Override
-    public List<Attendance> viewAttendance(Integer userID) {
-        User user = userRepository.findById(userID).get();
-        return attendanceRepository.viewDTR(userID);
+        for( int i = 0; i < strArray.length; i++){
+            array[i] = Integer.parseInt(strArray[i]);
+            attendances[i] = attendanceRepository.findById(array[i]).get();
+            attendances[i].setApproved(true);
+            attendanceRepository.save(attendances[i]);
+        }
     }
 
 

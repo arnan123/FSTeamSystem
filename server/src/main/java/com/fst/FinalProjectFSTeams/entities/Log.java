@@ -1,10 +1,14 @@
 package com.fst.FinalProjectFSTeams.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 @Entity
 @Table(name = "log")
@@ -27,25 +31,25 @@ public class Log {
 
     @Basic(optional = false)
     @Column(name = "timeStarted",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date timeStarted;
+    private LocalTime timeStarted;
 
     @Basic(optional = false)
     @Column(name = "timeEnded",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date timeEnded;
+    private LocalTime timeEnded;
 
     @Column(name="elapsedBreak", nullable = false)
-    private int elapsedBreak;
+    private float elapsedBreak;
 
     @Column(name="underTime", nullable = false)
-    private int underTime;
+    private float underTime;
 
     @Column(name="overTime", nullable = false)
-    private int overTime;
+    private float overTime;
 
     @Column(name="tardiness", nullable = false)
-    private int tardiness;
+    private float tardiness;
 
     @Basic(optional = false)
     @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date insertDate;
+    private LocalDateTime insertDate;
 }
