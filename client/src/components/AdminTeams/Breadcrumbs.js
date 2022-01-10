@@ -4,8 +4,9 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
 } from '@chakra-ui/react';
+import { PropTypes } from 'prop-types'
 
-export default function Breadcrumbs(){
+export default function Breadcrumbs({department}){
   return(
     <Breadcrumb>
       <BreadcrumbItem>
@@ -17,8 +18,12 @@ export default function Breadcrumbs(){
       </BreadcrumbItem>
 
       <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href='/'>Team</BreadcrumbLink>
+        <BreadcrumbLink href='/'>{department.name}</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
   );
+}
+
+Breadcrumbs.propTypes={
+  department: PropTypes.any
 }

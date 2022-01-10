@@ -8,12 +8,30 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  useDisclosure
+  useDisclosure,
+  useToast
 } from '@chakra-ui/react'
+import axios from 'axios';
 import { DeleteIcon } from '@chakra-ui/icons'
+import {PropTypes} from 'prop-types';
 
-function DeleteModal() {
+export default function DeleteModal({id}) {
   const { isOpen : isDeleteModalOpen, onOpen : onDeleteModalOpen, onClose : onDeleteModalClose } = useDisclosure();
+  const toast = useToast()
+  
+  function deleteDepartment(){
+    axios.delete("http://localhost:8080/department/deleteDepartment/" + id).then(() => {
+      toast({
+        title: "Department Delete",
+        description: "Department deleted successfully",
+        position: "top",
+        status: "success",
+        duration: 5000,
+        isClosable: false,
+      });
+      onDeleteModalClose();
+    });
+  }
 
   return (
     <>
@@ -28,7 +46,7 @@ function DeleteModal() {
             Are you sure you want to delete this department?
           </ModalBody>
           <ModalFooter>
-            <Button bg="blue.800" textColor="white" mx="1vh">Delete</Button>
+            <Button bg="blue.800" textColor="white" mx="1vh" onClick={deleteDepartment}>Delete</Button>
             <Button onClick={onDeleteModalClose}>Close</Button>
           </ModalFooter>
         </ModalContent>
@@ -37,4 +55,6 @@ function DeleteModal() {
   )
 }
 
-export default DeleteModal;
+DeleteModal.propTypes={
+  id:PropTypes.any
+}

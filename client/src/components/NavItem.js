@@ -8,7 +8,7 @@ import {PropTypes} from 'prop-types';
 
 export default function NavItem (props, { ...rest }){
   return (
-    <Link href={props.address} style={{ textDecoration: 'none' }}>
+    <Link href={props.address} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -38,5 +38,5 @@ export default function NavItem (props, { ...rest }){
 }
 
 NavItem.propTypes={
-  icon: PropTypes.any, children: PropTypes.any, address: PropTypes.any,
+  icon:PropTypes.any, children:PropTypes.any, address:PropTypes.any
 }

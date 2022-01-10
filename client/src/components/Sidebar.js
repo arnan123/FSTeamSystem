@@ -4,13 +4,26 @@ import {
   CloseButton,
   Flex,
   useColorModeValue,
-  Text,
-  Avatar
+  Text
 } from '@chakra-ui/react';
-import {PropTypes} from 'prop-types';
+import {
+  FiWatch,
+  FiGrid,
+  FiUsers,
+  FiClock,
+} from 'react-icons/fi';
 import NavItem from "./NavItem.js";
+import {PropTypes} from 'prop-types';
 
-export default function Sidebar (props,{...rest}){
+const LinkItems = [
+  { name: 'Daily Time Record', icon: FiClock, address:"/admin/dtr"},
+  { name: 'Departments', icon: FiGrid , address:"/admin/departments"  },
+  { name: 'Employees', icon: FiUsers, address:"/admin/employees" },
+  { name: 'Holidays', icon: FiWatch, address:"/admin/holidays" },
+];
+
+export default function Sidebar ({onClose, ...rest }){
+
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
@@ -20,14 +33,13 @@ export default function Sidebar (props,{...rest}){
       pos="fixed"
       h="full"
       {...rest}>
-      <Flex h="20" alignItems="center" mx="7vh" justifyContent="space-between">
-        <Avatar name='Full Speed Tech' size="sm" src='https://bit.ly/tioluwani-kolawole' />
+      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           FSTEAMS
         </Text>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={props.onClose} />
+        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {props.LinkItems.map((link) => (
+      {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon} address={link.address}>
           {link.name}
         </NavItem>
@@ -37,5 +49,5 @@ export default function Sidebar (props,{...rest}){
 }
 
 Sidebar.propTypes={
-  onClose:PropTypes.any, LinkItems: PropTypes.any
+  onClose:PropTypes.any
 }
