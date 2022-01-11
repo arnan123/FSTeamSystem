@@ -1,5 +1,5 @@
-import { Box, ButtonGroup, Spacer, Select } from '@chakra-ui/react';
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, Flex } from '@chakra-ui/react';
+import { Box, ButtonGroup, Grid, GridItem, Select } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react';
 import ModalContainer from '../ModalContainer';
 import React, { useState } from 'react';
 import EditableCell from '../EditableCell';
@@ -12,35 +12,36 @@ function EmployeeTable() {
   return (
     <>
       <Box paddingBottom={5}>
-        <Flex>
-          <ButtonGroup gap={2}>
-            <Select
-              placeholder="Select Date"
-              variant={'outline'}
-              color={'black'}
-              bg={'white'}>
-              <option>Hello</option>
-            </Select>
-            <Select
-              placeholder="Select Date"
-              variant={'outline'}
-              color={'black'}
-              bg={'white'}>
-              <option>Hello</option>
-            </Select>
-          </ButtonGroup>
-
-          <Spacer />
-
-          <ModalContainer
-            buttoncolor="blue"
-            buttontext="Edit"
-            header="Edit Content"
-            content="are you sure you want to edit the data"
-            setIndicator={setInd}
-            indicator={ind}
-          />
-        </Flex>
+        <Grid templateColumns="repeat(2, 1fr)">
+          <GridItem colStart={1}>
+            <ButtonGroup gap={2}>
+              <Select
+                placeholder="Select Date"
+                variant={'outline'}
+                color={'black'}
+                bg={'white'}>
+                <option>Hello</option>
+              </Select>
+              <Select
+                placeholder="Select Date"
+                variant={'outline'}
+                color={'black'}
+                bg={'white'}>
+                <option>Hello</option>
+              </Select>
+            </ButtonGroup>
+          </GridItem>
+          <GridItem colEnd={4}>
+            <ModalContainer
+              buttoncolor="blue"
+              buttontext="Edit"
+              header="Edit Content"
+              content="are you sure you want to edit the data"
+              setIndicator={setInd}
+              indicator={ind}
+            />
+          </GridItem>
+        </Grid>
       </Box>
       <Box>
         <Table variant="simple" w={'50vw'} size={'sm'} color={'white'}>

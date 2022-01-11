@@ -13,7 +13,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function AvatarProfile() {
-  const { isLoading, logout, user } = useAuth0();
+  const { isLoading, logout } = useAuth0();
 
   if (isLoading) {
     return <Spinner size={'md'} />;
@@ -23,12 +23,15 @@ export default function AvatarProfile() {
       <Box>
         <Menu>
           <MenuButton>
-            <Avatar size={'sm'} src={user.picture} />
+            <Avatar
+              size={'sm'}
+              // src={user.picture}
+            />
           </MenuButton>
           <MenuList>
             <MenuGroup title="Profile">
               <MenuItem fontSize={'sm'}>
-                {user.given_name} {user.family_name} (Software Engineer)
+                {/* {user.given_name} {user.family_name}  */}
                 (Software Engineer)
               </MenuItem>
               <MenuDivider />

@@ -6,7 +6,7 @@ import com.fst.FinalProjectFSTeams.repository.DepartmentRepository;
 import java.util.List;
 
 public interface UserService {
-
+    
     public User saveUser(User user);
     public User updateEmployee(User user, Integer userID);
     public User disableEmployee(Integer userID);
