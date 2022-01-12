@@ -5,6 +5,8 @@ import com.fst.FinalProjectFSTeams.repository.HolidayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HolidayServcieImpl implements  HolidayService{
     @Autowired
@@ -17,5 +19,10 @@ public class HolidayServcieImpl implements  HolidayService{
     @Override
     public void deleteHoliday(Integer id){
         holidayRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Holiday> readHolidays(){
+        return holidayRepository.findAll();
     }
 }

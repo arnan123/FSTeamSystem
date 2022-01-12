@@ -32,8 +32,9 @@ public class LogServiceImpl implements LogService{
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
         User user = userRepository.findById(userId).get();
         LocalDateTime date = LocalDateTime.now();
-
+        log.setUser(user);
         log.setInsertDate(date);
+        log.setAttendance(attendance);
         logRepository.save(log);
 
         attendance.setTimeStarted(log.getTimeStarted());
@@ -45,5 +46,9 @@ public class LogServiceImpl implements LogService{
         attendance.setUnderTime(log.getUnderTime());
         attendance.setTardiness(log.getTardiness());
         attendanceRepository.save(attendance);
+    }
+
+    public List<Log> viewAllLogsPerDept(Integer deptId){
+        return logRepository.getAllLogsPerDept(deptId);
     }
 }

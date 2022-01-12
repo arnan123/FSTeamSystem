@@ -5,6 +5,8 @@ import com.fst.FinalProjectFSTeams.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/log")
 @CrossOrigin
@@ -12,9 +14,13 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @PostMapping("/createLog/{attendanceId}/{userId}")
+    @PutMapping("/createLog/{attendanceId}/{userId}")
     public void createLog(@RequestBody Log log,@PathVariable Integer attendanceId,@PathVariable Integer userId){
         logService.createLog(log,attendanceId,userId);
     }
 
+    @GetMapping("/viewLogsPerDepartment/{deptId}")
+    public List<Log> viewLogsPerDept(@PathVariable Integer deptId){
+        return logService.viewAllLogsPerDept(deptId);
+    }
 }

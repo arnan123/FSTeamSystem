@@ -26,7 +26,7 @@ public class Holiday {
 
     @Basic(optional = false)
     @Column(name = "holidayDate",columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date holidayDate;
+    private LocalDate holidayDate;
 
     @Column(name = "holidayType",nullable = false)
     @Enumerated(EnumType.STRING)

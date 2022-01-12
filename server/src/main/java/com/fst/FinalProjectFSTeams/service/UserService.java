@@ -14,4 +14,5 @@ public interface UserService {
     public void assignEmployeesToTeam(Integer teamId, String employeeIds);
     public void removeEmployeesFromTeam(Integer teamId, String employeeIds);
     public List<User> displayEmployeesFromTeam(Integer teamId);
+    public List<User> displayEmployeesFromDept(Integer deptId);
 }
