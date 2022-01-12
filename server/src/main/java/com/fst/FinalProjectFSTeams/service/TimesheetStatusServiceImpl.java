@@ -78,13 +78,7 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
 
         Sheets sheetsService = googleAuthConfig.getSheetsService();
 
-        for(int i = 0 ; i < users.size();i++){
-            names[i] = users.get(i).getFirstName()+" "+users.get(i).getLastName();
-            AddSheetRequest addSheetRequest = new AddSheetRequest();
-            addSheetRequest.setProperties(new SheetProperties()
-                    .setTitle(users.get(i).getLastName()));
 
-        }
 
         // creating a blank spreadsheet
         Spreadsheet spreadsheet = new Spreadsheet()
@@ -95,10 +89,28 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
                 .execute();
         System.out.println("Spreadsheet ID: " + spreadsheet.getSpreadsheetId());
         spreadsheetId = spreadsheet.getSpreadsheetId();
+        // creating multiple sheets
+        for(int i = 0 ; i < users.size();i++){
+            names[i] = users.get(i).getFirstName()+" "+users.get(i).getLastName();
 
+            AddSheetRequest addSheetRequest = new AddSheetRequest();
+            addSheetRequest.setProperties(new SheetProperties()
+                    .setTitle(users.get(i).getLastName()));
+            BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =new BatchUpdateSpreadsheetRequest();
+            List<Request> requestList = new ArrayList<Request>();
+            batchUpdateSpreadsheetRequest.setRequests(requestList);
 
+            Request request = new Request();
+            request.setAddSheet(addSheetRequest);
+            requestList.add(request);
+            batchUpdateSpreadsheetRequest.setRequests(requestList);
+            sheetsService.spreadsheets().batchUpdate(spreadsheetId,batchUpdateSpreadsheetRequest).execute();
+
+            System.out.println("Add");
+        }
 
         // Insert values to spreadsheet
+
         List<ValueRange> data = new ArrayList<>();
         data.add(new ValueRange()
                 .setRange("A1:D1")
