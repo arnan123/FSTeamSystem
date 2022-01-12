@@ -87,6 +87,8 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-
+    @Override
+    public User getUserFromEmail(String email) {
+        return userRepository.getUser(email);
+    }
 }

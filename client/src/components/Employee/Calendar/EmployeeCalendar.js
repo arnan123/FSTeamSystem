@@ -3,33 +3,23 @@ import '../Calendar/calendar.css';
 import Calendar from 'react-calendar';
 import {
   useDisclosure,
-  List,
-  ListItem,
-  ListIcon,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  Modal,
-  Center,
   Box,
-  Text,
-  VStack,
   Select,
   Grid,
   GridItem,
   useMediaQuery,
+  VStack,
 } from '@chakra-ui/react';
-import { StarIcon } from '@chakra-ui/icons';
+import ModalCalendar from '../Calendar/ModalCalendar';
+import { Navigate } from 'react-router-dom';
 
 function EmployeeCalendar() {
   const [isLargerThan1000] = useMediaQuery('(min-width: 1000px)');
+  const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+  var x = '';
   const [date, setDate] = useState(new Date());
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [style] = useState('Calendar Style');
+
   const onChange = (date) => {
     setDate(date);
   };
@@ -38,71 +28,41 @@ function EmployeeCalendar() {
     onOpen();
   }
 
-  return (
-    <>
-      <VStack paddingTop={'5%'}>
-        <Box h={'10vh'}>
-          <Button
-            color={'white'}
-            fontSize={'3xl'}
-            leftIcon={<StarIcon />}
-            variant={'ghost'}
-            _hover={{ bgColor: ' #2a3b5e' }}>
-            <Text>Holiday</Text>
-          </Button>
-        </Box>
+  function getVal(e) {
+    // console.log(e.target.value);
+    x = e.target.value;
+    console.log(x);
+  }
+  if (x == 'List') {
+    return <Navigate to="/employees/holidayList" replace={true} />;
+  } else {
+    return (
+      <VStack paddingLeft={isLargerThan800 ? '15%' : ''} paddingTop={'5%'}>
         <Box>
           <Grid
             templateColumns={
               isLargerThan1000 ? 'repeat(6, 1fr)' : 'repeat(3, 1fr)'
             }>
             <GridItem colStart={isLargerThan1000 ? 6 : 3}>
-              <Select placeholder={style} variant={'outline'} bgColor={'white'}>
-                <option>List Style</option>
+              <Select
+                placeholder="Select Style"
+                variant={'outline'}
+                bgColor={'white'}
+                color={'gray'}
+                onChange={getVal}>
+                <option value="List">List Style</option>
+                <option value={'Calendar Style'}>Calendar Style</option>
               </Select>
             </GridItem>
           </Grid>
         </Box>
-        <Center>
+        <Box>
           <Calendar onChange={onChange} value={date} onClickDay={openModal} />
-        </Center>
+        </Box>
+        <ModalCalendar isOpen={isOpen} onClose={onClose} />
       </VStack>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>LIST OF HOLIDAY</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <List>
-              <ListItem>
-                <ListIcon as={StarIcon} color="green.500" />
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit
-              </ListItem>
-              <ListItem>
-                <ListIcon as={StarIcon} color="green.500" />
-                Assumenda, quia temporibus eveniet a libero incidunt suscipit
-              </ListItem>
-              <ListItem>
-                <ListIcon as={StarIcon} color="green.500" />
-                Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-              </ListItem>
-              <ListItem>
-                <ListIcon as={StarIcon} color="green.500" />
-                Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-              </ListItem>
-            </List>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Confirm
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
+    );
+  }
 }
 
 export default EmployeeCalendar;

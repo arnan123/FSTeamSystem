@@ -1,11 +1,10 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-import EmployeeCalendar from '../components/Employee/Calendar/EmployeeCalendar';
 import { Helmet } from 'react-helmet';
 import EmployeeSideNav from '../components/Employee/SideNav/EmployeeSideNav';
 import EmployeeHeader from '../components/Employee/Header/EmployeeHeader';
-
-export default function EmployeeHoliday() {
+import EmployeeCalendarList from '../components/Employee/Calendar/EmployeeCalendarList';
+function EmployeeHolidayList() {
   return (
     <>
       <Helmet>
@@ -20,11 +19,13 @@ export default function EmployeeHoliday() {
       </Helmet>
       <Box>
         <EmployeeSideNav color="gray" />
-        <EmployeeHeader text="HOLIDAYS" />
+        <EmployeeHeader text="TIMER" />
         <Box>
-          <EmployeeCalendar />
+          <EmployeeCalendarList />
         </Box>
       </Box>
     </>
   );
 }
+
+export default EmployeeHolidayList;

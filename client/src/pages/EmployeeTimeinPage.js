@@ -17,7 +17,7 @@ function EmployeeTimeinPage({
   isrunning,
   start,
   pause,
-  ...lunchTimer
+  lunchTimer,
 }) {
   // const [isLargerThan800] = useMediaQuery('(min-width: 1000px)');
   //   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
@@ -29,7 +29,7 @@ function EmployeeTimeinPage({
         <title> FST Time/Out Page</title>
       </Helmet>
       <EmployeeSideNav color="gray" />
-      <EmployeeHeader />
+      <EmployeeHeader text="TIMER" />
       <Box>
         <EmployeeTime
           seconds={seconds}
@@ -38,8 +38,8 @@ function EmployeeTimeinPage({
           isrunning={isrunning}
           start={start}
           pause={pause}
+          lunchTimer={lunchTimer}
         />
-        {lunchTimer[0]}
       </Box>
     </Box>
   );

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -20,5 +21,6 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     @Query(value = "SELECT * FROM User u WHERE u.team_id =:teamId", nativeQuery = true)
     List<User> getEmployeesByTeam(int teamId);
 
-
+    @Query(value = "SELECT * FROM User u  WHERE u.email =:email", nativeQuery = true)
+    User getUser(String email);
 }
