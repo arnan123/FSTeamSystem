@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/attendance")
 @CrossOrigin
 public class AttendanceController {
+
     @Autowired
     private AttendanceService attendanceService;
 
@@ -43,8 +44,6 @@ public class AttendanceController {
         return attendanceService.viewAttendance(userId);
     }
 
-    @PostMapping("/sample/{email}")
-    public String sampleFunc(@PathVariable String email){return attendanceService.samps(email);}
 
     @GetMapping("/getAttendance/{userid}")
     public String getAttendanceID(@PathVariable Integer userid){

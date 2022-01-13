@@ -6,12 +6,8 @@ import com.fst.FinalProjectFSTeams.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -90,5 +86,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserFromEmail(String email) {
         return userRepository.getUser(email);
+    }
+
+    @Override
+    public List<User> readEmployees(){
+        return userRepository.findAll();
+    }
+
+    public Optional<User> readEmployeesById(Integer id){
+        return userRepository.findById(id);
     }
 }

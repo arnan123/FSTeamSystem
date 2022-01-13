@@ -46,4 +46,9 @@ public class LogServiceImpl implements LogService{
         attendance.setTardiness(log.getTardiness());
         attendanceRepository.save(attendance);
     }
+
+    @Override
+    public List<Log> readLogs() {
+        return logRepository.findAll();
+    }
 }
