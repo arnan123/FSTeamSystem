@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet';
 import { useMediaQuery } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-function EmployeeDTR() {
+function EmployeeDTR({ userData }) {
   const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   return (
@@ -28,8 +28,8 @@ function EmployeeDTR() {
         <EmployeeHeader text="Daily Time Record" />
         <VStack>
           <Box h={'10vh'}></Box>
-          {isLargerThan480 && <EmployeeTable />}
-          {!isLargerThan480 && <EmployeeTableMobile />}
+          {isLargerThan480 && <EmployeeTable userData={userData} />}
+          {!isLargerThan480 && <EmployeeTableMobile userData={userData} />}
         </VStack>
       </Box>
     </>
@@ -37,12 +37,7 @@ function EmployeeDTR() {
 }
 
 EmployeeDTR.propTypes = {
-  seconds: PropTypes.any,
-  minutes: PropTypes.any,
-  hours: PropTypes.any,
-  isrunning: PropTypes.any,
-  start: PropTypes.any,
-  pause: PropTypes.any,
+  userData: PropTypes.any,
 };
 
 export default EmployeeDTR;

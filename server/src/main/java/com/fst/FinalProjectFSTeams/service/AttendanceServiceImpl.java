@@ -23,6 +23,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -65,7 +66,7 @@ public class AttendanceServiceImpl implements AttendanceService{
     }
 
     @Override
-    public void timeOut(Integer userId,String timeOut, Integer attendanceId){
+    public void timeOut(Integer userId , Integer attendanceId,String duration){
         User user = userRepository.findById(userId).get();
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
         LocalDateTime date = LocalDateTime.now();
@@ -96,6 +97,11 @@ public class AttendanceServiceImpl implements AttendanceService{
             System.out.println("Byee");
             attendance.setUnderTime(mins);
         }
+
+        System.out.println(duration);
+
+//        System.out.println(out);
+        attendance.setTotalTime(duration);
         attendance.setTimeEnded(out);
         attendance.setInsertDate(date);
         attendance.setUser(user);
@@ -120,7 +126,19 @@ public class AttendanceServiceImpl implements AttendanceService{
     @Override
     public List<Attendance> viewAttendance(Integer userId) {
         User user = userRepository.findById(userId).get();
-        return attendanceRepository.viewDTR(userId);
+        LocalDate date = LocalDate.now();
+        List<Attendance> attendanceList = attendanceRepository.viewDTR(userId);
+        List<Attendance> attendance= new ArrayList<>();
+        if(attendanceList.get(attendanceList.size()-1).getInsertDate().getDayOfMonth() > 5 && attendanceList.get(attendanceList.size()-1).getInsertDate().getDayOfMonth() <= 20)
+        {
+            for (Attendance attendances : attendanceList){
+                if(attendances.getInsertDate().getDayOfMonth()>5 &&  attendances.getInsertDate().getDayOfMonth()<=20){
+                    attendance.add(attendances);
+                }
+            }
+        }
+
+        return attendance;
     }
 
     @Override
@@ -140,7 +158,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 
 
     @Override
-    public String getAttendance(Integer userid){
+    public Integer getAttendance(Integer userid){
         LocalDate date = LocalDate.now();
 
         List<Attendance> attendanceList = attendanceRepository.getAttendanceID((userid));
@@ -151,6 +169,6 @@ public class AttendanceServiceImpl implements AttendanceService{
             }
         }
         System.out.println(attendances.getId());
-        return date.toString();
+        return attendances.getId();
     }
 }

@@ -22,10 +22,9 @@ public class AttendanceController {
         attendanceService.timeIn(userId);
     }
 
-    @PutMapping("/timeOut/{userId}/{attendanceId}")
-    @ResponseBody
-    public void timeOut(@PathVariable Integer userId,@RequestParam String timeOut,@PathVariable Integer attendanceId){
-        attendanceService.timeOut(userId,timeOut,attendanceId);
+    @PutMapping("/timeOut/{userId}/{attendanceId}/{duration}")
+    public void timeOut(@PathVariable Integer userId,@PathVariable Integer attendanceId,@PathVariable String duration ){
+        attendanceService.timeOut(userId,attendanceId,duration);
     }
 
     @PutMapping("/elapsedBreak/{userId}/{attendanceId}/{duration}")
@@ -46,6 +45,6 @@ public class AttendanceController {
 
 
     @GetMapping("/getAttendance/{userid}")
-    public String getAttendanceID(@PathVariable Integer userid){
+    public Integer getAttendanceID(@PathVariable Integer userid){
         return attendanceService.getAttendance(userid);}
 }

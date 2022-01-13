@@ -47,6 +47,9 @@ public class Attendance {
     @Column(name="tardiness", nullable = true)
     private float tardiness;
 
+    @Column(name="totalTime", nullable = true)
+    private String totalTime;
+
     @Column(name="approved", nullable = false)
     private boolean approved = true;
 

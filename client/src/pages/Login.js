@@ -1,20 +1,13 @@
 import React from 'react';
 import { useAuth0, withAuth0 } from '@auth0/auth0-react';
-import {
-  VStack,
-  Spinner,
-  Box,
-  useMediaQuery,
-  Center,
-  Button,
-} from '@chakra-ui/react';
+import { VStack, Spinner, Box, useMediaQuery, Center } from '@chakra-ui/react';
 import Loginbutton from '../components/Login/Loginbutton';
 import LoginLogo from '../components/Login/LoginLogo';
 import { Helmet } from 'react-helmet';
 import { Navigate } from 'react-router-dom';
 
 function Login() {
-  const { isAuthenticated, isLoading, logout } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
   if (isLoading) {
@@ -37,7 +30,6 @@ function Login() {
               <Helmet bodyAttributes={{ style: 'background-color :#212b3d' }} />
               <LoginLogo />
               <Loginbutton />
-              <Button onClick={logout}>Logout</Button>
             </VStack>
           </Box>
         </VStack>

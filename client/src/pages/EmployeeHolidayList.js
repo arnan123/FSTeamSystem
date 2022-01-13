@@ -19,7 +19,7 @@ function EmployeeHolidayList() {
       </Helmet>
       <Box>
         <EmployeeSideNav color="gray" />
-        <EmployeeHeader text="TIMER" />
+        <EmployeeHeader text="HOLIDAYS" />
         <Box>
           <EmployeeCalendarList />
         </Box>
