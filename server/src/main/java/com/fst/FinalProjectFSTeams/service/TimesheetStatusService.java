@@ -1,5 +1,6 @@
 package com.fst.FinalProjectFSTeams.service;
 
+import com.fst.FinalProjectFSTeams.entities.DTR;
 import com.google.api.services.sheets.v4.model.AppendValuesResponse;
 import com.google.api.services.sheets.v4.model.SheetProperties;
 
@@ -12,6 +13,6 @@ public interface TimesheetStatusService {
     //public String create(Integer deptId,String date) throws IOException,GeneralSecurityException;
     public void generateReport(String date, Integer deptId) throws IOException,GeneralSecurityException;
     public void writeSheet(String spreadsheetId, SheetProperties sheetProperties,
-                           List<List<Object>> headers,List<List<Object>> content ,String headerRange,String contentRange)
+                           List<List<Object>> headers, List<DTR> dtr , String headerRange)
             throws IOException,GeneralSecurityException;
 }
