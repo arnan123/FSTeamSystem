@@ -11,8 +11,8 @@ function EditableCell(props) {
   if (props.indicator == true) {
     return (
       <>
-        <Editable placeholder="EDIT ME">
-          <EditableInput />
+        <Editable placeholder={props.tablecontent}>
+          <EditableInput w={'full'} />
           <EditablePreview />
         </Editable>
       </>

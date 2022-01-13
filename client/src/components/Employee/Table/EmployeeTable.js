@@ -1,21 +1,28 @@
-import {
-  Box,
-  ButtonGroup,
-  Flex,
-  Select,
-  Center,
-  Spacer,
-} from '@chakra-ui/react';
+import { Box, ButtonGroup, Flex, Center, Spacer } from '@chakra-ui/react';
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react';
 import ModalContainer from '../../ModalContainer';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditableCell from '../../EditableCell';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import EmployeeSelect from './EmployeeSelect';
+import moment from 'moment';
 // import { ChevronDownIcon } from '@chakra-ui/icons';
 // import { CalendarIcon } from '@chakra-ui/icons';
 
-function EmployeeTable() {
+function EmployeeTable({ userData }) {
   const [ind, setInd] = useState(false);
+  const [tableDatas, setTableDatas] = useState([]);
+  const [dates, setDates] = useState({});
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:8080/attendance/viewDTR/' + userData.id)
+      .then((response) => {
+        setTableDatas(response.data);
+      });
+    // console.log(tableDatas);
+  }, []);
   return (
     <>
       <Box paddingBottom={5}>
@@ -24,29 +31,31 @@ function EmployeeTable() {
             <Flex w={'60vw'}>
               <Box>
                 <ButtonGroup gap={1}>
-                  <Select
-                    placeholder="Select Date"
-                    variant={'outline'}
-                    color={'black'}
-                    bg={'white'}>
-                    <option>Hello</option>
-                  </Select>
-                  <Select
-                    placeholder="Select Date"
-                    variant={'outline'}
-                    color={'black'}
-                    bg={'white'}>
-                    <option>Hello</option>
-                  </Select>
+                  <EmployeeSelect
+                    dateData="year"
+                    attendance={tableDatas}
+                    dates={dates}
+                    setDates={setDates}
+                  />
+                  <EmployeeSelect
+                    dateData="month"
+                    attendance={tableDatas}
+                    dates={dates}
+                    setDates={setDates}
+                  />
                 </ButtonGroup>
               </Box>
               <Spacer />
               <Box>
                 <ModalContainer
-                  buttoncolor="blue"
-                  buttontext="Edit"
-                  header="Edit Content"
-                  content="are you sure you want to edit the data"
+                  buttoncolor={ind == true ? 'green' : 'blue'}
+                  buttontext={ind == true ? 'Save' : 'Edit'}
+                  header={ind == true ? 'Save Data' : 'Edit Data'}
+                  content={
+                    ind == true
+                      ? 'After clicking this action the data will be saved.'
+                      : 'After clicking this action the data can be edited.'
+                  }
                   setIndicator={setInd}
                   indicator={ind}
                 />
@@ -59,6 +68,7 @@ function EmployeeTable() {
         <Table variant="simple" w={'50vw'} size={'sm'} color={'white'}>
           <Thead>
             <Tr bgColor={'gray'} borderRadius={10}>
+              <Th>Date</Th>
               <Th>Time in</Th>
               <Th>Time out</Th>
               <Th>Lunch</Th>
@@ -67,45 +77,51 @@ function EmployeeTable() {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>
-                <EditableCell indicator={ind} tableContent="9:00 AM" />
-              </Td>
-              <Td>
-                <EditableCell indicator={ind} tablecontent="8:00 PM" />
-              </Td>
-              <Td>
-                <EditableCell indicator={ind} tablecontent="8:00 PM" />
-              </Td>
-              <Td>
-                <EditableCell indicator={ind} tablecontent="8:00 PM" />
-              </Td>
-              <Td>
-                <EditableCell indicator={ind} tablecontent="8:00 PM" />
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>feet</Td>
-              <Td>centimetres (cm)</Td>
-              <Td isNumeric>30.48</Td>
-            </Tr>
-            <Tr>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-              <Td isNumeric>0.91444</Td>
-            </Tr>
+            {tableDatas.map((tableData) => (
+              <Tr key={tableData.id}>
+                <Td>{moment(tableData.insertDate).format('MMMM Do YYYY')}</Td>
+                <Td>
+                  <EditableCell
+                    indicator={ind}
+                    tablecontent={tableData.timeStarted}
+                  />
+                </Td>
+                <Td>
+                  <EditableCell
+                    indicator={ind}
+                    tablecontent={tableData.timeEnded}
+                  />
+                </Td>
+                <Td>
+                  <EditableCell
+                    indicator={ind}
+                    tablecontent={tableData.elapsedBreak}
+                  />
+                </Td>
+                <Td>
+                  <EditableCell
+                    indicator={ind}
+                    tablecontent={tableData.overTime}
+                  />
+                </Td>
+                <Td>
+                  <EditableCell
+                    indicator={ind}
+                    tablecontent={tableData.totalTime}
+                  />
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-              <Th isNumeric>multiply by</Th>
-            </Tr>
-          </Tfoot>
+          <Tfoot></Tfoot>
         </Table>
       </Box>
     </>
   );
 }
+
+EmployeeTable.propTypes = {
+  userData: PropTypes.any,
+};
 
 export default EmployeeTable;

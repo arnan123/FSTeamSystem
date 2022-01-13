@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 import Login from './pages/Login';
 import EmployeeTimeinPage from './pages/EmployeeTimeinPage';
@@ -14,6 +14,7 @@ import EmployeeHolidayList from './pages/EmployeeHolidayList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { FiWatch, FiGrid, FiUsers, FiClock } from 'react-icons/fi';
+import { useAuth0 } from '@auth0/auth0-react';
 import '../src/App.css';
 
 const LinkItems = [
@@ -24,6 +25,7 @@ const LinkItems = [
 ];
 
 function App() {
+  const { isAuthenticated } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
     autoStart: false,
@@ -38,7 +40,6 @@ function App() {
   } = useStopwatch({
     autoStart: false,
   });
-
   const lunchTimer = {
     lunchseconds,
     lunchminutes,
@@ -47,11 +48,13 @@ function App() {
     lunchStart,
     lunchPause,
   };
+  const [userDatas, setUserDatas] = useState({});
 
   return (
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
+          {isAuthenticated}
           <Route path="/" element={<Login />} />
           <Route
             path="/employees"
@@ -63,22 +66,15 @@ function App() {
                 isrunning={isRunning}
                 start={start}
                 pause={pause}
+                userData={userDatas}
+                setUserData={setUserDatas}
                 lunchTimer={lunchTimer}
               />
             }
           />
           <Route
             path="/employees/dtr"
-            element={
-              <EmployeeDTR
-                seconds={seconds}
-                minutes={minutes}
-                hours={hours}
-                isrunning={isRunning}
-                start={start}
-                pause={pause}
-              />
-            }
+            element={<EmployeeDTR userData={userDatas} />}
           />
           <Route path="/employees/holiday" element={<EmployeeHoliday />} />
           <Route

@@ -21,58 +21,124 @@ function EmployeeTime({
   start,
   pause,
   lunchTimer,
+  userData,
+  setUserData,
 }) {
   const { user } = useAuth0();
   const toast = useToast();
-  const id = '1';
-  const [userData, setUserData] = useState();
+  const [attendanceID, setAttendanceID] = useState({});
   const [timeinstatus, setTimeinStatus] = useState(false);
   const [lunchBreakstatus, setLunchBreakStatus] = useState(false);
   const [isLargerThan620] = useMediaQuery('(min-width:620px)');
-  const newDate = new Date();
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:8080/user/useremail/' + user.email)
+      .then((response) => {
+        setUserData(response.data);
+        sessionStorage.setItem('user data', response.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (isrunning) {
+      setTimeinStatus(true);
+    } else if (!isrunning && lunchTimer.isLunchRunning) {
+      setTimeinStatus(true);
+      setLunchBreakStatus(true);
+    } else {
+      setTimeinStatus(false);
+      setLunchBreakStatus(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (seconds > 0) {
+      axios
+        .get('http://localhost:8080/attendance/getAttendance/' + userData.id)
+        .then((response) => {
+          setAttendanceID(response.data);
+        });
+    }
+  }, [userData]);
 
   function handleChange(seconds, minutes, hours) {
     localStorage.setItem('seconds', seconds);
     localStorage.setItem('minutes', minutes);
     localStorage.setItem('hours', hours);
   }
-  // useEffect(() => {
-
-  // }, [])
-  useEffect(() => {
-    axios
-      .get('http://localhost:8080/user/useremail/' + user.email)
-      .then((response) => {
-        setUserData(response.data);
-      });
-
-    if (newDate.getHours().toLocaleString('en-GB') == 24) {
-      console.log(newDate.getHours().toLocaleString('en-GB'));
-    }
-  }, [hours]);
 
   const timeIn = () => {
+    if (seconds === '00' && minutes === '00') {
+      axios
+        .put('http://localhost:8080/attendance/timeIn/' + userData.id)
+        .then(() => {
+          toast({
+            title: 'Time In',
+            description: 'Timed in successfully',
+            position: 'top',
+            status: 'success',
+            duration: 5000,
+            isClosable: false,
+          });
+        });
+    }
+  };
+
+  const timeOut = async () => {
+    // if (seconds > 60) {
+    //   toast({
+    //     title: 'Time out',
+    //     description: 'You need at least 1 hour of time in',
+    //     position: 'top',
+    //     status: 'error',
+    //     duration: 5000,
+    //     isClosable: false,
+    //   });
+    // } else {
     axios
-      .put('http://localhost:8080/attendance/timeIn/' + userData.id)
+      .put(
+        'http://localhost:8080/attendance/timeOut/' +
+          userData.id +
+          '/' +
+          attendanceID +
+          '/' +
+          '02' +
+          ':' +
+          minutes,
+      )
       .then(() => {
         toast({
-          title: 'Time In',
-          description: 'Timed in successfully',
+          title: 'Time out',
+          description: 'Timed out successfully',
           position: 'top',
           status: 'success',
           duration: 5000,
           isClosable: false,
         });
+        setTimeinStatus(false);
+        pause();
       });
+
+    // }
   };
 
-  const timeOut = () => {
+  const endLunchBreak = async () => {
+    lunchTimer.lunchminutes = lunchTimer.lunchminutes / 60;
+    lunchTimer.lunchhours = lunchTimer.lunchhours + lunchTimer.lunchminutes;
     axios
-      .put('http://localhost:8080/attendance/timeIn/' + userData.id)
+      .put(
+        'http://localhost:8080/attendance/elapsedBreak/' +
+          userData.id +
+          '/' +
+          attendanceID +
+          '/' +
+          lunchTimer.lunchseconds,
+      )
       .then(() => {
         toast({
-          title: 'Time In',
-          description: 'Timed in successfully',
+          title: 'Lunch Break',
+          description: 'Lunch Break Recorded',
           position: 'top',
           status: 'success',
           duration: 5000,
@@ -83,9 +149,7 @@ function EmployeeTime({
 
   function startTimer() {
     if (isrunning) {
-      setTimeinStatus(false);
       timeOut();
-      pause();
     } else {
       setTimeinStatus(true);
       start();
@@ -100,34 +164,11 @@ function EmployeeTime({
       pause();
     } else {
       setLunchBreakStatus(false);
-      lunchTimer[5];
+      endLunchBreak();
       lunchTimer.lunchPause();
       start();
     }
   }
-
-  useEffect(() => {
-    hours = localStorage.getItem('hours');
-    minutes = localStorage.getItem('minutes');
-    seconds = localStorage.getItem('seconds');
-    if (performance.navigation.type === 1) {
-      console.log('This page is reloaded');
-    } else {
-      console.log('This page is not reloaded');
-    }
-
-    if (isrunning) {
-      setTimeinStatus(true);
-    } else if (!isrunning && lunchTimer.isLunchRunning) {
-      setTimeinStatus(true);
-      setLunchBreakStatus(true);
-    } else {
-      setTimeinStatus(false);
-      setLunchBreakStatus(false);
-    }
-
-    console.log(seconds);
-  }, []);
 
   if (hours < 10) {
     hours = '0' + hours;
@@ -142,7 +183,6 @@ function EmployeeTime({
   return (
     <Box>
       <VStack>
-        {id}
         {isLargerThan620 ? (
           <HStack>
             <Box>
@@ -267,6 +307,8 @@ EmployeeTime.propTypes = {
   start: PropTypes.any,
   pause: PropTypes.any,
   lunchTimer: PropTypes.any,
+  userData: PropTypes.any,
+  setUserData: PropTypes.any,
 };
 
 export default EmployeeTime;

@@ -18,6 +18,8 @@ function EmployeeTimeinPage({
   start,
   pause,
   lunchTimer,
+  userData,
+  setUserData,
 }) {
   // const [isLargerThan800] = useMediaQuery('(min-width: 1000px)');
   //   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
@@ -38,6 +40,8 @@ function EmployeeTimeinPage({
           isrunning={isrunning}
           start={start}
           pause={pause}
+          userData={userData}
+          setUserData={setUserData}
           lunchTimer={lunchTimer}
         />
       </Box>
@@ -53,6 +57,8 @@ EmployeeTimeinPage.propTypes = {
   start: PropTypes.any,
   pause: PropTypes.any,
   lunchTimer: PropTypes.any,
+  userData: PropTypes.any,
+  setUserData: PropTypes.any,
 };
 
 export default EmployeeTimeinPage;
