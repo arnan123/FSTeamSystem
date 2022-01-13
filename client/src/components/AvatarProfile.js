@@ -9,11 +9,12 @@ import {
   MenuGroup,
   MenuDivider,
   Box,
+  VStack,
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function AvatarProfile() {
-  const { isLoading, logout } = useAuth0();
+  const { isLoading, logout, user } = useAuth0();
 
   if (isLoading) {
     return <Spinner size={'md'} />;
@@ -23,16 +24,18 @@ export default function AvatarProfile() {
       <Box>
         <Menu>
           <MenuButton>
-            <Avatar
-              size={'sm'}
-              // src={user.picture}
-            />
+            <Avatar size={'sm'} src={user.picture} />
           </MenuButton>
           <MenuList>
             <MenuGroup title="Profile">
               <MenuItem fontSize={'sm'}>
-                {/* {user.given_name} {user.family_name}  */}
-                (Software Engineer)
+                <VStack alignItems={'left'}>
+                  <Box>
+                    {user.given_name} {user.family_name}
+                  </Box>
+                  <Box>{user.email}</Box>
+                  <Box>(Software Engineer)</Box>
+                </VStack>
               </MenuItem>
               <MenuDivider />
               <MenuItem

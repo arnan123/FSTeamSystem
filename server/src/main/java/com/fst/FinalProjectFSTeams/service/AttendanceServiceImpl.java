@@ -18,8 +18,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
@@ -35,18 +37,19 @@ public class AttendanceServiceImpl implements AttendanceService{
     private UserRepository userRepository;
 
     @Override
-    public void timeIn(Integer userId,String timeIn){
+    public void timeIn(Integer userId){
         User user = userRepository.findById(userId).get();
         Attendance attendance = new Attendance();
         LocalTime flexTime = LocalTime.parse("10:00");
-        LocalTime in = LocalTime.parse(timeIn);
         LocalTime temp = LocalTime.parse("00:00");
         LocalDateTime date = LocalDateTime.now();
-        int result = in.compareTo(flexTime);
+        System.out.println(date.getHour()+":"+date.getMinute()+" ");
+        LocalTime in = LocalTime.now();
+        float result = in.compareTo(flexTime);
 
         if(result > 0){
             long tardiness = flexTime.until(in, ChronoUnit.MINUTES);
-            int late = (int) tardiness;
+            float late = (float) tardiness;
             attendance.setTardiness(late);
             System.out.println("You are late about "+tardiness+"minutes");
         }else{
@@ -66,7 +69,7 @@ public class AttendanceServiceImpl implements AttendanceService{
         User user = userRepository.findById(userId).get();
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
         LocalDateTime date = LocalDateTime.now();
-        LocalTime out = LocalTime.parse(timeOut);
+        LocalTime out = LocalTime.now();
         float  hours = 0;
 
         long x = attendance.getTimeStarted().until(out, ChronoUnit.HOURS);
@@ -134,5 +137,23 @@ public class AttendanceServiceImpl implements AttendanceService{
         }
     }
 
+    @Override
+    public String samps(String email){
+        return email;
+    }
 
+    @Override
+    public String getAttendance(Integer userid){
+        LocalDate date = LocalDate.now();
+
+        List<Attendance> attendanceList = attendanceRepository.getAttendanceID((userid));
+        Attendance attendances = new Attendance()
+        for (Attendance attendance : attendanceList) {
+            if(attendance.getInsertDate().getMonth() == date.getMonth() && attendance.getInsertDate().getYear()==date.getYear() && attendance.getInsertDate().getDayOfMonth()==date.getDayOfMonth()){
+                attendances.setId(attendance.getId());
+            }
+        }
+        System.out.println(attendances.getId());
+        return date.toString();
+    }
 }

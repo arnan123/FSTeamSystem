@@ -6,7 +6,8 @@
   line-height: 1.125em;
   display: block;
   float: none;
-  width: 1000px;
+  width: 60vw;
+  color: black;
 }
 
 @media screen and (max-width: 1020px) {

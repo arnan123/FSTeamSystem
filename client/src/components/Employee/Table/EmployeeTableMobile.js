@@ -1,7 +1,7 @@
 import { Box, VStack, Center } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import EmployeeTableMobileData from './EmployeeTableMobileData';
-import ModalContainer from '../ModalContainer';
+import ModalContainer from '../../ModalContainer';
 
 function EmployeeTableMobile() {
   const [indicator, setIndicator] = useState(false);

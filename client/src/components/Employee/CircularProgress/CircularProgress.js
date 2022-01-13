@@ -2,6 +2,7 @@ import {
   CircularProgress,
   CircularProgressLabel,
   Text,
+  VStack,
 } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -16,22 +17,35 @@ function EmployeeCircularProgress(props) {
       <CircularProgress
         size={props.size}
         thickness={props.thickness}
-        value={props.label[2]}
+        value={props.main == 'true' ? props.label[1] : props.label[2]}
         max={60}
-        color="red"
+        color={'blue.600'}
         onChange={props.change}>
         <CircularProgressLabel fontSize={props.fontSize}>
-          <CircularProgress
-            size={'320px'}
-            thickness={5}
-            value={props.label[1]}
-            max={60}>
-            <CircularProgressLabel>
-              <Text fontSize={'4xl'}>
-                {props.label[0]} : {props.label[1]} : {props.label[2]}
-              </Text>
-            </CircularProgressLabel>
-          </CircularProgress>
+          <CircularProgressLabel>
+            {props.main == 'true' ? (
+              <CircularProgress
+                size={'320px'}
+                thickness={'6px'}
+                value={props.label[2]}>
+                <CircularProgressLabel>
+                  <VStack>
+                    <Text fontSize={props.fontSize}>
+                      {props.label[0]} : {props.label[1]} : {props.label[2]}
+                    </Text>
+                    <Text fontSize={'1vw'}>{props.text}</Text>
+                  </VStack>
+                </CircularProgressLabel>
+              </CircularProgress>
+            ) : (
+              <VStack>
+                <Text fontSize={'2vw'}>
+                  {props.label[0]} : {props.label[1]} : {props.label[2]}
+                </Text>
+                <Text fontSize={'1vw'}>{props.text}</Text>
+              </VStack>
+            )}
+          </CircularProgressLabel>
         </CircularProgressLabel>
       </CircularProgress>
     </>
@@ -50,6 +64,8 @@ EmployeeCircularProgress.propTypes = {
   hoverStatus: PropTypes.any,
   click: PropTypes.any,
   change: PropTypes.func,
+  main: PropTypes.any,
+  text: PropTypes.any,
 };
 
 export default EmployeeCircularProgress;

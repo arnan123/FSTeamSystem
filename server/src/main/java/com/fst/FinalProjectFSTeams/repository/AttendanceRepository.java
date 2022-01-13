@@ -5,10 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance,Integer>{
+
     @Query(value = "SELECT * FROM attendance a WHERE a.user_id = :userId",nativeQuery = true)
     List<Attendance> viewDTR(int userId);
+
+    @Query(value = "SELECT * FROM attendance a WHERE a.user_id = :userId",nativeQuery = true)
+    List<Attendance> getAttendanceID(int userId);
 }

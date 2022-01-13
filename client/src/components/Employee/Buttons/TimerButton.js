@@ -22,9 +22,10 @@ function TimerButton(props) {
       <Button size={props.size} color={props.color} onClick={onOpen}>
         {props.text}
       </Button>
+
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent w={'90vw'}>
           <ModalHeader>{props.text}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -53,6 +54,8 @@ TimerButton.propTypes = {
   color: PropTypes.any,
   text: PropTypes.any,
   click: PropTypes.any,
+  status: PropTypes.any,
+  setStatus: PropTypes.any,
   description: PropTypes.any,
 };
 

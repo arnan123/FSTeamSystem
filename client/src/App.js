@@ -10,9 +10,11 @@ import AdminTeams from './pages/AdminTeams';
 import AdminDepartments from './pages/AdminDepartments';
 import EmployeeDTR from './pages/EmployeeDTR';
 import EmployeeHoliday from './pages/EmployeeHoliday';
+import EmployeeHolidayList from './pages/EmployeeHolidayList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { FiWatch, FiGrid, FiUsers, FiClock } from 'react-icons/fi';
+import '../src/App.css';
 
 const LinkItems = [
   { name: 'Daily Time Record', icon: FiClock, address: '/' },
@@ -37,14 +39,14 @@ function App() {
     autoStart: false,
   });
 
-  const lunchTimer = [
+  const lunchTimer = {
     lunchseconds,
     lunchminutes,
     lunchhours,
+    isLunchRunning,
     lunchStart,
     lunchPause,
-    isLunchRunning,
-  ];
+  };
 
   return (
     <ChakraProvider>
@@ -79,6 +81,10 @@ function App() {
             }
           />
           <Route path="/employees/holiday" element={<EmployeeHoliday />} />
+          <Route
+            path="/employees/holidayList"
+            element={<EmployeeHolidayList />}
+          />
           <Route
             path="/admin/dtr"
             element={

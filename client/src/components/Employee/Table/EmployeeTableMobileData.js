@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditableCell from '../EditableCell';
+import EditableCell from '../../EditableCell';
 import { Box, Tr, Th, Table, Tbody, Td } from '@chakra-ui/react';
 
 function EmployeeTableMobileData(props) {

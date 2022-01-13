@@ -17,9 +17,8 @@ public class AttendanceController {
 
 
     @PutMapping("/timeIn/{userId}")
-    @ResponseBody
-    public void timeIn(@PathVariable Integer userId,@RequestParam String timeIn){
-        attendanceService.timeIn(userId,timeIn);
+    public void timeIn(@PathVariable Integer userId){
+        attendanceService.timeIn(userId);
     }
 
     @PutMapping("/timeOut/{userId}/{attendanceId}")
@@ -44,6 +43,10 @@ public class AttendanceController {
         return attendanceService.viewAttendance(userId);
     }
 
+    @PostMapping("/sample/{email}")
+    public String sampleFunc(@PathVariable String email){return attendanceService.samps(email);}
 
-
+    @GetMapping("/getAttendance/{userid}")
+    public String getAttendanceID(@PathVariable Integer userid){
+        return attendanceService.getAttendance(userid);}
 }
