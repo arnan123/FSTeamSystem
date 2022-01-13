@@ -57,10 +57,11 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
         String spreadsheetId;
         Sheets sheetsService = googleAuthConfig.getSheetsService();
         System.out.println("HELLO");
+
         String arr[] = new String[256];
 
-        int size = attendances.size() * 3;
-        for(int i = 0 ; i < size; i++){
+
+        for(int i = 0 ; i < attendances.size(); i++){
             arr = attendances.get(i).split(",");
 
         }
