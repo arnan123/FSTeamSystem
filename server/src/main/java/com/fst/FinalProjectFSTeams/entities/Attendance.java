@@ -54,4 +54,5 @@ public class Attendance {
     @Basic(optional = false)
     @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime insertDate;
+
 }
