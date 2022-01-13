@@ -137,17 +137,14 @@ public class AttendanceServiceImpl implements AttendanceService{
         }
     }
 
-    @Override
-    public String samps(String email){
-        return email;
-    }
+
 
     @Override
     public String getAttendance(Integer userid){
         LocalDate date = LocalDate.now();
 
         List<Attendance> attendanceList = attendanceRepository.getAttendanceID((userid));
-        Attendance attendances = new Attendance()
+        Attendance attendances = new Attendance();
         for (Attendance attendance : attendanceList) {
             if(attendance.getInsertDate().getMonth() == date.getMonth() && attendance.getInsertDate().getYear()==date.getYear() && attendance.getInsertDate().getDayOfMonth()==date.getDayOfMonth()){
                 attendances.setId(attendance.getId());

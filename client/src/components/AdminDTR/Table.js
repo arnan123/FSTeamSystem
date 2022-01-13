@@ -1,118 +1,65 @@
-import React from 'react';
-import { Table, Thead, Tbody, Tr, Th, Td, chakra } from '@chakra-ui/react'
-import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
-import { useTable, useSortBy } from 'react-table'
+import React, { useState, useEffect } from 'react';
+import { Table, Thead, Tbody, Tr, Th, Td, Box, HStack} from '@chakra-ui/react'
+import axios from 'axios';
+import { PropTypes } from 'prop-types'
+import { HiCheckCircle, HiXCircle } from "react-icons/hi";
 
 export default function TableData(){
-  const data = React.useMemo(
-    () => [
-      {
-        name: 'Rayl Xylem',
-        timein: '09:00',
-        timeout: '18:00',
-        lunch:'1:00',
-        overtime: '2:00'
-      },
-      {
-        name: 'Rayl Xylem',
-        timein: '09:00',
-        timeout: '18:00',
-        lunch:'1:00',
-        overtime: '2:00'
-      },
-      {
-        name: 'Rayl Xylem',
-        timein: '09:00',
-        timeout: '18:00',
-        lunch:'1:00',
-        overtime: '2:00'
-      },
-      {
-        name: 'Rayl Xylem',
-        timein: '09:00',
-        timeout: '18:00',
-        lunch:'1:00',
-        overtime: '2:00'
-      },
-      {
-        name: 'Rayl Xylem',
-        timein: '09:00',
-        timeout: '18:00',
-        lunch:'1:00',
-        overtime: '2:00'
-      }, 
-    ],
-    [],
-  )
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Name',
-        accessor: 'name',
-      },
-      {
-        Header: 'Time In',
-        accessor: 'timein',
-      },
-      {
-        Header: 'Time Out',
-        accessor: 'timeout',
-      },
-      {
-        Header: 'Lunch',
-        accessor: 'lunch',
-      },
-      {
-        Header: 'Overtime',
-        accessor: 'overtime',
-      },
-    ],
-    [],
-  )
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy)
-
-  return (
-    <Table {...getTableProps()}>
-      <Thead>
-        {headerGroups.map((headerGroup) => (
-          <Tr key="" {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <Th key=""
-                {...column.getHeaderProps(column.getSortByToggleProps())}
-                isNumeric={column.isNumeric}
-              >
-                {column.render('Header')}
-                <chakra.span pl='4'>
-                  {column.isSorted ? (
-                    column.isSortedDesc ? (
-                      <TriangleDownIcon aria-label='sorted descending' />
-                    ) : (
-                      <TriangleUpIcon aria-label='sorted ascending' />
-                    )
-                  ) : null}
-                </chakra.span>
-              </Th>
-            ))}
+  const [logs, setLogs] = useState([]);
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/log/viewLogs").then((response) => {
+      setLogs(response.data);
+      console.log(response.data)
+    });
+  },[]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/admin/view").then((response) => {
+      setEmployees(response.data);
+      console.log(response.data)
+    });
+  },[]);
+  return(
+    <Box maxH="60vh" p="5" overflowY="auto">
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Employee</Th>
+            <Th>Time Started</Th>
+            <Th>Time Ended</Th>
+            <Th>Elapsed Break</Th>
+            <Th>Undertime</Th>
+            <Th>Overtime</Th>
+            <Th>Tardiness</Th>
           </Tr>
-        ))}
-      </Thead>
-      <Tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row)
-          return (
-            <Tr key="" {...row.getRowProps()}>
-              {row.cells.map((cell) => (
-                <Td key="" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
-                  {cell.render('Cell')}
-                </Td>
+        </Thead>
+        <Tbody>
+          {logs.map((log)=>(
+            <Tr key={log.id}>
+              {employees.map((employee)=>(
+                  (employee.id == log.user.id)?<Td key={employee.id}>{employee.firstName} {employee.lastName}</Td> : null
               ))}
+              <Td>{log.timeStarted}</Td>
+              <Td>{log.timeEnded}</Td>
+              <Td>{log.elapsedBreak}</Td>
+              <Td>{log.underTime}</Td>
+              <Td>{log.overTime}</Td>
+              <Td>{log.tardiness}</Td>
+              <Td>
+                <HStack>
+                  <HiCheckCircle size="4vh" color='lime'/>
+                  <HiXCircle size="4vh" color='red'/>
+                </HStack>
+              </Td>
+              <Td></Td>
             </Tr>
-          )
-        })}
-      </Tbody>
-    </Table>
-  )
+          ))}
+        </Tbody>
+      </Table>
+    </Box>
+  );
+}
+
+TableData.propTypes={
+  id: PropTypes.any
 }

@@ -20,7 +20,6 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import {PropTypes} from 'prop-types';
 
 export default function Header(props){
@@ -63,7 +62,6 @@ export default function Header(props){
       </Text>
 
       <HStack spacing={{ base: '0', md: '6' }}>
-      <ColorModeSwitcher />
         <IconButton
           size="lg"
           variant="ghost"

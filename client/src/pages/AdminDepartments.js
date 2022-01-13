@@ -5,30 +5,17 @@ import {
   SimpleGrid,
   Drawer,
   DrawerContent,
-  useDisclosure,
   ChakraProvider,
   theme
 } from '@chakra-ui/react';
-import {
-  FiWatch,
-  FiGrid,
-  FiUsers,
-  FiClock,
-} from 'react-icons/fi';
+import { PropTypes } from 'prop-types'
 import axios from 'axios';
 import Card from "../components/AdminDepartments/Card.js";
 import AddModal from "../components/AdminDepartments/AddModal.js"; 
 import Header from "../components/Header.js";
 import Sidebar from "../components/Sidebar.js";
 
-const LinkItems = [
-  { name: 'Daily Time Record', icon: FiClock, address:"/"},
-  { name: 'Departments', icon: FiGrid , address:"/departments"  },
-  { name: 'Employees', icon: FiUsers, address:"/employees" },
-  { name: 'Holidays', icon: FiWatch, address:"/holidays" },
-];
-
-export default function AdminDepartments(){
+export default function AdminDepartments(props){
 
   const [departments,setDepartments] = useState([]);
 
@@ -42,27 +29,26 @@ export default function AdminDepartments(){
     });
   },[]);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <ChakraProvider theme={theme}>
       <Sidebar
-        onClose={() => onClose}
-        LinkItems={LinkItems}
+        onClose={() => props.onClose}
+        LinkItems={props.LinkItems}
         display={{ base: 'none', md: 'block' }}
       />
       <Drawer
         autoFocus={false}
-        isOpen={isOpen}
+        isOpen={props.isOpen}
         placement="left"
-        onClose={onClose}
+        onClose={props.onClose}
         returnFocusOnClose={false}
-        onOverlayClick={onClose}
+        onOverlayClick={props.onClose}
         size="full">
         <DrawerContent>
-          <Sidebar onClose={onClose} LinkItems={LinkItems} />
+          <Sidebar onClose={props.onClose} LinkItems={props.LinkItems} />
         </DrawerContent>
       </Drawer>
-      <Header onOpen={onOpen} headerTitle={"Departments"}/>
+      <Header onOpen={props.onOpen} headerTitle={"Departments"}/>
       <Box
       minHeight="full"
       ml={{ base: 0, md: 60 }}
@@ -80,4 +66,8 @@ export default function AdminDepartments(){
     </Box>
     </ChakraProvider>
   );
+}
+
+AdminDepartments.propTypes={
+  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any
 }
