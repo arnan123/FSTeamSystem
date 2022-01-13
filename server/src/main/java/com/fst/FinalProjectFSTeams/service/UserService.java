@@ -4,6 +4,7 @@ import com.fst.FinalProjectFSTeams.entities.*;
 import com.fst.FinalProjectFSTeams.repository.DepartmentRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     
@@ -15,4 +16,8 @@ public interface UserService {
     public void removeEmployeesFromTeam(Integer teamId, String employeeIds);
     public List<User> displayEmployeesFromTeam(Integer teamId);
     public User getUserFromEmail(String email);
+
+    List<User> readEmployees();
+
+    Optional<User> readEmployeesById(Integer id);
 }

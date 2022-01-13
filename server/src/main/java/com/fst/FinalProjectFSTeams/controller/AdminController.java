@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin")
@@ -48,5 +49,15 @@ public class AdminController {
     @GetMapping("/viewEmployeesFromTeam/{teamId}")
     public List<User> viewEmployeesFromTeam(@PathVariable Integer teamId){
         return  userService.displayEmployeesFromTeam(teamId);
+    }
+
+    @GetMapping("/view")
+    public List<User> readEmployees(){
+        return  userService.readEmployees();
+    }
+
+    @GetMapping("/view/{id}")
+    public Optional<User> readEmployeesById(@PathVariable Integer id){
+        return  userService.readEmployeesById(id);
     }
 }

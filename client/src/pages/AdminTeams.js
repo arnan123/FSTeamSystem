@@ -7,14 +7,7 @@ import {
   Button,
   Drawer,
   DrawerContent,
-  useDisclosure
 } from '@chakra-ui/react';
-import {
-  FiWatch,
-  FiGrid,
-  FiUsers,
-  FiClock,
-} from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {PropTypes} from "prop-types";
@@ -26,14 +19,7 @@ import DeleteModal from '../components/AdminTeams/DeleteModal.js';
 import EditModal from '../components/AdminTeams/EditModal.js';
 import Sidebar from "../components/Sidebar.js";
 
-const LinkItems = [
-  { name: 'Daily Time Record', icon: FiClock, address:"/"},
-  { name: 'Departments', icon: FiGrid , address:"/departments"  },
-  { name: 'Employees', icon: FiUsers, address:"/employees" },
-  { name: 'Holidays', icon: FiWatch, address:"/holidays" },
-];
-
-export default function AdminTeams(){
+export default function AdminTeams(props){
   useEffect(() => {
     document.title="Teams";
   });
@@ -61,28 +47,26 @@ export default function AdminTeams(){
   }
 
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <>
     <Sidebar
-        onClose={() => onClose}
-        LinkItems={LinkItems}
+        onClose={() => props.onClose}
+        LinkItems={props.LinkItems}
         display={{ base: 'none', md: 'block' }}
       />
       <Drawer
         autoFocus={false}
-        isOpen={isOpen}
+        isOpen={props.isOpen}
         placement="left"
-        onClose={onClose}
+        onClose={props.onClose}
         returnFocusOnClose={false}
-        onOverlayClick={onClose}
+        onOverlayClick={props.onClose}
         size="full">
         <DrawerContent>
-          <Sidebar onClose={onClose} />
+          <Sidebar onClose={props.onClose} />
         </DrawerContent>
       </Drawer>
-    <Header onOpen={onOpen} headerTitle={department.name}/>
+    <Header onOpen={props.onOpen} headerTitle={department.name}/>
     <Box
       p="4vh"
       ml={{ base: 0, md: 60 }}
@@ -113,5 +97,5 @@ export default function AdminTeams(){
 }
 
 AdminTeams.propTypes={
- LinkItems:PropTypes.any
+ LinkItems:PropTypes.any, onOpen: PropTypes.any, isOpen: PropTypes.any, onClose: PropTypes.any
 }

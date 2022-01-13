@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface LogService {
     public void createLog(Log log, Integer attendanceId, Integer userId);
+
+    List<Log> readLogs();
 }

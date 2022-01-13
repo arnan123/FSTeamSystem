@@ -28,7 +28,6 @@ public class Attendance {
     private User user;
 
 
-
     @Column(name="timeStarted", nullable = false)
     private LocalTime timeStarted;
 

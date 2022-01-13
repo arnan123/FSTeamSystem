@@ -1,109 +1,36 @@
-import React from 'react';
-import { Table, Thead, Tbody, Tr, Th, Td, chakra } from '@chakra-ui/react'
-import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
-import { useTable, useSortBy } from 'react-table'
+import React, { useState, useEffect } from 'react';
+import { Table, Thead, Tbody, Tr, Th, Td, Box, Link } from '@chakra-ui/react'
+import axios from 'axios';
 
 export default function TableData(){
-  const data = React.useMemo(
-    () => [
-      {
-        name: 'Rayl Xylem',
-        department: 'Department 1',
-        team: 'Team 1',
-        status:'Probationary',
-      },
-      {
-        name: 'Rayl Xylem',
-        department: 'Department 1',
-        team: 'Team 1',
-        status:'Probationary',
-      },
-      {
-        name: 'Rayl Xylem',
-        department: 'Department 1',
-        team: 'Team 1',
-        status:'Probationary',
-      },
-      {
-        name: 'Rayl Xylem',
-        department: 'Department 1',
-        team: 'Team 1',
-        status:'Probationary',
-      },
-      {
-        name: 'Rayl Xylem',
-        department: 'Department 1',
-        team: 'Team 1',
-        status:'Probationary',
-      }, 
-    ],
-    [],
-  )
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Name',
-        accessor: 'name',
-      },
-      {
-        Header: 'Department',
-        accessor: 'department',
-      },
-      {
-        Header: 'Team',
-        accessor: 'team',
-      },
-      {
-        Header: 'Status',
-        accessor: 'status',
-      },
-    ],
-    [],
-  )
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy)
-
-  return (
-    <Table {...getTableProps()}>
-      <Thead>
-        {headerGroups.map((headerGroup) => (
-          <Tr key="" {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <Th key=""
-                {...column.getHeaderProps(column.getSortByToggleProps())}
-                isNumeric={column.isNumeric}
-              >
-                {column.render('Header')}
-                <chakra.span pl='4'>
-                  {column.isSorted ? (
-                    column.isSortedDesc ? (
-                      <TriangleDownIcon aria-label='sorted descending' />
-                    ) : (
-                      <TriangleUpIcon aria-label='sorted ascending' />
-                    )
-                  ) : null}
-                </chakra.span>
-              </Th>
-            ))}
+  const [employees,setEmployees] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/admin/view").then((response) => {
+      setEmployees(response.data);
+    });
+  },[]);
+  return(
+    <Box maxH="60vh" p="5" overflowY="auto">
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Name</Th>
+            <Th>Email</Th>
+            <Th>Role</Th>
+            <Th>Status</Th>
           </Tr>
-        ))}
-      </Thead>
-      <Tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row)
-          return (
-            <Tr key="" {...row.getRowProps()}>
-              {row.cells.map((cell) => (
-                <Td key="" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
-                  {cell.render('Cell')}
-                </Td>
-              ))}
+        </Thead>
+        <Tbody>
+          {employees.map((employee)=>(
+            <Tr key={employee.id}>
+              <Td><Link href={"/admin/profile/"+employee.id}>{employee.firstName} {employee.lastName}</Link></Td>
+              <Td>{employee.email}</Td>
+              <Td>{employee.role}</Td>
+              <Td>{employee.status}</Td>
             </Tr>
-          )
-        })}
-      </Tbody>
-    </Table>
-  )
+          ))}
+        </Tbody>
+      </Table>
+    </Box>
+  );
 }

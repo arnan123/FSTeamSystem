@@ -8,6 +8,7 @@ import AdminHolidaysList from './pages/AdminHolidaysList';
 import AdminEmployees from './pages/AdminEmployees';
 import AdminTeams from './pages/AdminTeams';
 import AdminDepartments from './pages/AdminDepartments';
+import AdminProfile from './pages/AdminProfile';
 import EmployeeDTR from './pages/EmployeeDTR';
 import EmployeeHoliday from './pages/EmployeeHoliday';
 import EmployeeHolidayList from './pages/EmployeeHolidayList';
@@ -137,9 +138,20 @@ function App() {
             }
           />
           <Route
-            path="/admin/departments/teams"
+            path="/admin/departments/:id"
             element={
               <AdminTeams
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+              />
+            }
+          />
+          <Route
+            path="/admin/profile/:id"
+            element={
+              <AdminProfile
                 onOpen={onOpen}
                 isOpen={isOpen}
                 onClose={onClose}

@@ -155,10 +155,7 @@ public class AttendanceServiceImpl implements AttendanceService{
         }
     }
 
-    @Override
-    public String samps(String email){
-        return email;
-    }
+
 
     @Override
     public Integer getAttendance(Integer userid){
