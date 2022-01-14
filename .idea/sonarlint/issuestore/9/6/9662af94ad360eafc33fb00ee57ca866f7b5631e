@@ -1,0 +1,6 @@
+
+[
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(щљ∆їш€€€€
+n
+java:S1128"LRemove this unused import 'com.fst.FinalProjectFSTeams.entities.Department'.(ўлюџ€€€€€8Шњсод/
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•цЁЕ

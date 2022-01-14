@@ -1,0 +1,5 @@
+
+V	java:S125"<This block of commented-out lines of code should be removed.(Â¹úøÿÿÿÿ
+\
+java:S1128"FRemove this unused import 'com.fst.FinalProjectFSTeams.entities.Team'.(¸ÀÛµ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ıøô’øÿÿÿÿ

@@ -55,48 +55,15 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
         String[] names = new String[users.size()];
         String spreadsheetId;
         Sheets sheetsService = googleAuthConfig.getSheetsService();
-
-
-//        DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd");
         List<DTR> list = new ArrayList<>();
 
-
-//        for(int i = 0 ; i < attendances.size();i++){
-//            String[] str = attendances.get(i).split(",");
-//            List<String> stringList = new ArrayList<>();
-//            stringList = Arrays.asList(str);
-//            DTR dtr = new DTR();
-//            dtr.setDate(stringList.get(0));
-//            dtr.setTimeIn(stringList.get(1));
-//            dtr.setTimeOut(stringList.get(2));
-//            list.add(dtr);
-//        }
-        String[] arr = new String[256];
-        for(int i = 0 ; i < attendances.size();i++){
-             arr  = attendances.get(i).split(",");
-             System.out.println(i);
-            DTR dtr = new DTR();
-            dtr.setDate(arr[0]);
-            dtr.setTimeIn(arr[1]);
-            dtr.setTimeOut(arr[2]);
-            list.add(dtr);
-        }
-
-//        for(int i = 0; i < list.size();i++){
-//            System.out.println(list.get(i));
-//        }
+        //DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String[] arr = new String[1000];
 
 
         List<List<Object>> headers = Arrays.asList(
                 Arrays.asList("DATE","TIME IN","TIME OUT","LUNCH","DURATION")
         );
-
-
-//        List<List<Object>> content = Arrays.asList(
-//                Arrays.asList(list)
-//        );
-
-
 
 
         // creating a blank spreadsheet
@@ -125,12 +92,7 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
             request.setAddSheet(addSheetRequest);
             requestList.add(request);
             batchUpdateSpreadsheetRequest.setRequests(requestList);
-           sheetsService.spreadsheets().batchUpdate(spreadsheetId,batchUpdateSpreadsheetRequest).execute();
-
-            writeSheet(spreadsheetId,sheetProperties,headers,list,headerRange);
-            System.out.println("Add");
-
-
+            sheetsService.spreadsheets().batchUpdate(spreadsheetId,batchUpdateSpreadsheetRequest).execute();
         }
 
         // Insert values to spreadsheet (sheet1)
@@ -154,23 +116,41 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
                 .batchUpdate(spreadsheetId,batchBody)
                 .execute();
 
+        for(int i = 0 ; i < attendances.size();i++){
+            arr  = attendances.get(i).split(",");
+            DTR dtr = new DTR();
+            dtr.setName(arr[0]);
+            dtr.setDate(arr[1].substring(0,10));
+            dtr.setTimeIn(arr[2]);
+            dtr.setTimeOut(arr[3]);
 
+            list.add(dtr);
+
+        }
+        // writing per sheet
+        writeSheet(spreadsheetId,headers,list,headerRange);
     }
     @Override
-    public void writeSheet(String spreadsheetId, SheetProperties sheetProperties, List<List<Object>> headers,List<DTR> content,String headerRange)
+    public void writeSheet(String spreadsheetId, List<List<Object>> headers,List<DTR> content,String headerRange)
             throws IOException,GeneralSecurityException {
         Sheets sheetsService = googleAuthConfig.getSheetsService();
         List<ValueRange> valueRangeList = new ArrayList<>();
-
+        for(int i = 0, j =7,k = 0 ; i < content.size(); i++){
         ValueRange valueRange = new ValueRange();
-        valueRange.setRange(sheetProperties.getTitle() + "!" + headerRange);
+        valueRange.setRange(content.get(i).getName() + "!" + headerRange);
         System.out.println(valueRange.getRange());
         valueRange.setValues(headers);
         valueRangeList.add(valueRange);
 
+
         ValueRange  valueRange1 = new ValueRange();
-        for(int i = 0 ; i < content.size(); i++){
-            valueRange1.setRange(sheetProperties.getTitle() + "!" + "A7:C7");
+            valueRange1.setRange(content.get(i).getName() + "!" + "A"+j+":C"+j+"");
+            j++;
+            k++;
+            if( k == 4){
+                j = 7;
+                k = 0;
+            }
 //            System.out.println(valueRange.getRange());
             valueRange1.setValues(Arrays.asList(
                     Arrays.asList(content.get(i).getDate(),content.get(i).getTimeIn(),content.get(i).getTimeOut())

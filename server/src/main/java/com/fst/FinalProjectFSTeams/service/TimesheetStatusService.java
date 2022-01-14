@@ -12,7 +12,7 @@ public interface TimesheetStatusService {
     // public void getSpreadsheetValues() throws IOException, GeneralSecurityException;
     //public String create(Integer deptId,String date) throws IOException,GeneralSecurityException;
     public void generateReport(String date, Integer deptId) throws IOException,GeneralSecurityException;
-    public void writeSheet(String spreadsheetId, SheetProperties sheetProperties,
+    public void writeSheet(String spreadsheetId,
                            List<List<Object>> headers, List<DTR> dtr , String headerRange)
             throws IOException,GeneralSecurityException;
 }

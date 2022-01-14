@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class DTR {
+        String name;
         String date;
         String timeIn;
         String timeOut;
+
 }
