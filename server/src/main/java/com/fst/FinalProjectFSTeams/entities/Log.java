@@ -30,11 +30,11 @@ public class Log {
     private User user;
 
     @Basic(optional = false)
-    @Column(name = "timeStarted",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "timeStarted")
     private LocalTime timeStarted;
 
     @Basic(optional = false)
-    @Column(name = "timeEnded",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "timeEnded")
     private LocalTime timeEnded;
 
     @Column(name="elapsedBreak", nullable = false)

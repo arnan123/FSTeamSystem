@@ -1,53 +1,45 @@
-import React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, chakra } from '@chakra-ui/react'
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 import { useTable, useSortBy } from 'react-table'
+import axios from 'axios'
+import moment from 'moment'
 
 export default function TableData(){
-  const data = React.useMemo(
-    () => [
-      {
-        holidayname: 'New Year',
-        holidaytype: 'Global',
-        holidaydate: 'January 1',
-      },
-      {
-        holidayname: 'Christmas Day',
-        holidaytype: 'Global',
-        holidaydate: 'January 1',
-      },
-      {
-        holidayname: "The Emperor's Birthday",
-        holidaytype: 'Japan',
-        holidaydate: 'February 23',
-      },
-      {
-        holidayname: 'Rizal Day',
-        holidaytype: 'Philippines',
-        holidaydate: 'December 30',
-      },
-      {
-        holidayname: 'Bonifacio Day',
-        holidaytype: 'Philippines',
-        holidaydate: 'November 30',
-      }, 
-    ],
-    [],
+
+  const [holidays, setHolidays] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/holiday/viewHoliday").then((response) => {
+      setHolidays(response.data);
+    });
+  },[]);
+
+  const data = useMemo(
+    () => 
+      holidays.map((holiday)=>(
+        { 
+          holidayName: holiday.name,
+          holidayType: holiday.holidayType,
+          holidayDate: holiday.holidayDate
+        }
+      )),
+    [holidays],
   )
 
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Holiday Name',
-        accessor: 'holidayname',
+        accessor: 'holidayName',
       },
       {
         Header: 'Holiday Type',
-        accessor: 'holidaytype',
+        accessor: 'holidayType',
       },
       {
         Header: 'Holiday Date',
-        accessor: 'holidaydate',
+        accessor: 'holidayDate',
       }
     ],
     [],
@@ -88,7 +80,7 @@ export default function TableData(){
             <Tr key="" {...row.getRowProps()}>
               {row.cells.map((cell) => (
                 <Td key="" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
-                  {cell.render('Cell')}
+                  {(cell.column.id == "holidayDate")? moment(cell.value).format("MMMM D"):cell.render('Cell')}
                 </Td>
               ))}
             </Tr>

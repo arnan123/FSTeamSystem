@@ -25,7 +25,7 @@ public class Holiday {
     private String name;
 
     @Basic(optional = false)
-    @Column(name = "holidayDate",columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Column(name = "holidayDate",columnDefinition = "DATE DEFAULT CURRENT_DATE", nullable= false)
     private Date holidayDate;
 
     @Column(name = "holidayType",nullable = false)
