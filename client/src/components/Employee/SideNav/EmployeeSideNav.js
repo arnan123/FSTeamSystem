@@ -14,18 +14,19 @@ import { Link } from 'react-router-dom';
 import Logo from '../../Logo';
 import EmployeeSideNavMobile from '../SideNav/EmployeeSideNavMobile';
 function EmployeeSideNav(props) {
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+  const [isLargerThan1000] = useMediaQuery('(min-width: 1000px)');
 
-  if (isLargerThan800) {
+  if (isLargerThan1000) {
     return (
       <>
         <Box
-          borderRight={'1px'}
+          // borderRight={'1px'}
           boxShadow={'2xl'}
           borderColor={props.color}
           // w={{ base: 'full', md: 60 }}
           w={'15vw'}
           h="full"
+          bgColor={'#063970'}
           position={'fixed'}
           display={'block'}>
           <VStack paddingTop={'10%'} spacing={10}>
@@ -38,10 +39,10 @@ function EmployeeSideNav(props) {
 
             <Box>
               <Spacer />
-              <VStack spacing={3} alignItems={'left'}>
+              <VStack spacing={3} alignContent={'left'} p={3}>
                 <Link to="/employees">
                   <Button
-                    leftIcon={<TimeIcon />}
+                    leftIcon={<TimeIcon w={5} h={5} />}
                     _hover={{
                       bgGradient: 'linear(to-r,  #37b8ff ,#b075ff)',
                     }}
@@ -56,7 +57,7 @@ function EmployeeSideNav(props) {
                 <Divider bgColor={'gray'} w={'10vw'} />
                 <Link to="/employees/dtr">
                   <Button
-                    leftIcon={<CalendarIcon />}
+                    leftIcon={<CalendarIcon w={5} h={5} />}
                     _hover={{
                       bgGradient: 'linear(to-r,  #37b8ff ,#b075ff)',
                     }}
@@ -71,7 +72,7 @@ function EmployeeSideNav(props) {
                 <Divider bgColor={'gray'} w={'10vw'} />
                 <Link to="/employees/holiday">
                   <Button
-                    leftIcon={<StarIcon />}
+                    leftIcon={<StarIcon w={5} h={5} />}
                     _hover={{
                       bgGradient: 'linear(to-r,  #37b8ff ,#b075ff)',
                     }}

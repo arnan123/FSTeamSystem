@@ -25,8 +25,8 @@ function EmployeeCircularProgress(props) {
           <CircularProgressLabel>
             {props.main == 'true' ? (
               <CircularProgress
-                size={'320px'}
-                thickness={'6px'}
+                size={props.size2}
+                thickness={'4px'}
                 value={props.label[2]}>
                 <CircularProgressLabel>
                   <VStack>
@@ -66,6 +66,7 @@ EmployeeCircularProgress.propTypes = {
   change: PropTypes.func,
   main: PropTypes.any,
   text: PropTypes.any,
+  size2: PropTypes.any,
 };
 
 export default EmployeeCircularProgress;
