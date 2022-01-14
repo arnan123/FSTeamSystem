@@ -26,6 +26,9 @@ import {
 } from '@chakra-ui/react';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
 import './ModalCell.css';
+
+import EmployeeTableData from './EmployeeTableData';
+
 import moment from 'moment';
 import axios from 'axios';
 
@@ -81,21 +84,10 @@ function ModalCell({ attendance, ind, userData, month, days }) {
         : dayInt > 20 ||
           (moment(attendance.insertDate).format('MMMM') ==
             moment().month(nxtM.toString()).format('MMMM') &&
-            dayInt <= 5 &&
-            moment(attendance.insertDate).format('MMMM') ==
-              moment().month(nxtM.toString()).format('MMMM') &&
+
             dayInt <= 5)) ? (
-        <Tr
-          onClick={onOpen}
-          id={ind == true ? 'trHover' : ''}
-          bgColor={attendance.approved == 0 ? 'blue.800' : 'green.400'}>
-          <Td>{moment(attendance.insertDate).format('MMMM D')}</Td>
-          <Td>{attendance.timeStarted}</Td>
-          <Td>{attendance.timeEnded}</Td>
-          <Td>{attendance.elapsedBreak}</Td>
-          <Td>{attendance.overTime}</Td>
-          <Td>{attendance.totalTime}</Td>
-        </Tr>
+        <EmployeeTableData onOpen={onOpen} ind={ind} attendance={attendance} />
+
       ) : (
         <Tr></Tr>
       )}
@@ -104,20 +96,14 @@ function ModalCell({ attendance, ind, userData, month, days }) {
         moment().month(nxtM.toString()).format('MMMM') &&
         dayInt <= 5 &&
         days == 20 && (
-          <Tr
-            onClick={onOpen}
-            id={ind == true ? 'trHover' : ''}
-            bgColor={attendance.approved == 0 ? 'red.700' : 'green.400'}>
-            <Td>{moment(attendance.insertDate).format('MMMM D')}</Td>
-            <Td>{attendance.timeStarted}</Td>
-            <Td>{attendance.timeEnded}</Td>
-            <Td>{attendance.elapsedBreak}</Td>
-            <Td>{attendance.overTime}</Td>
-            <Td>{attendance.totalTime}</Td>
-          </Tr>
+
+          <EmployeeTableData
+            onOpen={onOpen}
+            ind={ind}
+            attendance={attendance}
+          />
         )}
-      {/* <Td>{moment().month(nxtM.toString()).format('MMMM')}</Td>
-        <Td>{moment(attendance.insertDate).format('MMMM')}</Td> */}
+
 
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />
