@@ -28,7 +28,6 @@ public class Attendance {
     private User user;
 
 
-
     @Column(name="timeStarted", nullable = false)
     private LocalTime timeStarted;
 
@@ -47,6 +46,9 @@ public class Attendance {
 
     @Column(name="tardiness", nullable = true)
     private float tardiness;
+
+    @Column(name="totalTime", nullable = true)
+    private String totalTime;
 
     @Column(name="approved", nullable = false)
     private boolean approved = true;

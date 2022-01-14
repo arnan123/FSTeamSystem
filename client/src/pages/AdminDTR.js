@@ -1,24 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
-  useColorModeValue,
   Box,
+  useColorModeValue,
   Drawer,
   DrawerContent,
+  ChakraProvider,
+  theme,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
-import Table from "../components/AdminDTR/Table";
-import Header from "../components/Header.js";
-import Sidebar from "../components/Sidebar.js";
-import {PropTypes} from 'prop-types';
+import { PropTypes } from 'prop-types'
+import Sidebar from '../components/Sidebar'
+import Header from '../components/Header'
+import Table from '../components/AdminDTR/Table'
 
-function AdminDTR(props){
+export default function AdminDTR(props){
   useEffect(() => {
     document.title="Daily Time Record";
   });
   return (
-    <>
-    <Sidebar
-        onClose={props.onClose}
+    <ChakraProvider theme={theme}>
+      <Sidebar
+        onClose={() => props.onClose}
         LinkItems={props.LinkItems}
         display={{ base: 'none', md: 'block' }}
       />
@@ -31,25 +32,24 @@ function AdminDTR(props){
         onOverlayClick={props.onClose}
         size="full">
         <DrawerContent>
-          <Sidebar onClose={props.onClose} />
+          <Sidebar onClose={props.onClose} LinkItems={props.LinkItems} />
         </DrawerContent>
       </Drawer>
-    <Header onOpen={props.onOpen} headerTitle="Daily Time Record"/>
+      <Header onOpen={props.onOpen} headerTitle={"Daily Time Record"}/>
     <Box
+      minHeight="full"
       ml={{ base: 0, md: 60 }}
       alignItems="center"
       bg={useColorModeValue('white', 'gray.900')}
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent={{ base: 'space-between', md: 'flex-start' }}
       >
-        <Table/>
+      <Table/>
     </Box>
-    </>
+    </ChakraProvider>
   );
 }
 
 AdminDTR.propTypes={
-  onOpen:PropTypes.any, isOpen:PropTypes.any, onClose:PropTypes.any, LinkItems:PropTypes.any
+  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any
 }
-
-export default AdminDTR;

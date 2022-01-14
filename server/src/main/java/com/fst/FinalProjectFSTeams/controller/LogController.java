@@ -19,8 +19,16 @@ public class LogController {
         logService.createLog(log,attendanceId,userId);
     }
 
+<<<<<<< HEAD
     @GetMapping("/viewLogsPerDepartment/{deptId}")
     public List<Log> viewLogsPerDept(@PathVariable Integer deptId){
         return logService.viewAllLogsPerDept(deptId);
     }
+=======
+    @GetMapping("/viewLogs")
+    public List<Log> readLogs(){
+        return logService.readLogs();
+    }
+
+>>>>>>> fc6fd285bdee7484c94610d4f9b24b404613cf4d
 }

@@ -48,7 +48,13 @@ public class LogServiceImpl implements LogService{
         attendanceRepository.save(attendance);
     }
 
+<<<<<<< HEAD
     public List<Log> viewAllLogsPerDept(Integer deptId){
         return logRepository.getAllLogsPerDept(deptId);
+=======
+    @Override
+    public List<Log> readLogs() {
+        return logRepository.findAll();
+>>>>>>> fc6fd285bdee7484c94610d4f9b24b404613cf4d
     }
 }

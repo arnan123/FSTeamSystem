@@ -9,6 +9,7 @@ import {
   MenuGroup,
   MenuDivider,
   Box,
+  VStack,
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -28,8 +29,13 @@ export default function AvatarProfile() {
           <MenuList>
             <MenuGroup title="Profile">
               <MenuItem fontSize={'sm'}>
-                {user.given_name} {user.family_name} (Software Engineer)
-                (Software Engineer)
+                <VStack alignItems={'left'}>
+                  <Box>
+                    {user.given_name} {user.family_name}
+                  </Box>
+                  <Box>{user.email}</Box>
+                  <Box>(Software Engineer)</Box>
+                </VStack>
               </MenuItem>
               <MenuDivider />
               <MenuItem

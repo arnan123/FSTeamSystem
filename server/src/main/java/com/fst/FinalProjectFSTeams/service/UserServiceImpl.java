@@ -6,12 +6,8 @@ import com.fst.FinalProjectFSTeams.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,6 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TeamRepository teamRepository;
+
 
 
 
@@ -85,9 +82,23 @@ public class UserServiceImpl implements UserService {
         return userRepository.getEmployeesByTeam(teamId);
     }
 
+<<<<<<< HEAD
     public List<User> displayEmployeesFromDept(Integer deptId){
         return userRepository.getEmployeesByDepartment(deptId);
+=======
+
+    @Override
+    public User getUserFromEmail(String email) {
+        return userRepository.getUser(email);
+>>>>>>> fc6fd285bdee7484c94610d4f9b24b404613cf4d
     }
 
+    @Override
+    public List<User> readEmployees(){
+        return userRepository.findAll();
+    }
 
+    public Optional<User> readEmployeesById(Integer id){
+        return userRepository.findById(id);
+    }
 }

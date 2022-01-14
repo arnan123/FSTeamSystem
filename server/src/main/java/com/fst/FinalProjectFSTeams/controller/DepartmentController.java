@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/department")
 @CrossOrigin
@@ -17,6 +19,11 @@ public class DepartmentController {
     @GetMapping("/view")
     public List<Department> readDepartments(){
         return departmentService.readDepartments();
+    }
+
+    @GetMapping("/view/{deptId}")
+    public Optional<Department> readDepartment(@PathVariable Integer deptId){
+        return departmentService.readDepartment(deptId);
     }
 
     @PostMapping("/addDepartment")

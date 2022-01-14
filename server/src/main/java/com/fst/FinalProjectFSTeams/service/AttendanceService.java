@@ -5,10 +5,15 @@ import com.fst.FinalProjectFSTeams.entities.Attendance;
 import java.util.List;
 
 public interface AttendanceService {
-    public void timeIn(Integer userId,String timeIn);
-    public void timeOut(Integer userId,String timeOut,Integer attendanceId);
+    public void timeIn(Integer userId );
+    public void timeOut(Integer userId ,Integer attendanceId,String duration);
     public void elapsedBreak(Integer userId,Integer attendanceId, Integer duration);
     public List<Attendance> viewAttendance(Integer userId);
     public void  approveAttendanceOfEmployee(Integer userId, String attendanceIds);
-
+<<<<<<< HEAD
+    public String samps(String email);
+    public Integer getAttendance(Integer userid);
+=======
+    public String getAttendance(Integer userid);
+>>>>>>> master
 }

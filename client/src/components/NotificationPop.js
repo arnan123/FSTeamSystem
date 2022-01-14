@@ -17,7 +17,7 @@ import { BellIcon } from '@chakra-ui/icons';
 export default function NotificationPop() {
   return (
     <>
-      <Popover>
+      <Popover direction="ltr">
         <PopoverTrigger>
           <Button variant={'ghost'} w={7} h={7}>
             <Icon as={BellIcon} w={7} h={7} color={'white'} />
