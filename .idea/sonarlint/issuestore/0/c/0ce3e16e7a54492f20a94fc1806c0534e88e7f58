@@ -1,15 +1,0 @@
-
-q
-java:S1128"ORemove this unused import 'com.fasterxml.jackson.annotation.JsonBackReference'.(»Ôœ¿ıÿÿÿÿ8¥¦ÿä/
-e
-java:S1128"HRemove this unused import 'com.fasterxml.jackson.annotation.JsonIgnore'.(ş‘‹„8¥¦ÿä/
-K
-java:S1128
-"/Remove this unused import 'java.sql.Timestamp'.(èò½+8¥¦ÿä/
-R
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8æğ’”ä/
-H
-java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8æğ’”ä/
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ä€æä/
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ö§Õ—şÿÿÿÿ

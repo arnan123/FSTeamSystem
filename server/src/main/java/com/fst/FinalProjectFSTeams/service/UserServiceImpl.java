@@ -77,14 +77,14 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user[i]);
         }
     }
-
+    @Override
     public List<User> displayEmployeesFromTeam(Integer teamId){
         return userRepository.getEmployeesByTeam(teamId);
     }
-
-    public List<User> displayEmployeesFromDept(Integer deptId){
+    @Override
+    public List<User> displayEmployeesFromDept(Integer deptId) {
         return userRepository.getEmployeesByDepartment(deptId);
-
+    }
     @Override
     public User getUserFromEmail(String email) {
         return userRepository.getUser(email);

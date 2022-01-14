@@ -25,7 +25,7 @@ public class TimesheetStatusController {
 //    }
     @PostMapping("/createReport/{deptId}")
     @ResponseBody
-    public void create(@PathVariable Integer deptId,@RequestParam String date) throws IOException, GeneralSecurityException{
-        timesheetStatusService.generateReport(date,deptId);
+    public void create(@PathVariable Integer deptId,@RequestParam String startDate,@RequestParam String endDate) throws IOException, GeneralSecurityException{
+        timesheetStatusService.generateReport(startDate,endDate,deptId);
     }
 }

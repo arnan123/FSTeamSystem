@@ -16,12 +16,12 @@ public class HolidayController {
     private HolidayService holidayService;
 
     @PostMapping("/addHoliday")
-    public void addDepartment(@RequestBody Holiday holiday){
+    public void addHoliday(@RequestBody Holiday holiday){
         holidayService.saveHoliday(holiday);
     }
 
     @DeleteMapping("/deleteHoliday/{holidayId}")
-    public void deleteDepartment(@PathVariable Integer holidayId){
+    public void deleteHoliday(@PathVariable Integer holidayId){
         holidayService.deleteHoliday(holidayId);
     }
     @GetMapping("/viewHolidays")

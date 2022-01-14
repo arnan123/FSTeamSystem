@@ -43,8 +43,7 @@ public class AttendanceServiceImpl implements AttendanceService{
         Attendance attendance = new Attendance();
         LocalTime flexTime = LocalTime.parse("10:00");
         LocalTime temp = LocalTime.parse("00:00");
-        LocalDateTime date = LocalDateTime.now();
-        System.out.println(date.getHour()+":"+date.getMinute()+" ");
+        LocalDate date = LocalDate.now();
         LocalTime in = LocalTime.now();
         float result = in.compareTo(flexTime);
 
@@ -69,7 +68,7 @@ public class AttendanceServiceImpl implements AttendanceService{
     public void timeOut(Integer userId , Integer attendanceId,String duration){
         User user = userRepository.findById(userId).get();
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
-        LocalDateTime date = LocalDateTime.now();
+        LocalDate date = LocalDate.now();
         LocalTime out = LocalTime.now();
         float  hours = 0;
 

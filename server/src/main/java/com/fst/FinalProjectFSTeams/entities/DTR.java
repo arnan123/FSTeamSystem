@@ -11,5 +11,7 @@ public class DTR {
         String date;
         String timeIn;
         String timeOut;
+        String lunchBreak;
+        String duration;
 
 }

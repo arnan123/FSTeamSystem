@@ -15,13 +15,10 @@ public interface UserService {
     public void assignEmployeesToTeam(Integer teamId, String employeeIds);
     public void removeEmployeesFromTeam(Integer teamId, String employeeIds);
     public List<User> displayEmployeesFromTeam(Integer teamId);
-<<<<<<< HEAD
     public List<User> displayEmployeesFromDept(Integer deptId);
-=======
     public User getUserFromEmail(String email);
 
     List<User> readEmployees();
 
     Optional<User> readEmployeesById(Integer id);
->>>>>>> fc6fd285bdee7484c94610d4f9b24b404613cf4d
 }

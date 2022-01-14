@@ -54,7 +54,7 @@ public class Attendance {
     private boolean approved = true;
 
     @Basic(optional = false)
-    @Column(name = "insertDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime insertDate;
+    @Column(name = "insertDate",columnDefinition = "DATE DEFAULT CURRENT_DATE",nullable = false)
+    private LocalDate insertDate;
 
 }

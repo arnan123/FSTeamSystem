@@ -28,6 +28,7 @@ public class LogServiceImpl implements LogService{
     @Autowired
     private UserRepository userRepository;
 
+    @Override
     public void createLog(Log log, Integer attendanceId, Integer userId){
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
         User user = userRepository.findById(userId).get();
@@ -47,14 +48,12 @@ public class LogServiceImpl implements LogService{
         attendance.setTardiness(log.getTardiness());
         attendanceRepository.save(attendance);
     }
-
-<<<<<<< HEAD
-    public List<Log> viewAllLogsPerDept(Integer deptId){
+    @Override
+    public List<Log> viewAllLogsPerDept(Integer deptId) {
         return logRepository.getAllLogsPerDept(deptId);
-=======
+    }
     @Override
     public List<Log> readLogs() {
         return logRepository.findAll();
->>>>>>> fc6fd285bdee7484c94610d4f9b24b404613cf4d
     }
 }
