@@ -17,7 +17,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
-@Qualifier("logService")
+
 public class LogServiceImpl implements LogService{
     @Autowired
     private LogRepository logRepository;
@@ -28,6 +28,7 @@ public class LogServiceImpl implements LogService{
     @Autowired
     private UserRepository userRepository;
 
+    @Override
     public void createLog(Log log, Integer attendanceId, Integer userId){
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
         if(attendance.isApproved()){
@@ -40,7 +41,10 @@ public class LogServiceImpl implements LogService{
         log.setAttendance(attendance);
         logRepository.save(log);
     }
-
+    @Override
+    public List<Log> viewAllLogsPerDept(Integer deptId) {
+        return logRepository.getAllLogsPerDept(deptId);
+    }
     @Override
     public List<Log> readLogs() {
         return logRepository.findAll();

@@ -14,13 +14,17 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @PostMapping("/createLog/{attendanceId}/{userId}")
+    @PutMapping("/createLog/{attendanceId}/{userId}")
     public void createLog(@RequestBody Log log,@PathVariable Integer attendanceId,@PathVariable Integer userId){
         logService.createLog(log,attendanceId,userId);
     }
 
+    @GetMapping("/viewLogsPerDepartment/{deptId}")
+    public List<Log> viewLogsPerDept(@PathVariable Integer deptId){
+        return logService.viewAllLogsPerDept(deptId);
+    }
     @GetMapping("/viewLogs")
-    public List<Log> readLogs(){
+    public List<Log> readLogs(){    
         return logService.readLogs();
     }
 
