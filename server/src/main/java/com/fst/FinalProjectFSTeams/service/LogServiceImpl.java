@@ -32,23 +32,22 @@ public class LogServiceImpl implements LogService{
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
         User user = userRepository.findById(userId).get();
         LocalDateTime date = LocalDateTime.now();
-
+        log.setUser(user);
         log.setInsertDate(date);
+        log.setAttendance(attendance);
         logRepository.save(log);
-
-        attendance.setTimeStarted(log.getTimeStarted());
-        attendance.setElapsedBreak(log.getElapsedBreak());
-        attendance.setTimeEnded(log.getTimeEnded());
-        attendance.setUser(user);
-        attendance.setApproved(false);
-        attendance.setOverTime(log.getOverTime());
-        attendance.setUnderTime(log.getUnderTime());
-        attendance.setTardiness(log.getTardiness());
-        attendanceRepository.save(attendance);
     }
 
     @Override
     public List<Log> readLogs() {
         return logRepository.findAll();
+    }
+
+    @Override
+    public void deleteLog(Integer logId){
+        Log log = logRepository.findById(logId).get();
+        log.setAttendance(null);
+        log.setUser(null);
+        logRepository.deleteById(logId);
     }
 }

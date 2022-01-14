@@ -24,4 +24,9 @@ public class LogController {
         return logService.readLogs();
     }
 
+    @DeleteMapping("/deleteLog/{logId}")
+    public void deleteLog(@PathVariable Integer logId){
+        logService.deleteLog(logId);
+    }
+
 }

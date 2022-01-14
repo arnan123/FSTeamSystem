@@ -10,10 +10,5 @@ public interface AttendanceService {
     public void elapsedBreak(Integer userId,Integer attendanceId, Integer duration);
     public List<Attendance> viewAttendance(Integer userId);
     public void  approveAttendanceOfEmployee(Integer userId, String attendanceIds);
-<<<<<<< HEAD
-    public String samps(String email);
     public Integer getAttendance(Integer userid);
-=======
-    public String getAttendance(Integer userid);
->>>>>>> master
 }
