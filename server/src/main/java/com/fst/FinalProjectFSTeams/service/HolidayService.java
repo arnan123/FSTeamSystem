@@ -8,6 +8,6 @@ public interface HolidayService {
 
     public Holiday saveHoliday(Holiday holiday);
     public void deleteHoliday(Integer id);
-    public List<Holiday> readHolidays();
 
+    public List<Holiday> readHoliday();
 }

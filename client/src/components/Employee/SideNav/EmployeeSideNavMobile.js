@@ -21,7 +21,7 @@ import Logo from '../../Logo';
 function EmployeeSideNavMobile() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box position={'fixed'} display={'block'} paddingTop={'3%'}>
+    <Box position={'absolute'} display={'block'} paddingTop={'3%'}>
       <IconButton
         variant={'ghost'}
         aria-label="Search database"

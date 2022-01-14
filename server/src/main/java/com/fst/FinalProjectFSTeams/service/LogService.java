@@ -10,4 +10,6 @@ public interface LogService {
     public List<Log> viewAllLogsPerDept(Integer deptId);
 
     List<Log> readLogs();
+
+    void deleteLog(Integer logId);
 }

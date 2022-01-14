@@ -23,7 +23,7 @@ public class HolidayServcieImpl implements  HolidayService{
     }
 
     @Override
-    public List<Holiday> readHolidays(){
+    public List<Holiday> readHoliday(){
         return holidayRepository.findAll();
     }
 }

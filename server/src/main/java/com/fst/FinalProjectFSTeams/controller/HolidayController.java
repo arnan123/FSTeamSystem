@@ -1,6 +1,5 @@
 package com.fst.FinalProjectFSTeams.controller;
 
-import com.fst.FinalProjectFSTeams.entities.Department;
 import com.fst.FinalProjectFSTeams.entities.Holiday;
 import com.fst.FinalProjectFSTeams.service.HolidayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,21 +11,23 @@ import java.util.List;
 @RequestMapping("/holiday")
 @CrossOrigin
 public class HolidayController {
+
     @Autowired
-    private HolidayService holidayService;
+    HolidayService holidayService;
 
     @PostMapping("/addHoliday")
-    public void addHoliday(@RequestBody Holiday holiday){
+    public void saveHoliday(@RequestBody Holiday holiday){
         holidayService.saveHoliday(holiday);
+    }
+
+    @GetMapping("/viewHoliday")
+    public List<Holiday> readHoliday(){
+        return holidayService.readHoliday();
     }
 
     @DeleteMapping("/deleteHoliday/{holidayId}")
     public void deleteHoliday(@PathVariable Integer holidayId){
         holidayService.deleteHoliday(holidayId);
-    }
-    @GetMapping("/viewHolidays")
-    public List<Holiday> viewHolidays(){
-        return holidayService.readHolidays();
     }
 
 }

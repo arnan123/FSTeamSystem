@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Thead, Tbody, Tr, Th, Td, Box, HStack} from '@chakra-ui/react'
+import { Table, Thead, Tbody, Tr, Th, Td, Box, HStack, Link} from '@chakra-ui/react'
 import axios from 'axios';
 import { PropTypes } from 'prop-types'
-import { HiCheckCircle, HiXCircle } from "react-icons/hi";
+import Approve from './Approve';
+import Reject from './Reject';
 
 export default function TableData(){
   const [logs, setLogs] = useState([]);
@@ -37,7 +38,7 @@ export default function TableData(){
           {logs.map((log)=>(
             <Tr key={log.id}>
               {employees.map((employee)=>(
-                  (employee.id == log.user.id)?<Td key={employee.id}>{employee.firstName} {employee.lastName}</Td> : null
+                  (employee.id == log.user.id)?<Td key={employee.id}><Link href={"/admin/profile/"+employee.id}>{employee.firstName} {employee.lastName}</Link></Td> : null
               ))}
               <Td>{log.timeStarted}</Td>
               <Td>{log.timeEnded}</Td>
@@ -47,8 +48,10 @@ export default function TableData(){
               <Td>{log.tardiness}</Td>
               <Td>
                 <HStack>
-                  <HiCheckCircle size="4vh" color='lime'/>
-                  <HiXCircle size="4vh" color='red'/>
+                  {employees.map((employee)=>(
+                    (employee.id == log.user.id)?<Approve user={employee} log={log}/> : null
+                  ))}
+                  <Reject log={log}/>
                 </HStack>
               </Td>
               <Td></Td>

@@ -38,6 +38,7 @@ function EmployeeDTR({ userData }) {
 
 EmployeeDTR.propTypes = {
   userData: PropTypes.any,
+  setUserData: PropTypes.any,
 };
 
 export default EmployeeDTR;

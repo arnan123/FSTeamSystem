@@ -31,22 +31,15 @@ public class LogServiceImpl implements LogService{
     @Override
     public void createLog(Log log, Integer attendanceId, Integer userId){
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
+        if(attendance.isApproved()){
+            attendance.setApproved(false);
+        }
         User user = userRepository.findById(userId).get();
         LocalDateTime date = LocalDateTime.now();
         log.setUser(user);
         log.setInsertDate(date);
         log.setAttendance(attendance);
         logRepository.save(log);
-
-        attendance.setTimeStarted(log.getTimeStarted());
-        attendance.setElapsedBreak(log.getElapsedBreak());
-        attendance.setTimeEnded(log.getTimeEnded());
-        attendance.setUser(user);
-        attendance.setApproved(false);
-        attendance.setOverTime(log.getOverTime());
-        attendance.setUnderTime(log.getUnderTime());
-        attendance.setTardiness(log.getTardiness());
-        attendanceRepository.save(attendance);
     }
     @Override
     public List<Log> viewAllLogsPerDept(Integer deptId) {
@@ -55,5 +48,13 @@ public class LogServiceImpl implements LogService{
     @Override
     public List<Log> readLogs() {
         return logRepository.findAll();
+    }
+
+    @Override
+    public void deleteLog(Integer logId){
+        Log log = logRepository.findById(logId).get();
+        log.setAttendance(null);
+        log.setUser(null);
+        logRepository.deleteById(logId);
     }
 }

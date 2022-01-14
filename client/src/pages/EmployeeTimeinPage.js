@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 // import EmployeeCircularProgress from '../components/Employee/CircularProgress/CircularProgress';
@@ -9,6 +9,7 @@ import EmployeeTime from '../components/Employee/TimerPage/EmployeeTime';
 // import Timers from '../components/Employee/Timers';
 import EmployeeSideNav from '../components/Employee/SideNav/EmployeeSideNav';
 import EmployeeHeader from '../components/Employee/Header/EmployeeHeader';
+import axios from 'axios';
 
 function EmployeeTimeinPage({
   seconds,
@@ -23,6 +24,16 @@ function EmployeeTimeinPage({
 }) {
   // const [isLargerThan800] = useMediaQuery('(min-width: 1000px)');
   //   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
+  useEffect(() => {
+    axios
+      .get(
+        'http://localhost:8080/user/useremail/arnan.planco@fullspeedtechnologies.com',
+      )
+      .then((response) => {
+        setUserData(response.data);
+        sessionStorage.setItem('user data', response.data);
+      });
+  }, []);
 
   return (
     <Box>

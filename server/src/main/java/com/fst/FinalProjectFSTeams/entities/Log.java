@@ -29,10 +29,12 @@ public class Log {
     @JoinColumn(name = "userId",referencedColumnName = "userId",nullable = false)
     private User user;
 
-    @Column(name="timeStarted", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "timeStarted")
     private LocalTime timeStarted;
 
-    @Column(name="timeEnded", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "timeEnded")
     private LocalTime timeEnded;
 
 

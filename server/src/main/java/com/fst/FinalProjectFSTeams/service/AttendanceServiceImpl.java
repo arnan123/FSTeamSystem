@@ -170,4 +170,17 @@ public class AttendanceServiceImpl implements AttendanceService{
         System.out.println(attendances.getId());
         return attendances.getId();
     }
+
+    @Override
+    public void updateAttendance(Integer attendanceId, Attendance attendance){
+        Attendance oldAttendance = attendanceRepository.findById(attendanceId).get();
+        oldAttendance.setTimeEnded(attendance.getTimeEnded());
+        oldAttendance.setElapsedBreak(attendance.getElapsedBreak());
+        oldAttendance.setTardiness(attendance.getTardiness());
+        oldAttendance.setOverTime(attendance.getOverTime());
+        oldAttendance.setUnderTime(attendance.getUnderTime());
+        oldAttendance.setTimeStarted(attendance.getTimeStarted());
+        oldAttendance.setApproved(true);
+        attendanceRepository.save(oldAttendance);
+    }
 }
