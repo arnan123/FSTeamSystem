@@ -75,6 +75,9 @@ function EmployeeTime({
           });
         });
     }
+
+    setTimeinStatus(true);
+    start();
   };
 
   const timeOut = () => {
@@ -143,8 +146,6 @@ function EmployeeTime({
     if (isrunning) {
       timeOut();
     } else {
-      setTimeinStatus(true);
-      start();
       timeIn();
     }
   }

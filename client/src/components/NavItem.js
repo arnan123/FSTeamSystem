@@ -1,14 +1,13 @@
 import React from 'react';
-import {
-  Flex,
-  Icon,
-  Link,
-} from '@chakra-ui/react';
-import {PropTypes} from 'prop-types';
+import { Flex, Icon, Link } from '@chakra-ui/react';
+import { PropTypes } from 'prop-types';
 
-export default function NavItem (props, { ...rest }){
+export default function NavItem(props, { ...rest }) {
   return (
-    <Link href={props.address} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link
+      href={props.address}
+      style={{ textDecoration: 'none' }}
+      _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -37,6 +36,8 @@ export default function NavItem (props, { ...rest }){
   );
 }
 
-NavItem.propTypes={
-  icon:PropTypes.any, children:PropTypes.any, address:PropTypes.any
-}
+NavItem.propTypes = {
+  icon: PropTypes.any,
+  children: PropTypes.any,
+  address: PropTypes.any,
+};

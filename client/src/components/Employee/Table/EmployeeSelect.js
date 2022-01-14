@@ -27,12 +27,12 @@ function EmployeeSelect({ dateData, setDates, setDay, dates }) {
             </option>
           ))}
         {dateData != 'month' && (
-          <option value={5}>{dates + ' 5 to ' + dates + ' 20'}</option>
+          <option value={5}>{dates + ' 6 to ' + dates + ' 20'}</option>
         )}
         {dateData != 'month' && (
           <option value={20}>
             {dates +
-              ' 20 to ' +
+              ' 21 to ' +
               moment().month(nxtM.toString()).format('MMMM') +
               ' 5 '}
           </option>

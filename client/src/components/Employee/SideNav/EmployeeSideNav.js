@@ -20,10 +20,8 @@ function EmployeeSideNav(props) {
     return (
       <>
         <Box
-          // borderRight={'1px'}
           boxShadow={'2xl'}
           borderColor={props.color}
-          // w={{ base: 'full', md: 60 }}
           w={'15vw'}
           h="full"
           bgColor={'#063970'}
