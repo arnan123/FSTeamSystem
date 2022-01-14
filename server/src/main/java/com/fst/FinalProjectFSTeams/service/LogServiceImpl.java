@@ -17,7 +17,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
-@Qualifier("logService")
+
 public class LogServiceImpl implements LogService{
     @Autowired
     private LogRepository logRepository;

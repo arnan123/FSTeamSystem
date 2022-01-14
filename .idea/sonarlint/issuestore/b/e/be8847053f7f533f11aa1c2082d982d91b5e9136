@@ -1,0 +1,6 @@
+
+n
+java:S1128"LRemove this unused import 'com.fst.FinalProjectFSTeams.entities.Attendance'.(¦»‡‘ıÿÿÿÿ8ÒŞ’”ä/
+c
+java:S1128"FRemove this unused import 'com.fst.FinalProjectFSTeams.entities.User'.(©›Íµ8ÅŒ”ä/
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ıøô’øÿÿÿÿ8¬ÅŒ”ä/

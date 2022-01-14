@@ -4,32 +4,17 @@ import com.fst.FinalProjectFSTeams.entities.Attendance;
 import com.fst.FinalProjectFSTeams.entities.User;
 import com.fst.FinalProjectFSTeams.repository.AttendanceRepository;
 import com.fst.FinalProjectFSTeams.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
-@Primary
 public class AttendanceServiceImpl implements AttendanceService{
     @Autowired
     private AttendanceRepository attendanceRepository;
