@@ -13,12 +13,9 @@ public interface AttendanceRepository extends JpaRepository<Attendance,Integer>{
 
     @Query(value = "SELECT * FROM attendance a WHERE a.user_id = :userId",nativeQuery = true)
     List<Attendance> viewDTR(int userId);
-<<<<<<< HEAD
     @Query(value = "SELECT u.last_name,a.insert_date,a.time_started,a.time_ended,a.elapsed_break FROM attendance a INNER JOIN user u ON a.user_id=u.user_id AND u.dept_id=:deptId",nativeQuery = true)
     List<String> getAllAttendancePerDept(Integer deptId);
-=======
 
     @Query(value = "SELECT * FROM attendance a WHERE a.user_id = :userId",nativeQuery = true)
     List<Attendance> getAttendanceID(int userId);
->>>>>>> fc6fd285bdee7484c94610d4f9b24b404613cf4d
 }

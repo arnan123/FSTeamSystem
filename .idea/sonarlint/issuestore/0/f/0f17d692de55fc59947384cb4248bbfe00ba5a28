@@ -1,0 +1,26 @@
+
+U	java:S106/"9Replace this use of System.out or System.err by a logger.(ãœ…«8«éß±å/
+J
+java:S19055"(Remove this unnecessary cast to "float".(˜êè¾øÿÿÿÿ8®éß±å/
+Z	java:S1067"9Replace this use of System.out or System.err by a logger.(ªœşÜúÿÿÿÿ8¾åã’ä/
+Z	java:S1069"9Replace this use of System.out or System.err by a logger.(°ããÍşÿÿÿÿ8¾åã’ä/
+X	java:S125N"<This block of commented-out lines of code should be removed.(·µİÎ8Şåã’ä/
+]	java:S125X"<This block of commented-out lines of code should be removed.(ğ°œ¾şÿÿÿÿ8Şåã’ä/
+W	java:S125Z"<This block of commented-out lines of code should be removed.(ÜÏ’?8Şåã’ä/
+Z	java:S106\"9Replace this use of System.out or System.err by a logger.(¡ªŞÖÿÿÿÿÿ8Şåã’ä/
+U	java:S106^"9Replace this use of System.out or System.err by a logger.(Ä«ÈË8Şåã’ä/
+U	java:S106a"9Replace this use of System.out or System.err by a logger.(ÙÉÉ¿8Şåã’ä/
+Z	java:S106e"9Replace this use of System.out or System.err by a logger.(ÄÜÜñúÿÿÿÿ8¸éß±å/
+]	java:S125g"<This block of commented-out lines of code should be removed.(ùã«ÿÿÿÿÿ8¸éß±å/
+V
+java:S1854"8Remove this useless assignment to local variable "date".(ŞíĞ8¼éß±å/
+[
+java:S1854€"8Remove this useless assignment to local variable "user".(æëÊ§ùÿÿÿÿ8íåã’ä/
+L
+java:S1481€")Remove this unused "user" local variable.(æëÊ§ùÿÿÿÿ8íåã’ä/
+G
+java:S1481")Remove this unused "date" local variable.(ŞíĞ8¾éß±å/
+V	java:S106«"9Replace this use of System.out or System.err by a logger.(Î§¨„8Ééß±å/
+;
+java:S1128"Remove this duplicated import.(‰÷÷ª8ıåã’ä/
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Á°£ø

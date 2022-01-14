@@ -82,15 +82,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.getEmployeesByTeam(teamId);
     }
 
-<<<<<<< HEAD
     public List<User> displayEmployeesFromDept(Integer deptId){
         return userRepository.getEmployeesByDepartment(deptId);
-=======
 
     @Override
     public User getUserFromEmail(String email) {
         return userRepository.getUser(email);
->>>>>>> fc6fd285bdee7484c94610d4f9b24b404613cf4d
     }
 
     @Override
