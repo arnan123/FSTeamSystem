@@ -13,10 +13,11 @@ import EmployeeDTR from './pages/EmployeeDTR';
 import EmployeeHoliday from './pages/EmployeeHoliday';
 import EmployeeHolidayList from './pages/EmployeeHolidayList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
+import { ChakraProvider, Spinner, useDisclosure } from '@chakra-ui/react';
 import { FiWatch, FiGrid, FiUsers, FiClock } from 'react-icons/fi';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../src/App.css';
+import { SpinnerIcon } from '@chakra-ui/icons';
 
 const LinkItems = [
   { name: 'Daily Time Record', icon: FiClock, address: '/' },
@@ -26,7 +27,7 @@ const LinkItems = [
 ];
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
     autoStart: false,
@@ -50,6 +51,14 @@ function App() {
     lunchPause,
   };
   const [userDatas, setUserDatas] = useState({});
+
+  if (isLoading) {
+    return (
+      <Spinner>
+        <SpinnerIcon />
+      </Spinner>
+    );
+  }
 
   return (
     <ChakraProvider>
