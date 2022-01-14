@@ -51,7 +51,6 @@ public class LogServiceImpl implements LogService{
         Log log = logRepository.findById(logId).get();
         log.setAttendance(null);
         log.setUser(null);
-        System.out.print("g");
         logRepository.deleteById(logId);
     }
 }

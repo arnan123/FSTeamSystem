@@ -12,7 +12,7 @@ function EditableCell(props) {
     return (
       <>
         <Editable placeholder={props.tablecontent}>
-          <EditableInput w={'full'} />
+          <EditableInput w={'3vw'} />
           <EditablePreview />
         </Editable>
       </>
