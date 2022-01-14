@@ -5,10 +5,11 @@ function Calendarr(){
   const [value, onChange] = useState(new Date());
 
   return (
-      <Calendar
+    <Calendar
         onChange={onChange}
         value={value}
-      />
+        calendarType='US'
+    />
   );
 }
 

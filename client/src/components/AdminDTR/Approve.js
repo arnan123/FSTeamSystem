@@ -6,9 +6,17 @@ import { useToast } from '@chakra-ui/react';
 
 export default function Approve({user, log}) {
   const toast = useToast();
-  
+
   function approve () {
     let ids=""+log.attendance.id;
+    const attendance={
+      timeStarted: log.timeStarted,
+      timeEnded: log.timeEnded,
+      elapsedBreak: log.elapsedBreak,
+      underTime: log.underTime,
+      overTime: log.overTime,
+      tardiness: log.tardiness,
+    }
     axios
       .put('http://localhost:8080/attendance/approveDTR/'+user.id+'?attendanceIds='+ids)
       .then(() => {
@@ -21,8 +29,8 @@ export default function Approve({user, log}) {
           isClosable: false,
         });
       });
+      axios.put('http://localhost:8080/attendance/updateAttendance/'+log.attendance.id, attendance);
       axios.delete('http://localhost:8080/log/deleteLog/'+log.id);
-      alert(log.id);
   }
 
   return (
