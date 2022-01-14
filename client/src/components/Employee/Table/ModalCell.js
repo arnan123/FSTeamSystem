@@ -26,7 +26,9 @@ import {
 } from '@chakra-ui/react';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
 import './ModalCell.css';
+
 import EmployeeTableData from './EmployeeTableData';
+
 import moment from 'moment';
 import axios from 'axios';
 
@@ -82,8 +84,10 @@ function ModalCell({ attendance, ind, userData, month, days }) {
         : dayInt > 20 ||
           (moment(attendance.insertDate).format('MMMM') ==
             moment().month(nxtM.toString()).format('MMMM') &&
+
             dayInt <= 5)) ? (
         <EmployeeTableData onOpen={onOpen} ind={ind} attendance={attendance} />
+
       ) : (
         <Tr></Tr>
       )}
@@ -92,12 +96,14 @@ function ModalCell({ attendance, ind, userData, month, days }) {
         moment().month(nxtM.toString()).format('MMMM') &&
         dayInt <= 5 &&
         days == 20 && (
+
           <EmployeeTableData
             onOpen={onOpen}
             ind={ind}
             attendance={attendance}
           />
         )}
+
 
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />

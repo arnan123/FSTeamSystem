@@ -47,4 +47,10 @@ public class AttendanceController {
     @GetMapping("/getAttendance/{userid}")
     public Integer getAttendanceID(@PathVariable Integer userid){
         return attendanceService.getAttendance(userid);}
+
+    @PutMapping("/updateAttendance/{attendanceId}")
+    public void updateAttendance(@PathVariable Integer attendanceId, @RequestBody Attendance Attendance){
+         attendanceService.updateAttendance(attendanceId, Attendance);
+    }
+
 }

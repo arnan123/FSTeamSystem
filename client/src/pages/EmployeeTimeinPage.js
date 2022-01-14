@@ -1,4 +1,6 @@
+
 import { Box, Spinner } from '@chakra-ui/react';
+
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
@@ -10,7 +12,9 @@ import EmployeeTime from '../components/Employee/TimerPage/EmployeeTime';
 import EmployeeSideNav from '../components/Employee/SideNav/EmployeeSideNav';
 import EmployeeHeader from '../components/Employee/Header/EmployeeHeader';
 import axios from 'axios';
+
 import { useAuth0 } from '@auth0/auth0-react';
+
 
 function EmployeeTimeinPage({
   seconds,
@@ -25,7 +29,9 @@ function EmployeeTimeinPage({
 }) {
   // const [isLargerThan800] = useMediaQuery('(min-width: 1000px)');
   //   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
+
   const { user, isLoading } = useAuth0();
+
 
   useEffect(() => {
     axios
