@@ -75,7 +75,9 @@ function App() {
           />
           <Route
             path="/employees/dtr"
-            element={<EmployeeDTR userData={userDatas} />}
+            element={
+              <EmployeeDTR userData={userDatas} setUserData={setUserDatas} />
+            }
           />
           <Route path="/employees/holiday" element={<EmployeeHoliday />} />
           <Route

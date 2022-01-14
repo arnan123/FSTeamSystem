@@ -1,11 +1,20 @@
-import { Box, ButtonGroup, Flex, Center, Spacer } from '@chakra-ui/react';
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react';
+import {
+  Box,
+  ButtonGroup,
+  Flex,
+  Center,
+  Spacer,
+  useDisclosure,
+} from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tfoot, Tr, Th } from '@chakra-ui/react';
 import ModalContainer from '../../ModalContainer';
 import React, { useEffect, useState } from 'react';
-import EditableCell from '../../EditableCell';
+// import EditableCell from '../../EditableCell';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import EmployeeSelect from './EmployeeSelect';
+
+import ModalCell from './ModalCell';
 import moment from 'moment';
 // import { ChevronDownIcon } from '@chakra-ui/icons';
 // import { CalendarIcon } from '@chakra-ui/icons';
@@ -13,7 +22,9 @@ import moment from 'moment';
 function EmployeeTable({ userData }) {
   const [ind, setInd] = useState(false);
   const [tableDatas, setTableDatas] = useState([]);
-  const [dates, setDates] = useState({});
+  const [dates, setDates] = useState(moment().format('MMMM'));
+  const [day, setDay] = useState(5);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     axios
@@ -22,7 +33,8 @@ function EmployeeTable({ userData }) {
         setTableDatas(response.data);
       });
     // console.log(tableDatas);
-  }, []);
+  }, [ind]);
+
   return (
     <>
       <Box paddingBottom={5}>
@@ -32,15 +44,17 @@ function EmployeeTable({ userData }) {
               <Box>
                 <ButtonGroup gap={1}>
                   <EmployeeSelect
-                    dateData="year"
-                    attendance={tableDatas}
-                    dates={dates}
-                    setDates={setDates}
-                  />
-                  <EmployeeSelect
                     dateData="month"
                     attendance={tableDatas}
                     dates={dates}
+                    setDay={setDay}
+                    setDates={setDates}
+                  />
+                  <EmployeeSelect
+                    dateData="half"
+                    attendance={tableDatas}
+                    dates={dates}
+                    setDay={setDay}
                     setDates={setDates}
                   />
                 </ButtonGroup>
@@ -58,6 +72,7 @@ function EmployeeTable({ userData }) {
                   }
                   setIndicator={setInd}
                   indicator={ind}
+                  userData={userData}
                 />
               </Box>
             </Flex>
@@ -78,39 +93,17 @@ function EmployeeTable({ userData }) {
           </Thead>
           <Tbody>
             {tableDatas.map((tableData) => (
-              <Tr key={tableData.id}>
-                <Td>{moment(tableData.insertDate).format('MMMM Do YYYY')}</Td>
-                <Td>
-                  <EditableCell
-                    indicator={ind}
-                    tablecontent={tableData.timeStarted}
-                  />
-                </Td>
-                <Td>
-                  <EditableCell
-                    indicator={ind}
-                    tablecontent={tableData.timeEnded}
-                  />
-                </Td>
-                <Td>
-                  <EditableCell
-                    indicator={ind}
-                    tablecontent={tableData.elapsedBreak}
-                  />
-                </Td>
-                <Td>
-                  <EditableCell
-                    indicator={ind}
-                    tablecontent={tableData.overTime}
-                  />
-                </Td>
-                <Td>
-                  <EditableCell
-                    indicator={ind}
-                    tablecontent={tableData.totalTime}
-                  />
-                </Td>
-              </Tr>
+              <ModalCell
+                key={tableData.id}
+                ind={ind}
+                month={dates}
+                onOpen={onOpen}
+                isOpens={isOpen}
+                onCloses={onClose}
+                attendance={tableData}
+                userData={userData}
+                days={day}
+              />
             ))}
           </Tbody>
           <Tfoot></Tfoot>
