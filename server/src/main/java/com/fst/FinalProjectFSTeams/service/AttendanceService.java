@@ -11,4 +11,6 @@ public interface AttendanceService {
     public List<Attendance> viewAttendance(Integer userId);
     public void  approveAttendanceOfEmployee(Integer userId, String attendanceIds);
     public Integer getAttendance(Integer userid);
+
+    void updateAttendance(Integer attendanceId, Attendance attendance);
 }

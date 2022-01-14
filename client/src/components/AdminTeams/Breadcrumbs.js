@@ -14,7 +14,7 @@ export default function Breadcrumbs({department}){
       </BreadcrumbItem>
 
       <BreadcrumbItem>
-        <BreadcrumbLink href='/Departments'>Departments</BreadcrumbLink>
+        <BreadcrumbLink href='/admin/departments'>Departments</BreadcrumbLink>
       </BreadcrumbItem>
 
       <BreadcrumbItem isCurrentPage>

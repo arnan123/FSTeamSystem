@@ -30,6 +30,9 @@ public class LogServiceImpl implements LogService{
 
     public void createLog(Log log, Integer attendanceId, Integer userId){
         Attendance attendance = attendanceRepository.findById(attendanceId).get();
+        if(attendance.isApproved()){
+            attendance.setApproved(false);
+        }
         User user = userRepository.findById(userId).get();
         LocalDateTime date = LocalDateTime.now();
         log.setUser(user);
@@ -48,6 +51,7 @@ public class LogServiceImpl implements LogService{
         Log log = logRepository.findById(logId).get();
         log.setAttendance(null);
         log.setUser(null);
+        System.out.print("g");
         logRepository.deleteById(logId);
     }
 }
