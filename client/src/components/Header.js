@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FiBell,
   FiChevronDown,
@@ -19,10 +19,34 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Link,
 } from '@chakra-ui/react';
 import {PropTypes} from 'prop-types';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header(props){
+
+  const [userdb, setUserDB] = useState({})
+  const { user } = useAuth0();
+  let navigate = useNavigate();
+
+  function setData(){
+    axios.get("http://localhost:8080/user/useremail/"+user.email).then((response) => {
+      if(response.data.role && response.data.role != "ADMIN"){
+        navigate("/", { replace: true });
+      }
+      setUserDB(response.data);
+    });
+  }
+
+  useEffect(() => {
+    if (user) {
+       setData();
+    }
+  }, [user])
+
   return(
   <Flex
       ml={{ base: 0, md: 60 }}
@@ -77,18 +101,16 @@ export default function Header(props){
               <HStack>
                 <Avatar
                   size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
+                  src={user.picture}
                 />
                 <VStack
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="sm">Rayl Xylem</Text>
+                  <Text fontSize="sm">{user.given_name} {user.family_name}</Text>
                   <Text fontSize="xs" color="gray.600">
-                    Admin
+                    {userdb.role}
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
@@ -99,9 +121,9 @@ export default function Header(props){
             <MenuList
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}>
-              <MenuItem>Profile</MenuItem>
+              <Link href={"/admin/profile/"+userdb.id}><MenuItem>Profile</MenuItem></Link>
               <MenuItem>Settings</MenuItem>
-              <MenuDivider />
+              <MenuDivider/>
               <MenuItem>Sign out</MenuItem>
             </MenuList>
           </Menu>
@@ -112,5 +134,5 @@ export default function Header(props){
 }
 
 Header.propTypes={
-  onOpen: PropTypes.any,headerTitle:PropTypes.any
+  onOpen: PropTypes.any,headerTitle:PropTypes.any, userdb: PropTypes.any
 }

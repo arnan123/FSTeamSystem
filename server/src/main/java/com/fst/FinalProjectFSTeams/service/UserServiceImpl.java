@@ -92,8 +92,18 @@ public class UserServiceImpl implements UserService {
     public List<User> readEmployees(){
         return userRepository.findAll();
     }
-
     public Optional<User> readEmployeesById(Integer id){
         return userRepository.findById(id);
+    }
+
+    @Override
+    public void deleteUsers(String userId){
+        String[] strArray = userId.split(",");
+        int[] array =  new int[strArray.length];
+
+        for( int i = 0; i < strArray.length; i++){
+            array[i] = Integer.parseInt(strArray[i]);
+            userRepository.deleteById(array[i]);
+        }
     }
 }

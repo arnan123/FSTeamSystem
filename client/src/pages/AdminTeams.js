@@ -8,7 +8,7 @@ import {
   Drawer,
   DrawerContent,
 } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import {PropTypes} from "prop-types";
 import Header from "../components/Header.js";
@@ -20,6 +20,13 @@ import EditModal from '../components/AdminTeams/EditModal.js';
 import Sidebar from "../components/Sidebar.js";
 
 export default function AdminTeams(props){
+
+  if(props.isAuthenticated==false){
+    return (
+      <Navigate to="/"/>
+    );
+  }
+
   useEffect(() => {
     document.title="Teams";
   });
@@ -97,5 +104,5 @@ export default function AdminTeams(props){
 }
 
 AdminTeams.propTypes={
- LinkItems:PropTypes.any, onOpen: PropTypes.any, isOpen: PropTypes.any, onClose: PropTypes.any
+ LinkItems:PropTypes.any, onOpen: PropTypes.any, isOpen: PropTypes.any, onClose: PropTypes.any, isAuthenticated: PropTypes.any
 }

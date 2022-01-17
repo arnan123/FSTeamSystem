@@ -5,9 +5,10 @@ import Loginbutton from '../components/Login/Loginbutton';
 import LoginLogo from '../components/Login/LoginLogo';
 import { Helmet } from 'react-helmet';
 import { Navigate } from 'react-router-dom';
+import { PropTypes } from 'prop-types'
 
-function Login() {
-  const { isAuthenticated, isLoading } = useAuth0();
+function Login({isAuthenticated}) {
+  const { isLoading } = useAuth0();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
   if (isLoading) {
@@ -36,6 +37,10 @@ function Login() {
       </Box>
     );
   }
+}
+
+Login.propTypes={
+  isAuthenticated: PropTypes.any
 }
 
 export default withAuth0(Login);

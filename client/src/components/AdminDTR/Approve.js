@@ -4,11 +4,10 @@ import axios from 'axios';
 import { PropTypes } from 'prop-types'
 import { useToast } from '@chakra-ui/react';
 
-export default function Approve({user, log}) {
+export default function Approve({ log, setLogs}) {
   const toast = useToast();
 
   function approve () {
-    let ids=""+log.attendance.id;
     const attendance={
       timeStarted: log.timeStarted,
       timeEnded: log.timeEnded,
@@ -17,20 +16,20 @@ export default function Approve({user, log}) {
       overTime: log.overTime,
       tardiness: log.tardiness,
     }
-    axios
-      .put('http://localhost:8080/attendance/approveDTR/'+user.id+'?attendanceIds='+ids)
-      .then(() => {
-        toast({
-          title: 'Approved',
-          description: 'DTR was approved successfully',
-          position: 'top',
-          status: 'success',
-          duration: 5000,
-          isClosable: false,
-        });
+    axios.put('http://localhost:8080/attendance/updateAttendance/'+log.attendance.id, attendance).then(() => {
+      toast({
+        title: 'Approved',
+        description: 'DTR was approved successfully',
+        position: 'top',
+        status: 'success',
+        duration: 5000,
+        isClosable: false,
       });
-      axios.put('http://localhost:8080/attendance/updateAttendance/'+log.attendance.id, attendance);
-      axios.delete('http://localhost:8080/log/deleteLog/'+log.id);
+    });
+    axios.delete('http://localhost:8080/log/deleteLog/'+log.id);
+    axios.get("http://localhost:8080/log/viewLogs").then((response) => {
+      setLogs(response.data);
+    });
   }
 
   return (
@@ -41,5 +40,5 @@ export default function Approve({user, log}) {
 }
 
 Approve.propTypes={
-  user: PropTypes.any, log: PropTypes.any
+  user: PropTypes.any, log: PropTypes.any, setLogs: PropTypes.any
 }

@@ -4,10 +4,11 @@ import axios from 'axios';
 import { PropTypes } from 'prop-types'
 import { useToast } from '@chakra-ui/react';
 
-export default function Reject({ log}) {
+export default function Reject({log}) {
   const toast = useToast();
   
-  function reject() {
+  const reject = (e) => {
+    e.preventDefault();
       axios.delete('http://localhost:8080/log/deleteLog/'+log.id).then(() => {
         toast({
           title: 'Rejected',
@@ -18,15 +19,18 @@ export default function Reject({ log}) {
           isClosable: false,
         });
       });
+      axios.get("http://localhost:8080/log/viewLogs").then((response) => {
+        console.log(response.data);
+      })
   }
 
   return (
     <>
-      <HiXCircle cursor="pointer" size="4vh" color='red' onClick={reject}/>
+      <HiXCircle cursor="pointer" size="4vh" color='red' onClick={(e)=>reject(e)}/>
     </>
   );
 }
 
 Reject.propTypes={
-  user: PropTypes.any, log: PropTypes.any
+  user: PropTypes.any, log: PropTypes.any, setLogs: PropTypes.any
 }

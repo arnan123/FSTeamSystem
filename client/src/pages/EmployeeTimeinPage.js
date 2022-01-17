@@ -10,54 +10,55 @@ import EmployeeTime from '../components/Employee/TimerPage/EmployeeTime';
 import EmployeeSideNav from '../components/Employee/SideNav/EmployeeSideNav';
 import EmployeeHeader from '../components/Employee/Header/EmployeeHeader';
 import axios from 'axios';
+import { Navigate } from "react-router-dom"
+import { useAuth0 } from '@auth0/auth0-react';
 
-function EmployeeTimeinPage({
-  seconds,
-  minutes,
-  hours,
-  isrunning,
-  start,
-  pause,
-  lunchTimer,
-  userData,
-  setUserData,
-}) {
+export default function EmployeeTimeinPage(props) {
   // const [isLargerThan800] = useMediaQuery('(min-width: 1000px)');
   //   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
+  const { user } = useAuth0();
+
+  if(props.isAuthenticated==false){
+    return (
+      <Navigate to="/"/>
+    );
+  }
+
   useEffect(() => {
     axios
       .get(
-        'http://localhost:8080/user/useremail/arnan.planco@fullspeedtechnologies.com',
+        'http://localhost:8080/user/useremail/'+user.email,
       )
       .then((response) => {
-        setUserData(response.data);
+        props.setUserData(response.data);
         sessionStorage.setItem('user data', response.data);
       });
   }, []);
 
   return (
-    <Box>
-      <Helmet>
-        <style>{` body { background-color : #2a3b5e  }`}</style>
-        <title> FST Time/Out Page</title>
-      </Helmet>
-      <EmployeeSideNav color="gray" />
-      <EmployeeHeader text="TIMER" />
       <Box>
-        <EmployeeTime
-          seconds={seconds}
-          minutes={minutes}
-          hours={hours}
-          isrunning={isrunning}
-          start={start}
-          pause={pause}
-          userData={userData}
-          setUserData={setUserData}
-          lunchTimer={lunchTimer}
-        />
+        <Helmet>
+          <style>{` body { background-color : #2a3b5e  }`}</style>
+          <title> FST Time/Out Page</title>
+        </Helmet>
+        <EmployeeSideNav color="gray" />
+        <EmployeeHeader text="TIMER" />
+        <Box>
+          <EmployeeTime
+            seconds={props.seconds}
+            minutes={props.minutes}
+            hours={props.hours}
+            isrunning={props.isrunning}
+            start={props.start}
+            pause={props.pause}
+            userData={props.userData}
+            setUserData={props.setUserData}
+            lunchTimer={props.lunchTimer}
+          />
+        </Box>
       </Box>
-    </Box>
   );
+
 }
 
 EmployeeTimeinPage.propTypes = {
@@ -70,6 +71,5 @@ EmployeeTimeinPage.propTypes = {
   lunchTimer: PropTypes.any,
   userData: PropTypes.any,
   setUserData: PropTypes.any,
+  isAuthenticated: PropTypes.any
 };
-
-export default EmployeeTimeinPage;
