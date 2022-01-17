@@ -122,7 +122,7 @@ public class AttendanceServiceImpl implements AttendanceService{
             }
         }
 
-        return attendance;
+        return attendanceList;
     }
 
     @Override

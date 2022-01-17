@@ -12,8 +12,9 @@ function EmployeeSelect({ dateData, setDates, setDay, dates }) {
     <Box>
       <Select
         variant={'outline'}
-        color={'black'}
-        bg={'white'}
+        color={'white'}
+        size={'lg'}
+        bg={'blue.600'}
         defaultValue={dateData == 'month' ? 'January' : 5}
         onChange={
           dateData == 'month'
