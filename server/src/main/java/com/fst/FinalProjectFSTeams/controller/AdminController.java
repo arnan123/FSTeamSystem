@@ -1,13 +1,11 @@
 package com.fst.FinalProjectFSTeams.controller;
 
-import com.fst.FinalProjectFSTeams.entities.Team;
 import com.fst.FinalProjectFSTeams.entities.User;
 import com.fst.FinalProjectFSTeams.service.TeamService;
 import com.fst.FinalProjectFSTeams.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +28,6 @@ public class AdminController {
     public void disableEmployee(@PathVariable Integer id){
         userService.disableEmployee(id);
     }
-
-
-
 
     @PutMapping("/assignTeam/{id}")
     @ResponseBody
@@ -59,5 +54,10 @@ public class AdminController {
     @GetMapping("/view/{id}")
     public Optional<User> readEmployeesById(@PathVariable Integer id){
         return  userService.readEmployeesById(id);
+    }
+
+    @DeleteMapping("/deleteUsers/")
+    public void deleteUsers(@RequestParam String userId){
+        userService.deleteUsers(userId);
     }
 }

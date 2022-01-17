@@ -9,7 +9,7 @@ import {
 import DeleteModal from './DeleteModal.js';
 import {PropTypes} from 'prop-types';
 
-export default function Card({departments}) {
+export default function Card({departments, setDepartments}) {
   return (
     <Flex px="10" w="full" alignItems="center" display="block">
       <Box
@@ -19,7 +19,7 @@ export default function Card({departments}) {
         rounded="lg"
         shadow="lg"
         position="relative">
-        <DeleteModal id={departments.id}/>
+        <DeleteModal id={departments.id} setDepartments={setDepartments}/>
         <Image
           src="https://i.ibb.co/6BvPD2L/logo.png"
           roundedTop="lg"
@@ -42,5 +42,5 @@ export default function Card({departments}) {
 }
 
 Card.propTypes={
-  departments:PropTypes.any
+  departments:PropTypes.any, setDepartments:PropTypes.any
 }

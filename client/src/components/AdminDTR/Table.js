@@ -11,13 +11,11 @@ export default function TableData(){
   useEffect(() => {
     axios.get("http://localhost:8080/log/viewLogs").then((response) => {
       setLogs(response.data);
-      console.log(response.data)
     });
   },[]);
   useEffect(() => {
     axios.get("http://localhost:8080/admin/view").then((response) => {
       setEmployees(response.data);
-      console.log(response.data)
     });
   },[]);
   return(
@@ -49,9 +47,9 @@ export default function TableData(){
               <Td>
                 <HStack>
                   {employees.map((employee)=>(
-                    (employee.id == log.user.id)?<Approve user={employee} log={log}/> : null
+                    (employee.id == log.user.id)?<Approve setLogs={setLogs} log={log}/> : null
                   ))}
-                  <Reject log={log}/>
+                  <Reject setLogs={setLogs} log={log}/>
                 </HStack>
               </Td>
               <Td></Td>

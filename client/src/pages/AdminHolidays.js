@@ -12,8 +12,16 @@ import Header from "../components/Header.js";
 import AddModal from "../components/AdminHolidays/AddModal.js";
 import DeleteModal from '../components/AdminHolidays/DeleteModal.js';
 import Sidebar from "../components/Sidebar.js";
+import { Navigate } from 'react-router-dom';
 
 export default function AdminHolidays(props){
+
+  if(props.isAuthenticated==false){
+    return (
+      <Navigate to="/"/>
+    );
+  }
+
   useEffect(() => {
     document.title="Holidays";
   });
@@ -58,5 +66,5 @@ export default function AdminHolidays(props){
 }
 
 AdminHolidays.propTypes={
-  onOpen: PropTypes.any, isOpen: PropTypes.any, onClose: PropTypes.any, LinkItems: PropTypes.any
+  onOpen: PropTypes.any, isOpen: PropTypes.any, onClose: PropTypes.any, LinkItems: PropTypes.any, isAuthenticated: PropTypes.any
 }

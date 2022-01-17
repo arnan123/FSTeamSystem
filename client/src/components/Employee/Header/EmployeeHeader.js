@@ -8,11 +8,13 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
+import { useAuth0 } from '@auth0/auth0-react';
 import AvatarProfile from '../../AvatarProfile';
 import NotificationPop from '../../NotificationPop';
 
 function EmployeeHeader(props) {
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+  const { user } = useAuth0();
   return (
     <Grid
       templateColumns="repeat(20,1fr)"
@@ -31,7 +33,7 @@ function EmployeeHeader(props) {
           <HStack>
             <NotificationPop />
             <AvatarProfile />
-            {isLargerThan800 && <Text>Planco,Arnan</Text>}
+            {isLargerThan800 && <Text>{user.given_name} {user.family_name}</Text>}
           </HStack>
         </Box>
       </GridItem>

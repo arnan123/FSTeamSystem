@@ -12,13 +12,19 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { PropTypes } from 'prop-types'
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import TableData from '../components/AdminProfile/Table';
 
 export default function AdminProfile(props){
+
+  if(props.isAuthenticated==false){
+    return (
+      <Navigate to="/"/>
+    );
+  }
 
   const { id } = useParams();
   const [employee, setEmployee] = useState({});
@@ -75,5 +81,5 @@ export default function AdminProfile(props){
 }
 
 AdminProfile.propTypes={
-  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any
+  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any, isAuthenticated: PropTypes.any
 }

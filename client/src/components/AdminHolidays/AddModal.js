@@ -16,8 +16,9 @@ import {
 } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import axios from 'axios'
+import { PropTypes } from 'prop-types'
 
-function AddModal() {
+export default function AddModal({setHolidays}) {
   const { isOpen : isAddModalOpen, onOpen : onAddModalOpen, onClose : onAddModalClose } = useDisclosure();
   const [name, setName] = useState("");
   const [holidayDate, setHolidayDate] = useState(new Date());
@@ -43,6 +44,9 @@ function AddModal() {
           status: 'success',
           duration: 5000,
           isClosable: false,
+        });
+        axios.get("http://localhost:8080/holiday/viewHoliday").then((response) => {
+          setHolidays(response.data);
         });
         onAddModalClose();
       });
@@ -78,4 +82,6 @@ function AddModal() {
   )
 }
 
-export default AddModal;
+AddModal.propTypes={
+  setHolidays: PropTypes.any
+}

@@ -30,4 +30,9 @@ public class HolidayController {
         holidayService.deleteHoliday(holidayId);
     }
 
+    @DeleteMapping("/deleteHolidays/")
+    public void deleteHolidays(@RequestParam String holidayId){
+        holidayService.deleteHolidays(holidayId);
+    }
+
 }

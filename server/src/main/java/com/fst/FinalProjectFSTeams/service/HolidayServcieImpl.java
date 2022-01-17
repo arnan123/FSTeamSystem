@@ -1,5 +1,6 @@
 package com.fst.FinalProjectFSTeams.service;
 
+import com.fst.FinalProjectFSTeams.entities.Attendance;
 import com.fst.FinalProjectFSTeams.entities.Holiday;
 import com.fst.FinalProjectFSTeams.repository.HolidayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,16 @@ public class HolidayServcieImpl implements  HolidayService{
     @Override
     public List<Holiday> readHoliday(){
         return holidayRepository.findAll();
+    }
+
+    @Override
+    public void deleteHolidays(String holidayId){
+        String[] strArray = holidayId.split(",");
+        int[] array =  new int[strArray.length];
+
+        for( int i = 0; i < strArray.length; i++){
+            array[i] = Integer.parseInt(strArray[i]);
+            holidayRepository.deleteById(array[i]);
+        }
     }
 }

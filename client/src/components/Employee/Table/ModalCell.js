@@ -119,10 +119,10 @@ function ModalCell({ attendance, ind, userData, month, days }) {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody paddingBottom={'5%'}>
-            <Table variant="simple" size={'sm'} color={'white'}>
-              <Tbody color={'white'} textAlign={'center'}>
+            <Table variant="simple" size={'sm'} color={'black'}>
+              <Tbody color={'black'} textAlign={'center'}>
                 <Tr>
-                  <Th color={'white'} w={'2vw'}>
+                  <Th color={'black'} w={'2vw'}>
                     Date
                   </Th>
                   <Td textAlign={'center'}>
@@ -130,7 +130,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'white'} w={'2vw'}>
+                  <Th color={'black'} w={'2vw'}>
                     Timein
                   </Th>
                   <Td textAlign={'center'}>
@@ -143,7 +143,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'white'} w={'2vw'}>
+                  <Th color={'black'} w={'2vw'}>
                     Timeout
                   </Th>
                   <Td textAlign={'center'}>
@@ -156,7 +156,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'white'} w={'2vw'}>
+                  <Th color={'black'} w={'2vw'}>
                     Lunch
                   </Th>
                   <Td textAlign={'center'}>
@@ -169,7 +169,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'white'} w={'2vw'}>
+                  <Th color={'black'} w={'2vw'}>
                     Overtime
                   </Th>
                   <Td textAlign={'center'}>
@@ -182,7 +182,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'white'} w={'2vw'}>
+                  <Th color={'black'} w={'2vw'}>
                     Tardiness
                   </Th>
                   <Td textAlign={'center'}>
@@ -195,7 +195,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'white'} w={'2vw'}>
+                  <Th color={'black'} w={'2vw'}>
                     Total Hours
                   </Th>
                   <Td textAlign={'center'}>{attendance.totalTime}</Td>

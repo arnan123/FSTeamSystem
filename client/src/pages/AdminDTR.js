@@ -11,11 +11,13 @@ import { PropTypes } from 'prop-types'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
 import Table from '../components/AdminDTR/Table'
-
 export default function AdminDTR(props){
+
   useEffect(() => {
     document.title="Daily Time Record";
   });
+
+  
   return (
     <ChakraProvider theme={theme}>
       <Sidebar
@@ -51,5 +53,5 @@ export default function AdminDTR(props){
 }
 
 AdminDTR.propTypes={
-  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any
+  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any, isAuthenticated: PropTypes.any, userdb: PropTypes.any
 }

@@ -21,4 +21,5 @@ public interface UserService {
     List<User> readEmployees();
 
     Optional<User> readEmployeesById(Integer id);
+    public void deleteUsers(String userId);
 }

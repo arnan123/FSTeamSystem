@@ -14,8 +14,15 @@ import Card from "../components/AdminDepartments/Card.js";
 import AddModal from "../components/AdminDepartments/AddModal.js"; 
 import Header from "../components/Header.js";
 import Sidebar from "../components/Sidebar.js";
+import { Navigate } from 'react-router-dom';
 
 export default function AdminDepartments(props){
+
+  if(props.isAuthenticated==false){
+    return (
+      <Navigate to="/"/>
+    );
+  }
 
   const [departments,setDepartments] = useState([]);
 
@@ -56,11 +63,11 @@ export default function AdminDepartments(props){
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       >
       <Box display="block" py="4vh" >
-        <AddModal/>
+        <AddModal setDepartments={setDepartments}/>
       </Box>
       <SimpleGrid minChildWidth='50vh' spacing='4vh'>
       {departments.map((department) => (
-        <Card key={department.id} departments={department}/>
+        <Card key={department.id} departments={department} setDepartments={setDepartments}/>
       ))}
       </SimpleGrid>
     </Box>
@@ -69,5 +76,5 @@ export default function AdminDepartments(props){
 }
 
 AdminDepartments.propTypes={
-  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any
+  onClose: PropTypes.any, isOpen: PropTypes.any, onOpen: PropTypes.any, LinkItems: PropTypes.any, isAuthenticated: PropTypes.any
 }

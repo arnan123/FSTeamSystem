@@ -15,7 +15,7 @@ import axios from 'axios';
 import { DeleteIcon } from '@chakra-ui/icons'
 import {PropTypes} from 'prop-types';
 
-export default function DeleteModal({id}) {
+export default function DeleteModal({id, setDepartments}) {
   const { isOpen : isDeleteModalOpen, onOpen : onDeleteModalOpen, onClose : onDeleteModalClose } = useDisclosure();
   const toast = useToast()
   
@@ -28,6 +28,10 @@ export default function DeleteModal({id}) {
         status: "success",
         duration: 5000,
         isClosable: false,
+      });
+      axios.get("http://localhost:8080/department/view/").then((response) => {
+        setDepartments(response.data);
+        onDeleteModalClose();
       });
       onDeleteModalClose();
     });
@@ -56,5 +60,5 @@ export default function DeleteModal({id}) {
 }
 
 DeleteModal.propTypes={
-  id:PropTypes.any
+  id:PropTypes.any, setDepartments:PropTypes.any
 }

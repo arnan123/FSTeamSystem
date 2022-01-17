@@ -10,4 +10,6 @@ public interface HolidayService {
     public void deleteHoliday(Integer id);
 
     public List<Holiday> readHoliday();
+
+    public void deleteHolidays(String holidayId);
 }

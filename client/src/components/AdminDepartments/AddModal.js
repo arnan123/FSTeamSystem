@@ -16,8 +16,9 @@ import {
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import { PropTypes } from 'prop-types'
 
-function AddModal() {
+export default function AddModal({setDepartments}) {
   const {
     isOpen: isAddModalOpen,
     onOpen: onAddModalOpen,
@@ -47,6 +48,9 @@ function AddModal() {
           status: 'success',
           duration: 5000,
           isClosable: false,
+        });
+        axios.get("http://localhost:8080/department/view/").then((response) => {
+          setDepartments(response.data);
         });
         onAddModalClose();
       });
@@ -101,4 +105,6 @@ function AddModal() {
   );
 }
 
-export default AddModal;
+AddModal.propTypes={
+  setDepartments:PropTypes.any
+}
