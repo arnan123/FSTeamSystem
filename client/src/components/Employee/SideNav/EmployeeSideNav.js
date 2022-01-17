@@ -6,8 +6,9 @@ import {
   VStack,
   Spacer,
   Button,
-  Divider,
   useMediaQuery,
+  HStack,
+  Divider,
 } from '@chakra-ui/react';
 import { StarIcon, CalendarIcon, TimeIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
@@ -23,60 +24,67 @@ function EmployeeSideNav(props) {
 
           boxShadow={'2xl'}
           borderColor={props.color}
-          w={'15vw'}
+          w={'13vw'}
           h="full"
           bgColor={'#063970'}
-          position={'fixed'}
+          pos={'fixed'}
           display={'block'}>
-          <VStack paddingTop={'10%'} spacing={10}>
+          <VStack paddingTop={'10%'} spacing={'1vw'}>
             <Box>
-              <VStack>
-                <Logo maxW={'10vw'} />
-                <Text fontSize={'2vw'}>FSTEAMS</Text>
-              </VStack>
+              <HStack>
+                <Logo maxW={'3vw'} />
+                <Text fontSize={'1.5vw'}>FSTEAMS</Text>
+              </HStack>
             </Box>
-
-            <Box>
+            <Divider />
+            <Box p={5}>
               <Spacer />
-              <VStack spacing={3} alignContent={'left'} p={3}>
+              <VStack spacing={'10%'} p={3}>
                 <Link to="/employees">
                   <Button
-                    leftIcon={<TimeIcon w={5} h={5} />}
+                    leftIcon={<TimeIcon />}
                     _hover={{
-                      bgGradient: 'linear(to-r,  #37b8ff ,#b075ff)',
+                      bgColor: 'blue.600',
                     }}
                     w={'10vw'}
-                    variant={'ghost'}>
-                    <Text fontSize={'1vw'} color="white">
-                      Time In/Out
-                    </Text>
+                    h={'5vh'}
+                    textAlign={'left'}
+                    variant={'ghost'}
+                    p={5}
+                    fontSize={'1vw'}>
+                    Time In/Out
                   </Button>
                 </Link>
 
-                <Divider bgColor={'gray'} w={'10vw'} />
                 <Link to="/employees/dtr">
                   <Button
-                    leftIcon={<CalendarIcon w={5} h={5} />}
+                    leftIcon={<CalendarIcon />}
                     _hover={{
-                      bgGradient: 'linear(to-r,  #37b8ff ,#b075ff)',
+                      bgColor: 'blue.600',
                     }}
                     w={'10vw'}
-                    variant={'ghost'}>
+                    h={'5vh'}
+                    textAlign={'left'}
+                    variant={'ghost'}
+                    p={5}
+                    fontSize={'1vw'}>
                     <Text fontSize={'1vw'} color="white">
                       User DTR
                     </Text>
                   </Button>
                 </Link>
 
-                <Divider bgColor={'gray'} w={'10vw'} />
                 <Link to="/employees/holiday">
                   <Button
-                    leftIcon={<StarIcon w={5} h={5} />}
+                    leftIcon={<StarIcon w={'1vw'} h={'1vw'} />}
                     _hover={{
-                      bgGradient: 'linear(to-r,  #37b8ff ,#b075ff)',
+                      bgColor: 'blue.600',
                     }}
+                    h={'5vh'}
                     w={'10vw'}
-                    variant={'ghost'}>
+                    p={5}
+                    variant={'ghost'}
+                    textAlign={'left'}>
                     <Text fontSize={'1vw'} color="white">
                       Holiday
                     </Text>

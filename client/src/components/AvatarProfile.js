@@ -12,38 +12,46 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios'
+import axios from 'axios';
+import PropType from 'prop-types';
 
-export default function AvatarProfile() {
-  const { logout , user } = useAuth0();
+function AvatarProfile({ size }) {
+  const { logout, user } = useAuth0();
   const [userdb, setUserDB] = useState({});
-  
+
   useEffect(() => {
-    axios.get("http://localhost:8080/user/useremail/"+user.email).then((response) => {
-      setUserDB(response.data);
-    });
-  },[]);
+    axios
+      .get('http://localhost:8080/user/useremail/' + user.email)
+      .then((response) => {
+        setUserDB(response.data);
+        // setUserData(response.data);
+      });
+  }, []);
 
   return (
     <>
       <Box>
         <Menu>
           <MenuButton>
-            <Avatar
-              size={'sm'}
-              src={user.picture}
-            />
+            <Avatar size={size} src={user.picture} />
           </MenuButton>
           <MenuList>
             <MenuGroup title="Profile">
               <MenuItem fontSize={'sm'}>
                 <VStack alignItems={'left'}>
-                  <Box> {user.given_name} {user.family_name} </Box>
-                   <Box>{user.email}</Box> 
+                  <Box>
+                    {' '}
+                    {user.given_name} {user.family_name}{' '}
+                  </Box>
+                  <Box>{user.email}</Box>
                   <Box>(Software Engineer)</Box>
                 </VStack>
               </MenuItem>
-              {(userdb.role=="ADMIN")?<Link href="/admin/dtr"><MenuItem fontSize={'sm'}>Admin</MenuItem></Link>:null}
+              {userdb.role == 'ADMIN' ? (
+                <Link href="/admin/dtr">
+                  <MenuItem fontSize={'sm'}>Admin</MenuItem>
+                </Link>
+              ) : null}
               <MenuDivider />
               <MenuItem
                 fontSize={'sm'}
@@ -59,3 +67,10 @@ export default function AvatarProfile() {
     </>
   );
 }
+
+AvatarProfile.propTypes = {
+  size: PropType.any,
+  setUserData: PropType.any,
+};
+
+export default AvatarProfile;

@@ -29,10 +29,6 @@ function ModalCalendar({ onClose, isOpen, holidays, date }) {
           <List>
             {holidays.map((holiday) => (
               <Box key={holiday.id}>
-                {moment(holiday.holidayDate).format('MMMM')}
-                {moment(date).format('MMMM')}
-                {moment(holiday.holidayDate).format('D')}
-                {moment(date).format('D')}
                 {moment(holiday.holidayDate).format('MMMM') ==
                   moment(date).format('MMMM') &&
                   moment(holiday.holidayDate).format('D') ==
@@ -48,8 +44,8 @@ function ModalCalendar({ onClose, isOpen, holidays, date }) {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3}>
-            Confirm
+          <Button colorScheme="blue" mr={2} onClick={onClose}>
+            Close
           </Button>
         </ModalFooter>
       </ModalContent>

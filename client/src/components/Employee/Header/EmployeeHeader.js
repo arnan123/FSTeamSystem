@@ -2,48 +2,55 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Box,
-  Grid,
-  GridItem,
+  Center,
+  Flex,
   HStack,
+  Spacer,
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
 import AvatarProfile from '../../AvatarProfile';
-import NotificationPop from '../../NotificationPop';
+import NotificationBell from '../../NotificationBell';
 
 function EmployeeHeader(props) {
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+  const [isLargerThan800] = useMediaQuery('(min-width: 1000px)');
   const { user } = useAuth0();
+
   return (
-    <Grid
-      templateColumns="repeat(20,1fr)"
-      color={props.color}
-      paddingTop={'2%'}
-      paddingBottom={isLargerThan800 ? '' : ''}>
-      <GridItem
-        colStart={isLargerThan800 ? 5 : 9}
-        colEnd={isLargerThan800 ? 12 : 19}>
-        <Text fontSize={isLargerThan800 ? '3vw' : '7vw'} fontWeight={'bold'}>
-          {props.text}
-        </Text>
-      </GridItem>
-      <GridItem colStart={19} paddingTop={'2%'}>
+    <Center paddingLeft={'10%'} paddingTop={'2%'}>
+      <Flex w={'78vw'} height="20" alignItems="center">
+        {!isLargerThan800 && <Spacer />}
+        <Box>
+          <Text fontSize={isLargerThan800 ? '3vw' : '7vw'} fontWeight={'bold'}>
+            {props.text}
+          </Text>
+        </Box>
+        <Spacer />
+
         <Box>
           <HStack>
-            <NotificationPop />
-            <AvatarProfile />
-            {isLargerThan800 && <Text>{user.given_name} {user.family_name}</Text>}
+            <NotificationBell count={2} />
+            <AvatarProfile
+              size={isLargerThan800 ? 'md' : 'sm'}
+              setUserData={props.setUserData}
+            />
+            {isLargerThan800 && (
+              <Text fontSize={'xl'}>
+                {user.family_name},{user.given_name}
+              </Text>
+            )}
           </HStack>
         </Box>
-      </GridItem>
-    </Grid>
+      </Flex>
+    </Center>
   );
 }
 
 EmployeeHeader.propTypes = {
   color: PropTypes.any,
   text: PropTypes.any,
+  setUserData: PropTypes.any,
 };
 
 export default EmployeeHeader;

@@ -11,7 +11,6 @@ import AdminDepartments from './pages/AdminDepartments';
 import AdminProfile from './pages/AdminProfile';
 import EmployeeDTR from './pages/EmployeeDTR';
 import EmployeeHoliday from './pages/EmployeeHoliday';
-import EmployeeHolidayList from './pages/EmployeeHolidayList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { FiWatch, FiGrid, FiUsers, FiClock } from 'react-icons/fi';
@@ -27,8 +26,7 @@ const LinkItems = [
 ];
 
 export default function App() {
-  
-  const { isLoading, isAuthenticated} = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
     autoStart: false,
@@ -53,130 +51,145 @@ export default function App() {
   };
   const [userDatas, setUserDatas] = useState({});
 
-  if (isLoading){
-    return(
+  if (isLoading) {
+    return (
       <ChakraProvider>
-        <Loading/>
+        <Loading />
       </ChakraProvider>
-    )
+    );
   }
-  
+
   return (
     <ChakraProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login isAuthenticated={isAuthenticated} />} />
-          <Route path="/employees" element={
-          <EmployeeTimeinPage
-            seconds={seconds}
-            minutes={minutes}
-            hours={hours}
-            isrunning={isRunning}
-            start={start}
-            pause={pause}
-            userData={userDatas}
-            setUserData={setUserDatas}
-            lunchTimer={lunchTimer}
-            isAuthenticated={isAuthenticated}
-        />
-        }/>
-        <Route
-          path="/employees/dtr"
-          element={
-            <EmployeeDTR userData={userDatas} isAuthenticated={isAuthenticated}/>
-          }
-        />
-        <Route path="/employees/holiday" element={<EmployeeHoliday isAuthenticated={isAuthenticated}/>} />
-        <Route
-          path="/employees/holidayList"
-          element={<EmployeeHolidayList isAuthenticated={isAuthenticated}/>}
-        />
-        <Route
-          path="/admin/dtr"
-          element={
-            <AdminDTR
-              onOpen={onOpen}
-              isOpen={isOpen}
-              onClose={onClose}
-              LinkItems={LinkItems}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        />
-        <Route
-          path="/admin/departments"
-          element={
-            <AdminDepartments
-              onOpen={onOpen}
-              isOpen={isOpen}
-              onClose={onClose}
-              LinkItems={LinkItems}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        />
-        <Route
-          path="/admin/employees"
-          element={
-            <AdminEmployees
-              onOpen={onOpen}
-              isOpen={isOpen}
-              onClose={onClose}
-              LinkItems={LinkItems}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        />
-        <Route
-          path="/admin/holidays"
-          element={
-            <AdminHolidays
-              onOpen={onOpen}
-              isOpen={isOpen}
-              onClose={onClose}
-              LinkItems={LinkItems}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        />
-        <Route
-          path="/admin/holidays/list"
-          element={
-            <AdminHolidaysList
-              onOpen={onOpen}
-              isOpen={isOpen}
-              onClose={onClose}
-              LinkItems={LinkItems}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        />
-        <Route
-          path="/admin/departments/:id"
-          element={
-            <AdminTeams
-              onOpen={onOpen}
-              isOpen={isOpen}
-              onClose={onClose}
-              LinkItems={LinkItems}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        />
-        <Route
-          path="/admin/profile/:id"
-          element={
-            <AdminProfile
-              onOpen={onOpen}
-              isOpen={isOpen}
-              onClose={onClose}
-              LinkItems={LinkItems}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        />
-      </Routes>
-    </BrowserRouter>
-  </ChakraProvider>
-  )
-  }
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={<Login isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path="/employees"
+            element={
+              <EmployeeTimeinPage
+                seconds={seconds}
+                minutes={minutes}
+                hours={hours}
+                isrunning={isRunning}
+                start={start}
+                pause={pause}
+                userData={userDatas}
+                setUserData={setUserDatas}
+                lunchTimer={lunchTimer}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/employees/dtr"
+            element={
+              <EmployeeDTR
+                userData={userDatas}
+                isAuthenticated={isAuthenticated}
+                setUserData={setUserDatas}
+              />
+            }
+          />
+          <Route
+            path="/employees/holiday"
+            element={
+              <EmployeeHoliday
+                isAuthenticated={isAuthenticated}
+                setUserData={setUserDatas}
+              />
+            }
+          />
+
+          <Route
+            path="/admin/dtr"
+            element={
+              <AdminDTR
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/admin/departments"
+            element={
+              <AdminDepartments
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/admin/employees"
+            element={
+              <AdminEmployees
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/admin/holidays"
+            element={
+              <AdminHolidays
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/admin/holidays/list"
+            element={
+              <AdminHolidaysList
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/admin/departments/:id"
+            element={
+              <AdminTeams
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/admin/profile/:id"
+            element={
+              <AdminProfile
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
+  );
+}
