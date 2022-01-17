@@ -174,32 +174,34 @@ function EmployeeTime({
   }
 
   return (
-    <Box paddingTop={'5%'}>
+    <Box>
       <VStack>
         {isLargerThan620 ? (
           <>
             <HStack paddingTop={isLargerThan620 ? '' : '2%'}>
               <Box>
-                <CircularProgress
-                  size="600px"
-                  size2="520px"
-                  thickness="4px"
-                  hours={hours}
-                  minutes={minutes}
-                  seconds={seconds}
-                  fontSize="3vw"
-                  main="true"
-                  text="Work Time"
-                  label={[hours, minutes, seconds]}
-                  change={handleChange(seconds, minutes, hours)}
-                  click={startTimer}
-                />
+                <Center>
+                  <CircularProgress
+                    size="30vw"
+                    size2="25vw"
+                    thickness="4px"
+                    hours={hours}
+                    minutes={minutes}
+                    seconds={seconds}
+                    fontSize="3vw"
+                    main="true"
+                    text="Work Time"
+                    label={[hours, minutes, seconds]}
+                    change={handleChange(seconds, minutes, hours)}
+                    click={startTimer}
+                  />
+                </Center>
               </Box>
               <Box>
                 <VStack>
                   {lunchBreakstatus == true && (
                     <CircularProgress
-                      size="200px"
+                      size="12vw"
                       thickness="5"
                       fontSize="1vw"
                       text="Break Time"
@@ -216,7 +218,7 @@ function EmployeeTime({
                 </VStack>
               </Box>
             </HStack>
-            <Box paddingBottom={'10%'}>
+            <Box>
               <ButtonGroup>
                 <TimerButton
                   text={timeinstatus === false ? 'Time in' : 'Time out'}
