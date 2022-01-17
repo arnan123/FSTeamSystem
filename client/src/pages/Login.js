@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth0, withAuth0 } from '@auth0/auth0-react';
 import { VStack, Spinner, Box, useMediaQuery, Center } from '@chakra-ui/react';
 import Loginbutton from '../components/Login/Loginbutton';
@@ -8,6 +8,11 @@ import { Navigate } from 'react-router-dom';
 import { PropTypes } from 'prop-types'
 
 function Login({isAuthenticated}) {
+
+  useEffect(() => {
+    document.title="Login";
+  });
+
   const { isLoading } = useAuth0();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 

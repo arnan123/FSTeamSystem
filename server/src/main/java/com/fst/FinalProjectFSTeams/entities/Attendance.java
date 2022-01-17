@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "attendance")
@@ -35,19 +33,19 @@ public class Attendance {
     private LocalTime timeEnded;
 
 
-    @Column(name="elapsedBreak", nullable = true)
+    @Column(name="elapsedBreak")
     private float elapsedBreak;
 
-    @Column(name="underTime", nullable = true)
+    @Column(name="underTime")
     private float underTime;
 
-    @Column(name="overTime", nullable = true)
+    @Column(name="overTime")
     private float overTime;
 
-    @Column(name="tardiness", nullable = true)
+    @Column(name="tardiness")
     private float tardiness;
 
-    @Column(name="totalTime", nullable = true)
+    @Column(name="totalTime")
     private String totalTime;
 
     @Column(name="approved", nullable = false)
@@ -57,4 +55,5 @@ public class Attendance {
     @Column(name = "insertDate",columnDefinition = "DATE DEFAULT CURRENT_DATE",nullable = false)
     private LocalDate insertDate;
 
+    //s
 }

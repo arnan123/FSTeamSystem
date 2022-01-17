@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public void removeEmployeesFromTeam(Integer teamId, String employeeIds){
-        Team team = teamRepository.findById(teamId).get();
+        Team team = teamRepository.findById(teamId).get(); //ss
         String[] strArray = employeeIds.split(",");
         User[] user =  new User[strArray.length];
         int[] array =  new int[strArray.length];
@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserService {
     public List<User> displayEmployeesFromDept(Integer deptId) {
         return userRepository.getEmployeesByDepartment(deptId);
     }
+
     @Override
     public User getUserFromEmail(String email) {
         return userRepository.getUser(email);
@@ -108,5 +109,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> searchEmployee(String name){
         return userRepository.searchEmployee(name);
-    }
+    }//ss
 }

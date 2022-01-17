@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -12,12 +12,41 @@ import {
   Text,
   Input,
   Link,
-  Checkbox,
-  Grid
+  useToast
 } from '@chakra-ui/react'
+import { PropTypes } from 'prop-types'
+import axios from 'axios';
 
-function EditModal() {
+export default function EditModal({deptid, teamid, setTeams}) {
   const { isOpen : isEditModalOpen, onOpen : onEditModalOpen, onClose : onEditModalClose } = useDisclosure();
+  const [name, setName]=useState("");
+  const toast = useToast();
+
+  const editTeam = (e) => {
+    e.preventDefault();
+    const team = {
+      name: name,
+      insertDate: new Date(),
+      updateDate: new Date(),
+    };
+
+    axios
+      .put('http://localhost:8080/team/updateTeam/'+teamid, team)
+      .then(() => {
+        toast({
+          title: 'Edited Team',
+          description: 'Team was edited successfully',
+          position: 'top',
+          status: 'success',
+          duration: 5000,
+          isClosable: false,
+        });
+        axios.get("http://localhost:8080/team/teamsPerDept"+deptid).then((response) => {
+          setTeams(response.data);
+        },[]);
+        onEditModalClose();
+      });
+  };
 
   return (
     <>
@@ -30,22 +59,10 @@ function EditModal() {
           <ModalCloseButton />
           <ModalBody>
             <Text mb="1vh">Team Name</Text>
-            <Input placeholder='Team Name' mb="4vh"></Input>
-            <Text mb="1vh">Members</Text>
-            <Grid templateColumns='repeat(3, 1fr)' gap={6}>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-            </Grid>
+            <Input placeholder='Team Name' onChange={e=>setName(e.target.value)}/>
           </ModalBody>
           <ModalFooter>
-            <Button bg="blue.800" textColor="white" mx="1vh">Edit</Button>
+            <Button bg="blue.800" textColor="white" mx="1vh" onClick={editTeam}>Add</Button>
             <Button onClick={onEditModalClose}>Close</Button>
           </ModalFooter>
         </ModalContent>
@@ -54,4 +71,6 @@ function EditModal() {
   )
 }
 
-export default EditModal;
+EditModal.propTypes={
+  deptid: PropTypes.any, setTeams: PropTypes.any, teamid: PropTypes.any
+}

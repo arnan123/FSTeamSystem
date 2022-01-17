@@ -11,6 +11,7 @@ import {
   FiGrid,
   FiUsers,
   FiClock,
+  FiDatabase
 } from 'react-icons/fi';
 import NavItem from "./NavItem.js";
 import {PropTypes} from 'prop-types';
@@ -20,6 +21,7 @@ const LinkItems = [
   { name: 'Departments', icon: FiGrid , address:"/admin/departments"  },
   { name: 'Employees', icon: FiUsers, address:"/admin/employees" },
   { name: 'Holidays', icon: FiWatch, address:"/admin/holidays" },
+  { name: 'Generate Reports', icon: FiDatabase, address: '/admin/generatereports' },
 ];
 
 export default function Sidebar ({onClose, ...rest }){

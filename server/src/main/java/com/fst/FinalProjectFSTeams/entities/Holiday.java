@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -21,7 +20,7 @@ public class Holiday {
     @Column(name = "holidayId")
     private int id;
 
-    @Column(name = "holidayName", length = 255, nullable = false)
+    @Column(name = "holidayName")
     private String name;
 
     @Basic(optional = false)

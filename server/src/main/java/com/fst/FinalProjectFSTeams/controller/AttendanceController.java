@@ -2,7 +2,6 @@ package com.fst.FinalProjectFSTeams.controller;
 
 import com.fst.FinalProjectFSTeams.entities.Attendance;
 import com.fst.FinalProjectFSTeams.service.AttendanceService;
-import com.fst.FinalProjectFSTeams.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

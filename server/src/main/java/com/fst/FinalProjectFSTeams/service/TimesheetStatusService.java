@@ -11,7 +11,7 @@ import java.util.List;
 public interface TimesheetStatusService {
     // public void getSpreadsheetValues() throws IOException, GeneralSecurityException;
     //public String create(Integer deptId,String date) throws IOException,GeneralSecurityException;
-    public void generateReport(String startDate,String endDate, Integer deptId) throws IOException,GeneralSecurityException;
+    public String generateReport(String startDate,String endDate, Integer deptId) throws IOException,GeneralSecurityException;
     public void writeSheet(String spreadsheetId,
                            List<List<Object>> headers, List<DTR> dtr , String headerRange)
             throws IOException,GeneralSecurityException;

@@ -38,7 +38,7 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
     private AttendanceRepository attendanceRepository;
 
     @Override
-    public void generateReport(String startDate,String endDate, Integer deptId)
+    public String generateReport(String startDate,String endDate, Integer deptId)
             throws IOException,GeneralSecurityException {
 
         String range= "A1:D1";
@@ -160,6 +160,7 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
         }
         // writing per sheet
         writeSheet(spreadsheetId,headers,list,headerRange);
+        return spreadsheetId;
     }
     @Override
     public void writeSheet(String spreadsheetId, List<List<Object>> headers,List<DTR> content,
