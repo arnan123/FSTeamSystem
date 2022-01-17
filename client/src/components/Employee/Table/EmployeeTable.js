@@ -89,6 +89,7 @@ function EmployeeTable({ userData }) {
               <Th>Lunch</Th>
               <Th>Overtime</Th>
               <Th>Total Hours</Th>
+              <Th>Status</Th>
             </Tr>
           </Thead>
           <Tbody>

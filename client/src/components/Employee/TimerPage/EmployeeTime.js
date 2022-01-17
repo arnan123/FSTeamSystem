@@ -174,11 +174,11 @@ function EmployeeTime({
   }
 
   return (
-    <Box>
+    <Box paddingTop={'5%'}>
       <VStack>
         {isLargerThan620 ? (
           <>
-            <HStack paddingTop={'2%'}>
+            <HStack paddingTop={isLargerThan620 ? '' : '2%'}>
               <Box>
                 <CircularProgress
                   size="600px"

@@ -35,19 +35,6 @@ function EmployeeTableMobile({ userData }) {
         <Box>
           <VStack>
             <ButtonGroup>
-              <ModalContainer
-                buttoncolor={ind == true ? 'green' : 'blue'}
-                buttontext={ind == true ? 'Save' : 'Edit'}
-                header={ind == true ? 'Save Data' : 'Edit Data'}
-                content={
-                  ind == true
-                    ? 'After clicking this action the data will be saved.'
-                    : 'After clicking this action the data can be edited.'
-                }
-                setIndicator={setInd}
-                indicator={ind}
-                userData={userData}
-              />
               <EmployeeSelect
                 dateData="month"
                 attendance={tableDatas}
@@ -61,6 +48,19 @@ function EmployeeTableMobile({ userData }) {
                 dates={dates}
                 setDay={setDay}
                 setDates={setDates}
+              />
+              <ModalContainer
+                buttoncolor={ind == true ? 'green' : 'blue'}
+                buttontext={ind == true ? 'Save' : 'Edit'}
+                header={ind == true ? 'Save Data' : 'Edit Data'}
+                content={
+                  ind == true
+                    ? 'After clicking this action the data will be saved.'
+                    : 'After clicking this action the data can be edited.'
+                }
+                setIndicator={setInd}
+                indicator={ind}
+                userData={userData}
               />
             </ButtonGroup>
 

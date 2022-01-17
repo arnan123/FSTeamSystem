@@ -23,6 +23,7 @@ import {
   Tooltip,
   HStack,
   Text,
+  Spinner,
 } from '@chakra-ui/react';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
 import './ModalCell.css';
@@ -31,6 +32,7 @@ import EmployeeTableData from './EmployeeTableData';
 
 import moment from 'moment';
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function ModalCell({ attendance, ind, userData, month, days }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,6 +45,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
   const dayInt = parseInt(moment(attendance.insertDate).format('D'));
   const nxtMonth = parseInt(moment().month(month).format('M'));
   const nxtM = nxtMonth;
+  const { isLoading } = useAuth0();
 
   const saveDTR = (e) => {
     e.preventDefault();
@@ -76,6 +79,10 @@ function ModalCell({ attendance, ind, userData, month, days }) {
       });
   };
 
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <>
       {moment(attendance.insertDate).format('MMMM') == month &&
@@ -84,19 +91,16 @@ function ModalCell({ attendance, ind, userData, month, days }) {
         : dayInt > 20 ||
           (moment(attendance.insertDate).format('MMMM') ==
             moment().month(nxtM.toString()).format('MMMM') &&
-
             dayInt <= 5)) ? (
         <EmployeeTableData onOpen={onOpen} ind={ind} attendance={attendance} />
-
       ) : (
         <Tr></Tr>
       )}
 
       {moment(attendance.insertDate).format('MMMM') ==
         moment().month(nxtM.toString()).format('MMMM') &&
-        dayInt <= 5 &&
+        dayInt < 5 &&
         days == 20 && (
-
           <EmployeeTableData
             onOpen={onOpen}
             ind={ind}
@@ -104,25 +108,25 @@ function ModalCell({ attendance, ind, userData, month, days }) {
           />
         )}
 
-
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
             <HStack>
               <Text>Edit Datas</Text>
-
-              <Tooltip label="You can now edit the datas">
-                <QuestionOutlineIcon h={4} w={4} />
-              </Tooltip>
+              {ind == true && (
+                <Tooltip label="You can now edit the datas">
+                  <QuestionOutlineIcon h={4} w={4} />
+                </Tooltip>
+              )}
             </HStack>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody paddingBottom={'5%'}>
             <Table variant="simple" size={'sm'} color={'black'}>
-              <Tbody color={'black'} textAlign={'center'}>
+              <Tbody color={'white'} textAlign={'center'}>
                 <Tr>
-                  <Th color={'black'} w={'2vw'}>
+                  <Th color={'white'} w={'2vw'}>
                     Date
                   </Th>
                   <Td textAlign={'center'}>
@@ -130,7 +134,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'black'} w={'2vw'}>
+                  <Th color={'white'} w={'2vw'}>
                     Timein
                   </Th>
                   <Td textAlign={'center'}>
@@ -143,7 +147,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'black'} w={'2vw'}>
+                  <Th color={'white'} w={'2vw'}>
                     Timeout
                   </Th>
                   <Td textAlign={'center'}>
@@ -156,7 +160,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'black'} w={'2vw'}>
+                  <Th color={'white'} w={'2vw'}>
                     Lunch
                   </Th>
                   <Td textAlign={'center'}>
@@ -169,7 +173,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'black'} w={'2vw'}>
+                  <Th color={'white'} w={'2vw'}>
                     Overtime
                   </Th>
                   <Td textAlign={'center'}>
@@ -182,7 +186,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'black'} w={'2vw'}>
+                  <Th color={'white'} w={'2vw'}>
                     Tardiness
                   </Th>
                   <Td textAlign={'center'}>
@@ -195,7 +199,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
                   </Td>
                 </Tr>
                 <Tr>
-                  <Th color={'black'} w={'2vw'}>
+                  <Th color={'white'} w={'2vw'}>
                     Total Hours
                   </Th>
                   <Td textAlign={'center'}>{attendance.totalTime}</Td>
