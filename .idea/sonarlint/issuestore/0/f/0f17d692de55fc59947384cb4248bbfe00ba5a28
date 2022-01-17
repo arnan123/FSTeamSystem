@@ -1,0 +1,43 @@
+
+C
+java:S1905$"(Remove this unnecessary cast to "float".(˜êè¾øÿÿÿÿ
+S	java:S106&"9Replace this use of System.out or System.err by a logger.(ªœşÜúÿÿÿÿ
+S	java:S106("9Replace this use of System.out or System.err by a logger.(°ããÍşÿÿÿÿ
+X	java:S125="<This block of commented-out lines of code should be removed.(·µİÎ8É¬¿æ/
+C
+java:S1905C"(Remove this unnecessary cast to "float".(²—•ıÿÿÿÿ
+V	java:S125G"<This block of commented-out lines of code should be removed.(ğ°œ¾şÿÿÿÿ
+J
+java:S1905H"(Remove this unnecessary cast to "float".(É®…Éùÿÿÿÿ8Ì¬¿æ/
+P	java:S125I"<This block of commented-out lines of code should be removed.(ÜÏ’?
+S	java:S106K"9Replace this use of System.out or System.err by a logger.(¡ªŞÖÿÿÿÿÿ
+N	java:S106M"9Replace this use of System.out or System.err by a logger.(Ä«ÈË
+N	java:S106P"9Replace this use of System.out or System.err by a logger.(ÙÉÉ¿
+Z	java:S106T"9Replace this use of System.out or System.err by a logger.(ÄÜÜñúÿÿÿÿ8Ğ¬¿æ/
+V	java:S125V"<This block of commented-out lines of code should be removed.(ùã«ÿÿÿÿÿ
+N
+java:S1854p"8Remove this useless assignment to local variable "date".(ŞíĞ
+S
+java:S1854o"8Remove this useless assignment to local variable "user".(æëÊ§ùÿÿÿÿ
+D
+java:S1481o")Remove this unused "user" local variable.(æëÊ§ùÿÿÿÿ
+?
+java:S1481p")Remove this unused "date" local variable.(ŞíĞ
+V	java:S106š"9Replace this use of System.out or System.err by a logger.(Î§¨„8ä¬¿æ/
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Á°£ø
+N
+java:S3655‡"7Call "Optional#isPresent()" before accessing the value.(¹ç¯Ú
+M
+java:S3655e"7Call "Optional#isPresent()" before accessing the value.(¬È¢¸
+R
+java:S3655o"7Call "Optional#isPresent()" before accessing the value.(æëÊ§ùÿÿÿÿ
+R
+java:S36555"7Call "Optional#isPresent()" before accessing the value.(æëÊ§ùÿÿÿÿ
+Y
+java:S3655"7Call "Optional#isPresent()" before accessing the value.(æëÊ§ùÿÿÿÿ8Û¬¿æ/
+M
+java:S36556"7Call "Optional#isPresent()" before accessing the value.(¬È¢¸
+U
+java:S3655 "7Call "Optional#isPresent()" before accessing the value.(ÀÓ´ª8Û¬¿æ/
+Y
+java:S3655d"7Call "Optional#isPresent()" before accessing the value.(æëÊ§ùÿÿÿÿ8Û¬¿æ/

@@ -12,6 +12,7 @@ import AdminProfile from './pages/AdminProfile';
 import EmployeeDTR from './pages/EmployeeDTR';
 import EmployeeHoliday from './pages/EmployeeHoliday';
 import GenerateReport from './pages/GenerateReport';
+import EmployeeProfile from './pages/EmployeeProfile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { FiWatch, FiGrid, FiUsers, FiClock } from 'react-icons/fi';
@@ -102,6 +103,16 @@ export default function App() {
               <EmployeeHoliday
                 isAuthenticated={isAuthenticated}
                 setUserData={setUserDatas}
+              />
+            }
+          />
+
+          <Route
+            path="/employees/profile"
+            element={
+              <EmployeeProfile
+                isAuthenticated={isAuthenticated}
+                userData={userDatas}
               />
             }
           />

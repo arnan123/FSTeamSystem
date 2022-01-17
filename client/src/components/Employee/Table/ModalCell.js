@@ -59,7 +59,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
     };
 
     axios
-      .post(
+      .put(
         'http://localhost:8080/log/createLog/' +
           attendance.id +
           '/' +
@@ -110,7 +110,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
 
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bgColor={'#30344c'}>
           <ModalHeader>
             <HStack>
               <Text>Edit Datas</Text>

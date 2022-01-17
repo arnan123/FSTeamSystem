@@ -1,0 +1,36 @@
+
+M
+java:S1854:"7Remove this useless assignment to local variable "arr".(´ğ
+[
+java:S1854/"@Remove this useless assignment to local variable "contentRange".(‘üÚúÿÿÿÿ
+U
+java:S1854-"?Remove this useless assignment to local variable "secondRange".(í¢Èª
+T
+java:S1854,"9Remove this useless assignment to local variable "range".(öâÊøùÿÿÿÿ
+[
+java:S1854‰"?Remove this useless assignment to local variable "batchResult".(Ä¹ë“øÿÿÿÿ
+E
+java:S1481,"*Remove this unused "range" local variable.(öâÊøùÿÿÿÿ
+F
+java:S1481-"0Remove this unused "secondRange" local variable.(í¢Èª
+L
+java:S1481/"1Remove this unused "contentRange" local variable.(‘üÚúÿÿÿÿ
+V	java:S125F"<This block of commented-out lines of code should be removed.(è¿Ø‡ùÿÿÿÿ
+M	java:S106O"9Replace this use of System.out or System.err by a logger.(Îêº;
+Q	java:S125`"<This block of commented-out lines of code should be removed.(£—Îô
+Q	java:S125r"<This block of commented-out lines of code should be removed.(‡â ø
+L
+java:S1481‰"0Remove this unused "batchResult" local variable.(Ä¹ë“øÿÿÿÿ
+W	java:S125Œ"<This block of commented-out lines of code should be removed.(ÍÀí¦ùÿÿÿÿ
+W	java:S125”"<This block of commented-out lines of code should be removed.(õä¼şÿÿÿÿ
+W	java:S125±"<This block of commented-out lines of code should be removed.(ï÷–´şÿÿÿÿ
+W	java:S125¾"<This block of commented-out lines of code should be removed.(ï÷–´şÿÿÿÿ
+o
+java:S22938"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿ¢ ¤
+t
+java:S2293k"YReplace the type specification in this constructor call with the diamond operator ("<>").(şƒêèÿÿÿÿÿ
+n	java:S127·"XRefactor the code in order to not assign to this loop counter from within the loop body.(¯ÀÚè
+s	java:S127¸"XRefactor the code in order to not assign to this loop counter from within the loop body.(­–„úÿÿÿÿ
+n	java:S127»"XRefactor the code in order to not assign to this loop counter from within the loop body.(¬»°’
+n	java:S127¼"XRefactor the code in order to not assign to this loop counter from within the loop body.(õåŒ“
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Á°£ø

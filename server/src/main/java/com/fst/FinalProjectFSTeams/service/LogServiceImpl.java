@@ -54,4 +54,9 @@ public class LogServiceImpl implements LogService{
         log.setUser(null);
         logRepository.deleteById(logId);
     }
+
+    @Override
+    public List<Log> getUserLog(Integer userId){
+        return logRepository.getUserLogs(userId);
+    }
 }

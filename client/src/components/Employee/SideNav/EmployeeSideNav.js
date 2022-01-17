@@ -21,7 +21,6 @@ function EmployeeSideNav(props) {
     return (
       <>
         <Box
-
           boxShadow={'2xl'}
           borderColor={props.color}
           w={'13vw'}

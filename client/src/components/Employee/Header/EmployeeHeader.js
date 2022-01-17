@@ -12,6 +12,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 import AvatarProfile from '../../AvatarProfile';
 import NotificationBell from '../../NotificationBell';
+import { Link } from 'react-router-dom';
 
 function EmployeeHeader(props) {
   const [isLargerThan800] = useMediaQuery('(min-width: 1000px)');
@@ -22,9 +23,20 @@ function EmployeeHeader(props) {
       <Flex w={'78vw'} height="20" alignItems="center">
         {!isLargerThan800 && <Spacer />}
         <Box>
-          <Text fontSize={isLargerThan800 ? '3vw' : '7vw'} fontWeight={'bold'}>
-            {props.text}
-          </Text>
+          <HStack>
+            <Text
+              fontSize={isLargerThan800 ? '3vw' : '7vw'}
+              fontWeight={'bold'}>
+              {props.text}
+            </Text>
+            {props.text == 'Daily Time Record' && isLargerThan800 && (
+              <Link to={'/employees/dtrHistory/'}>
+                <Text color={'gray.400'} paddingTop={'3%'}>
+                  view dtr history
+                </Text>
+              </Link>
+            )}
+          </HStack>
         </Box>
         <Spacer />
 

@@ -33,4 +33,7 @@ public class LogController {
         logService.deleteLog(logId);
     }
 
+    @GetMapping("/getUserLogs/{userId}")
+    public List<Log> getUserLogs(@PathVariable Integer userId){ return  logService.getUserLog(userId);}
+
 }

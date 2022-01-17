@@ -9,11 +9,11 @@ import {
   MenuDivider,
   Box,
   VStack,
-  Link,
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import PropType from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function AvatarProfile({ size }) {
   const { logout, user } = useAuth0();
@@ -39,12 +39,14 @@ function AvatarProfile({ size }) {
             <MenuGroup title="Profile">
               <MenuItem fontSize={'sm'}>
                 <VStack alignItems={'left'}>
-                  <Box>
-                    {' '}
-                    {user.given_name} {user.family_name}{' '}
-                  </Box>
-                  <Box>{user.email}</Box>
-                  <Box>(Software Engineer)</Box>
+                  <Link to="/employees/profile">
+                    <Box>
+                      {' '}
+                      {user.given_name} {user.family_name}{' '}
+                    </Box>{' '}
+                    <Box>{user.email}</Box>
+                    <Box>(Software Engineer)</Box>
+                  </Link>
                 </VStack>
               </MenuItem>
               {userdb.role == 'ADMIN' ? (
