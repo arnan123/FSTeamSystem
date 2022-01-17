@@ -33,6 +33,7 @@ export default function AdminTeams(props){
   const [department,setDepartment] = useState({});
   const [teams,setTeams] = useState([]);
   const [employees,setEmployees] = useState([]);
+  const [teamID, setTeamID] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -48,6 +49,7 @@ export default function AdminTeams(props){
   },[]);
 
   function populateEmployees(teamID){
+    setTeamID(teamID);
     axios.get("http://localhost:8080/admin/viewEmployeesFromTeam/"+ teamID).then((response) => {
       setEmployees(response.data);
     });
@@ -86,15 +88,15 @@ export default function AdminTeams(props){
       <Grid templateColumns='repeat(2, 1fr)' gap={6}>
         <Box py="4vh">
           <Text fontWeight="bold" my="1vh" fontSize="xl" display="inline-block">Teams</Text>  
-          <AddModal/>
+          <AddModal deptid={id} setTeams={setTeams}/>
           {teams.map((team) => (
             <Button key="" bg="blue.800" textColor="white" width="100%" my="1vh" height="10vh" onClick={()=>populateEmployees(team.id)}>{team.name}</Button>
           ))}
         </Box>
         <Box py="4vh">
             <Text fontWeight="bold" my="1vh" fontSize="xl" display="inline-block"></Text>
-            <EditModal/>
-            <DeleteModal/>
+            <EditModal teamid={teamID} deptid={id} setTeams={setTeams}/>
+            <DeleteModal teamid={teamID} deptid={id} setTeams={setTeams}/>
           <ListTeam employees={employees}/>
         </Box>
       </Grid>

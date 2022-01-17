@@ -7,13 +7,10 @@ import com.fst.FinalProjectFSTeams.repository.AttendanceRepository;
 import com.fst.FinalProjectFSTeams.repository.LogRepository;
 import com.fst.FinalProjectFSTeams.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
+
 import java.util.List;
 
 @Service

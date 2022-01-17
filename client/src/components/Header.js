@@ -29,7 +29,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Header(props){
 
   const [userdb, setUserDB] = useState({})
-  const { user } = useAuth0();
+  const { user, logout } = useAuth0();
   let navigate = useNavigate();
 
   function setData(){
@@ -122,9 +122,8 @@ export default function Header(props){
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}>
               <Link href={"/admin/profile/"+userdb.id}><MenuItem>Profile</MenuItem></Link>
-              <MenuItem>Settings</MenuItem>
               <MenuDivider/>
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={()=>logout()}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

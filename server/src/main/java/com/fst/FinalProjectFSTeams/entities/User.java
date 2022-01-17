@@ -23,7 +23,7 @@ public class User {
     @Column(name="firstName", nullable = false, length = 64)
     private String firstName;
 
-    @Column(name="lastName", nullable = true, length = 64)
+    @Column(name="lastName", length = 64)
     private String lastName;
 
     @Column(name = "role",nullable = false)
@@ -34,12 +34,12 @@ public class User {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teamId",referencedColumnName = "teamId",nullable = true)
+    @JoinColumn(name = "teamId",referencedColumnName = "teamId")
     private Team team;
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = true)
+    @JoinColumn(name = "deptId",referencedColumnName = "deptId")
     private Department department;
 
     @Basic(optional = false)
@@ -54,5 +54,5 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-
+    //ss
 }

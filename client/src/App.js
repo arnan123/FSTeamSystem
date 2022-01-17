@@ -11,6 +11,7 @@ import AdminDepartments from './pages/AdminDepartments';
 import AdminProfile from './pages/AdminProfile';
 import EmployeeDTR from './pages/EmployeeDTR';
 import EmployeeHoliday from './pages/EmployeeHoliday';
+import GenerateReport from './pages/GenerateReport';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { FiWatch, FiGrid, FiUsers, FiClock } from 'react-icons/fi';
@@ -23,6 +24,7 @@ const LinkItems = [
   { name: 'Departments', icon: FiGrid, address: '/departments' },
   { name: 'Employees', icon: FiUsers, address: '/employees' },
   { name: 'Holidays', icon: FiWatch, address: '/holidays' },
+  { name: 'Generate Reports', icon: FiWatch, address: '/generatereports' },
 ];
 
 export default function App() {
@@ -156,6 +158,18 @@ export default function App() {
             path="/admin/holidays/list"
             element={
               <AdminHolidaysList
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+                LinkItems={LinkItems}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/admin/generatereports"
+            element={
+              <GenerateReport
                 onOpen={onOpen}
                 isOpen={isOpen}
                 onClose={onClose}

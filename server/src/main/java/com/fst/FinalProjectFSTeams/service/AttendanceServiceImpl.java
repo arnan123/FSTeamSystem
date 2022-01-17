@@ -5,7 +5,6 @@ import com.fst.FinalProjectFSTeams.entities.User;
 import com.fst.FinalProjectFSTeams.repository.AttendanceRepository;
 import com.fst.FinalProjectFSTeams.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -62,7 +61,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 //        System.out.println(attendance.getElapsedBreak());
 //        System.out.println(y);
         if(attendance.getElapsedBreak() <= 60){
-             hours = (float)x - 1; // 1h lunchbreak
+             hours = (float)x - 1;
         }else{
 
              hours = (float)x - (attendance.getElapsedBreak()/60);

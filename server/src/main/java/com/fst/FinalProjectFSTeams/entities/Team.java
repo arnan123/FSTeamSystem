@@ -5,11 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="team")
@@ -24,12 +20,12 @@ public class Team {
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "adminId",referencedColumnName = "userId",nullable = true)
+    @JoinColumn(name = "adminId",referencedColumnName = "userId")
     private User user;
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "deptId",referencedColumnName = "deptId",nullable = true)
+    @JoinColumn(name = "deptId",referencedColumnName = "deptId")
     private Department department;
 
 

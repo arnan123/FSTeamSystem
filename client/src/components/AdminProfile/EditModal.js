@@ -44,7 +44,7 @@ export default function EditModal({attendance, userID}) {
     };
 
     axios
-      .post('http://localhost:8080/log/createLog/'+attendance.id+'/'+userID, log)
+      .put('http://localhost:8080/log/createLog/'+attendance.id+'/'+userID, log)
       .then(() => {
         toast({
           title: 'Request Sent',

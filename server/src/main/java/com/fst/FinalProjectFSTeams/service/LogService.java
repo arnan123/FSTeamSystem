@@ -1,6 +1,5 @@
 package com.fst.FinalProjectFSTeams.service;
 
-import com.fst.FinalProjectFSTeams.entities.Attendance;
 import com.fst.FinalProjectFSTeams.entities.Log;
 
 import java.util.List;
