@@ -12,12 +12,11 @@ import {
   Text,
   Input,
   Link,
-  Checkbox,
-  Grid
 } from '@chakra-ui/react'
 
 function AddModal() {
   const { isOpen : isAddModalOpen, onOpen : onAddModalOpen, onClose : onAddModalClose } = useDisclosure();
+
 
   return (
     <>
@@ -30,19 +29,7 @@ function AddModal() {
           <ModalCloseButton />
           <ModalBody>
             <Text mb="1vh">Team Name</Text>
-            <Input placeholder='Team Name' mb="4vh"></Input>
-            <Text mb="1vh">Members</Text>
-            <Grid templateColumns='repeat(3, 1fr)' gap={6}>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-              <Checkbox>Rayl Xylem</Checkbox>
-            </Grid>
+            <Input placeholder='Team Name'></Input>
           </ModalBody>
           <ModalFooter>
             <Button bg="blue.800" textColor="white" mx="1vh">Add</Button>

@@ -60,4 +60,9 @@ public class AdminController {
     public void deleteUsers(@RequestParam String userId){
         userService.deleteUsers(userId);
     }
+
+    @GetMapping("/search/{name}")
+    public List<User> searchEmployees(@RequestParam String name){
+        return userService.searchEmployee(name);
+    }
 }
