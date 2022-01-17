@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Thead, Tbody, Tr, Th, Td, chakra, Checkbox, Input, Box } from '@chakra-ui/react'
+import { Table, Thead, Tbody, Tr, Th, Td, chakra, Checkbox, Input, Box, Link } from '@chakra-ui/react'
 import { useTable, useSortBy } from 'react-table'
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import AddModal from '../AdminEmployees/AddModal';
 import DeleteModal from '../AdminEmployees/DeleteModal';
+import Search from './Search';
 
 export default function TableData(){
   const [employees, setEmployees] = useState([]);
@@ -70,6 +71,9 @@ export default function TableData(){
             <AddModal/>
             <DeleteModal ids={ids} setEmployees={setEmployees}/>
         </Box>
+        <Box px="16vh" mb="4vh">
+          <Search setEmployees={setEmployees}/>
+        </Box>
         <Table px="4vh" {...getTableProps()}>
           <Thead>
             {headerGroups.map((headerGroup) => (
@@ -102,7 +106,7 @@ export default function TableData(){
                 <Tr key={row.original.id} {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <Td key="" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
-                      {(cell.column.id == "name")?<Checkbox onChange={e=>idsreturn(e.target.checked,e.target.value)} value={cell.row.original.id+","}>{cell.value}</Checkbox>:null}
+                      {(cell.column.id == "name")?<Checkbox onChange={e=>idsreturn(e.target.checked,e.target.value)} value={cell.row.original.id+","}><Link href={"/admin/profile/"+cell.row.original.id}>{cell.value}</Link></Checkbox>:null}
                       {(cell.column.id == "email")? cell.value:null}
                       {(cell.column.id == "role")? cell.value:null}
                       {(cell.column.id == "status")? cell.value:null}                 

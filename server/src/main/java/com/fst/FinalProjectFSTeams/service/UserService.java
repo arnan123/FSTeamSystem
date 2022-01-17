@@ -11,7 +11,7 @@ public interface UserService {
     public User saveUser(User user);
     public User updateEmployee(User user, Integer userID);
     public User disableEmployee(Integer userID);
-
+    List<User> searchEmployee(String name);
     public void assignEmployeesToTeam(Integer teamId, String employeeIds);
     public void removeEmployeesFromTeam(Integer teamId, String employeeIds);
     public List<User> displayEmployeesFromTeam(Integer teamId);

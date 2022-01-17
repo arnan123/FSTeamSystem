@@ -17,10 +17,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TeamRepository teamRepository;
 
-
-
-
-
     @Override
     public User saveUser(User user){
         return userRepository.save(user);
@@ -107,5 +103,10 @@ public class UserServiceImpl implements UserService {
             array[i] = Integer.parseInt(strArray[i]);
             userRepository.deleteById(array[i]);
         }
+    }
+
+    @Override
+    public List<User> searchEmployee(String name){
+        return userRepository.searchEmployee(name);
     }
 }
