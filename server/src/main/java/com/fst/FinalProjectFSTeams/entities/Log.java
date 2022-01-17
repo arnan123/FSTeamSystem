@@ -37,6 +37,7 @@ public class Log {
     @Column(name = "timeEnded")
     private LocalTime timeEnded;
 
+
     @Column(name="elapsedBreak", nullable = false)
     private float elapsedBreak;
 

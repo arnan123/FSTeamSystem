@@ -1,4 +1,6 @@
+
 import { Box } from '@chakra-ui/react';
+
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
