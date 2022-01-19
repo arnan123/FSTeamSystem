@@ -1,7 +1,6 @@
 import {
   HStack,
   Box,
-  Center,
   Select,
   List,
   ListItem,
@@ -31,12 +30,10 @@ function EmployeeCalendarList({ calendarStyle }) {
     return <Navigate to="/employees/holiday" replace={true} />;
   } else {
     return (
-      <Box paddingTop={'2%'}>
-        <Center>
-          <VStack>
-            <Center>
+      <Box paddingTop={'2%'}>       
+          <VStack>           
               <Box>
-                <Select
+                <Select color="white"
                   size={'lg'}
                   defaultValue={'Holidays'}
                   onChange={(e) => {
@@ -50,20 +47,14 @@ function EmployeeCalendarList({ calendarStyle }) {
                   ))}
                 </Select>
               </Box>
-            </Center>
+            
             <HStack gap={5}>
-              <Box
-                borderRadius={50}
+              <Box overflow="auto" height="50vh" textColor="white"
                 bgColor={'whiteAlpha.200'}
                 w={'30vw'}
-                h={'40vh'}
-                textAlign={'left'}
                 p={'3%'}>
-                <Center>
                   <Box w={'30vw'}>
-                    <Center p={5}>
                       <Text fontSize={'2vw'}>Philippine Holidays</Text>
-                    </Center>
                     <List gap={200}>
                       {holidayDates.map((holiday) => (
                         <Box key={holiday.id}>
@@ -99,21 +90,17 @@ function EmployeeCalendarList({ calendarStyle }) {
                         </Box>
                       ))}
                     </List>
+                    </Box>
                   </Box>
-                </Center>
-              </Box>
               <Box
-                borderRadius={50}
+              overflow="auto"
+                height="50vh"
                 bgColor={'whiteAlpha.200'}
                 w={'30vw'}
-                h={'40vh'}
-                textAlign={'left'}
-                p={'3%'}>
-                <Center>
+                p={'3%'}
+                textColor="white">
                   <Box w={'30vw'}>
-                    <Center p={5}>
-                      <Text fontSize={'2vw'}>Japan Holidays</Text>
-                    </Center>
+                    <Text fontSize={'2vw'}>Japan Holidays</Text>
                     <List gap={200}>
                       {holidayDates.map((holiday) => (
                         <Box key={holiday.id}>
@@ -149,12 +136,10 @@ function EmployeeCalendarList({ calendarStyle }) {
                         </Box>
                       ))}
                     </List>
-                  </Box>
-                </Center>
+                  </Box>           
               </Box>
             </HStack>
-          </VStack>
-        </Center>
+          </VStack>      
       </Box>
     );
   }

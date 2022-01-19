@@ -22,7 +22,7 @@ function EmployeeHeader(props) {
       <Flex w={'78vw'} height="20" alignItems="center">
         {!isLargerThan800 && <Spacer />}
         <Box>
-          <Text fontSize={isLargerThan800 ? '3vw' : '7vw'} fontWeight={'bold'}>
+          <Text textColor="white" fontSize={isLargerThan800 ? '3vw' : '7vw'} fontWeight={'bold'}>
             {props.text}
           </Text>
         </Box>
@@ -36,7 +36,7 @@ function EmployeeHeader(props) {
               setUserData={props.setUserData}
             />
             {isLargerThan800 && (
-              <Text fontSize={'xl'}>
+              <Text textColor="white" fontSize={'xl'}>
                 {user.family_name},{user.given_name}
               </Text>
             )}

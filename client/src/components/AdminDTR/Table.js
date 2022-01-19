@@ -4,6 +4,7 @@ import axios from 'axios';
 import { PropTypes } from 'prop-types'
 import Approve from './Approve';
 import Reject from './Reject';
+import moment from 'moment'
 
 export default function TableData(){
   const [logs, setLogs] = useState([]);
@@ -23,6 +24,7 @@ export default function TableData(){
       <Table>
         <Thead>
           <Tr>
+            <Th>Date</Th>
             <Th>Employee</Th>
             <Th>Time Started</Th>
             <Th>Time Ended</Th>
@@ -35,6 +37,7 @@ export default function TableData(){
         <Tbody>
           {logs.map((log)=>(
             <Tr key={log.id}>
+              <Td>{moment(log.insertDate).format("MMMM D")}</Td>
               {employees.map((employee)=>(
                   (employee.id == log.user.id)?<Td key={employee.id}><Link href={"/admin/profile/"+employee.id}>{employee.firstName} {employee.lastName}</Link></Td> : null
               ))}

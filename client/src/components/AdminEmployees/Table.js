@@ -72,7 +72,7 @@ export default function TableData(){
     ],
     [],
   )
-
+  const [checkedItems, setCheckedItems] = useState([])
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useSortBy)
 
@@ -96,7 +96,25 @@ export default function TableData(){
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     isNumeric={column.isNumeric}
                   >
-                    {column.render('Header')}
+                    {column.id=="name"?
+                    <Checkbox
+                      isChecked={
+                        checkedItems.length ===
+                        employees.map(employees => employees.id).length
+                      }
+                      onChange={() => {
+                        const employeesIds = employees.map(employee => employee.id);
+                        if (checkedItems.length === employeesIds.length) {
+                          setCheckedItems([]);
+                          setIds("");
+                        } else {
+                          setCheckedItems(employeesIds);
+                          setIds(employees.map(employee => employee.id))
+                        }
+                      }}
+                    >
+                      {column.id}
+                    </Checkbox>:column.id}
                     <chakra.span pl='4'>
                       {column.isSorted ? (
                         column.isSortedDesc ? (
@@ -118,7 +136,27 @@ export default function TableData(){
                 <Tr key={row.original.id} {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <Td key="" {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
-                      {(cell.column.id == "name")?<Checkbox onChange={e=>idsreturn(e.target.checked,e.target.value)} value={cell.row.original.id+","}><Link href={"/admin/profile/"+cell.row.original.id}>{cell.value}</Link></Checkbox>:null}
+                      {(cell.column.id == "name")?
+                      <Checkbox
+                        isChecked={checkedItems.includes(cell.row.original.id)}
+                        onChange={event => {
+                          event.stopPropagation();
+                          const index = checkedItems.indexOf(cell.row.original.id);
+      
+                          if (index > -1) {
+                            setCheckedItems([
+                              ...checkedItems.slice(0, index),
+                              ...checkedItems.slice(index + 1)
+                            ]);
+                          } else {
+                            setCheckedItems([
+                              ...checkedItems,
+                              cell.row.original.id
+                            ]);
+                          }
+                          idsreturn(event.target.checked, event.target.value)
+                        }}
+                       value={cell.row.original.id+","}><Link href={"/admin/profile/"+cell.row.original.id}>{cell.value}</Link></Checkbox>:null}
                       {(cell.column.id == "email")? cell.value:null}
                       {(cell.column.id == "role")? cell.value:null}
                       {(cell.column.id == "status")? cell.value:null}                 
@@ -130,7 +168,7 @@ export default function TableData(){
           </Tbody>
         </Table>
         </Box>
-        <Input display="none" value={ids} onChange={(e)=>setIds(e.target.value)}/>
+        <Input value={ids} onChange={(e)=>setIds(e.target.value)}/>
       </>
   );
 }

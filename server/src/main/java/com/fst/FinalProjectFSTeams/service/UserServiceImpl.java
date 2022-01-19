@@ -17,9 +17,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TeamRepository teamRepository;
 
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
     @Override
-    public User saveUser(User user){
-        return userRepository.save(user);
+    public User saveUser(User user, Integer teamID, Integer deptID){
+        User saveuser = new User();
+        saveuser.setFirstName(user.getFirstName());
+        saveuser.setLastName(user.getLastName());
+        saveuser.setStatus(user.getStatus());
+        saveuser.setEmail(user.getEmail());
+        saveuser.setRole(user.getRole());
+        saveuser.setTeam(teamRepository.findById(teamID).get());
+        saveuser.setDepartment(departmentRepository.findById(deptID).get());
+        saveuser.setUpdateDate(user.getUpdateDate());
+        saveuser.setInsertDate(user.getInsertDate());
+        return userRepository.save(saveuser);
     }
 
     @Override
@@ -102,7 +115,11 @@ public class UserServiceImpl implements UserService {
 
         for( int i = 0; i < strArray.length; i++){
             array[i] = Integer.parseInt(strArray[i]);
-            userRepository.deleteById(array[i]);
+            User user = userRepository.findById(array[i]).get();
+            user.setDepartment(null);
+            user.setTeam(null);
+            user.setStatus(Status.INACTIVE);
+            userRepository.save(user);
         }
     }
 

@@ -22,13 +22,13 @@ function EmployeeCircularProgress(props) {
         color={'blue.600'}
         onChange={props.change}>
         <CircularProgressLabel fontSize={props.fontSize}>
-          <CircularProgressLabel>
+          <CircularProgressLabel textColor="white">
             {props.main == 'true' ? (
               <CircularProgress
                 size={props.size2}
                 thickness={'4px'}
                 value={props.label[2]}>
-                <CircularProgressLabel>
+                <CircularProgressLabel textColor="white">
                   <VStack>
                     <Text fontSize={props.fontSize}>
                       {props.label[0]} : {props.label[1]} : {props.label[2]}

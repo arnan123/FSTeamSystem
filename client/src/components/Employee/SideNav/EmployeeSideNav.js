@@ -33,7 +33,7 @@ function EmployeeSideNav(props) {
             <Box>
               <HStack>
                 <Logo maxW={'3vw'} />
-                <Text fontSize={'1.5vw'}>FSTEAMS</Text>
+                <Text textColor="white" fontSize={'1.5vw'}>FSTEAMS</Text>
               </HStack>
             </Box>
             <Divider />
@@ -51,13 +51,14 @@ function EmployeeSideNav(props) {
                     textAlign={'left'}
                     variant={'ghost'}
                     p={5}
-                    fontSize={'1vw'}>
+                    fontSize={'1vw'}
+                    textColor="white">
                     Time In/Out
                   </Button>
                 </Link>
 
                 <Link to="/employees/dtr">
-                  <Button
+                  <Button textColor="white"
                     leftIcon={<CalendarIcon />}
                     _hover={{
                       bgColor: 'blue.600',
@@ -75,7 +76,7 @@ function EmployeeSideNav(props) {
                 </Link>
 
                 <Link to="/employees/holiday">
-                  <Button
+                  <Button textColor="white"
                     leftIcon={<StarIcon w={'1vw'} h={'1vw'} />}
                     _hover={{
                       bgColor: 'blue.600',

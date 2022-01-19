@@ -22,8 +22,8 @@ function AddModal() {
   const toast = useToast();
   const [departments, setDepartments] = useState([]);
   const [teams, setTeams] = useState([]);
-  const [department, setDepartment] = useState(null);
-  const [team, setTeam] = useState(null);
+  const [department, setDepartment] = useState("");
+  const [team, setTeam] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,14 +57,12 @@ function AddModal() {
       email: email,
       role: role,
       status: status,
-      team: team,
-      department: department,
       insertDate: new Date(),
       updateDate: new Date(),
     };
 
     axios
-      .post('http://localhost:8080/admin/addEmployee', employee)
+      .post('http://localhost:8080/admin/addEmployee/'+department+"/"+team, employee)
       .then(() => {
         toast({
           title: 'Added Employee',
@@ -95,15 +93,15 @@ function AddModal() {
             <Text mb="1vh">Employee Email</Text>
             <Input placeholder='Employee Email' onChange={(e)=>setEmail(e.target.value)}></Input>
             <Text mb="1vh">Department</Text>
-            <Select placeholder="Department" onChange={(e)=>populateTeams(e.target.key)}>
+            <Select placeholder="Department" onChange={(e)=>populateTeams(e.target.value)}>
               {departments.map((department)=>(
-                <option key={department.id}>{department.name}</option>
+                <option key={department.id} value={department.id}>{department.name}</option>
               ))}
             </Select>
             <Text mb="1vh" placeholder="Team">Team</Text>
-            <Select placeholder="Team" onChange={(e)=>setTeam(e.target.key)}>
+            <Select placeholder="Team" onChange={(e)=>setTeam(e.target.value)}>
               {teams.map((team)=>(
-                <option key={team.id}>{team.name}</option>
+                <option key={team.id} value={team.id}>{team.name}</option>
               ))}
             </Select>
             <Text mb="1vh">Role</Text>

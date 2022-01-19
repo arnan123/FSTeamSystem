@@ -110,7 +110,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
 
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bg="#30344c">
           <ModalHeader>
             <HStack>
               <Text>Edit Datas</Text>
