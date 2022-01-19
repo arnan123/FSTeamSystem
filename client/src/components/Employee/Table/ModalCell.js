@@ -59,7 +59,7 @@ function ModalCell({ attendance, ind, userData, month, days }) {
     };
 
     axios
-      .post(
+      .put(
         'http://localhost:8080/log/createLog/' +
           attendance.id +
           '/' +
