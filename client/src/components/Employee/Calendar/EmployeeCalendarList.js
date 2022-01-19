@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 
 function EmployeeCalendarList({ calendarStyle }) {
   const [holidayDates, setHolidayDates] = useState([]);
-  const [month, setMonth] = useState('January');
+  const [month, setMonth] = useState('Holidays');
 
   useEffect(() => {
     axios.get('http://localhost:8080/holiday/viewHoliday').then((response) => {
@@ -38,9 +38,11 @@ function EmployeeCalendarList({ calendarStyle }) {
               <Box>
                 <Select
                   size={'lg'}
+                  defaultValue={'Holidays'}
                   onChange={(e) => {
                     setMonth(e.target.value);
                   }}>
+                  <option value={'Holidays'}>All Holidays</option>
                   {moment.months().map((monthname) => (
                     <option key={monthname} value={monthname}>
                       {monthname}
@@ -80,6 +82,20 @@ function EmployeeCalendarList({ calendarStyle }) {
                                 </HStack>
                               </ListItem>
                             )}
+                          {month == 'Holidays' &&
+                            holiday.holidayType == 'PHILIPPINES' && (
+                              <ListItem fontSize={'sm'}>
+                                <HStack>
+                                  <ListIcon as={StarIcon} color="green.500" />
+                                  <Box>
+                                    {moment(holiday.holidayDate).format(
+                                      'MMMM Do yyyy',
+                                    )}
+                                  </Box>
+                                  <Box>{holiday.name}</Box>
+                                </HStack>
+                              </ListItem>
+                            )}
                         </Box>
                       ))}
                     </List>
@@ -103,6 +119,20 @@ function EmployeeCalendarList({ calendarStyle }) {
                         <Box key={holiday.id}>
                           {moment(holiday.holidayDate).format('MMMM') ==
                             month &&
+                            holiday.holidayType == 'JAPAN' && (
+                              <ListItem fontSize={'sm'}>
+                                <HStack>
+                                  <ListIcon as={StarIcon} color="green.500" />
+                                  <Box>
+                                    {moment(holiday.holidayDate).format(
+                                      'MMMM Do yyyy',
+                                    )}
+                                  </Box>
+                                  <Box>{holiday.name}</Box>
+                                </HStack>
+                              </ListItem>
+                            )}
+                          {month == 'Holidays' &&
                             holiday.holidayType == 'JAPAN' && (
                               <ListItem fontSize={'sm'}>
                                 <HStack>
