@@ -51,6 +51,11 @@ public class AdminController {
         return  userService.readEmployees();
     }
 
+    @GetMapping("/viewByDepartment/{id}")
+    public List<User> displayEmployeesFromDept(@PathVariable Integer id){
+        return  userService.displayEmployeesFromDept(id);
+    }
+
     @GetMapping("/view/{id}")
     public Optional<User> readEmployeesById(@PathVariable Integer id){
         return  userService.readEmployeesById(id);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   CloseButton,
@@ -15,16 +15,35 @@ import {
 } from 'react-icons/fi';
 import NavItem from "./NavItem.js";
 import {PropTypes} from 'prop-types';
-
-const LinkItems = [
-  { name: 'Daily Time Record', icon: FiClock, address:"/admin/dtr"},
-  { name: 'Departments', icon: FiGrid , address:"/admin/departments"  },
-  { name: 'Employees', icon: FiUsers, address:"/admin/employees" },
-  { name: 'Holidays', icon: FiWatch, address:"/admin/holidays" },
-  { name: 'Generate Reports', icon: FiDatabase, address: '/admin/generatereports' },
-];
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 export default function Sidebar ({onClose, ...rest }){
+
+  const { user } = useAuth0();
+  const [LinkItems, setLinkItems] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/user/useremail/"+user.email).then((response) => {
+      if(response.data.role && response.data.role != "SUPERADMIN"){
+        setLinkItems([
+          { name: 'Daily Time Record', icon: FiClock, address:"/admin/dtr"},
+          { name: 'Departments', icon: FiGrid , address:"/admin/departments"  },
+          { name: 'Employees', icon: FiUsers, address:"/admin/employees" },
+          { name: 'Holidays', icon: FiWatch, address:"/admin/holidays" },
+        ]);
+      }
+      else{
+        setLinkItems([
+          { name: 'Daily Time Record', icon: FiClock, address:"/admin/dtr"},
+          { name: 'Departments', icon: FiGrid , address:"/admin/departments"  },
+          { name: 'Employees', icon: FiUsers, address:"/admin/employees" },
+          { name: 'Holidays', icon: FiWatch, address:"/admin/holidays" },
+          { name: 'Generate Reports', icon: FiDatabase, address: '/admin/generatereports' },
+        ]);
+      }
+    });
+  }, [])
 
   return (
     <Box

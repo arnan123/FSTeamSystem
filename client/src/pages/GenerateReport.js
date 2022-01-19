@@ -34,8 +34,8 @@ export default function GenerateReport(props){
 
   const [departments,setDepartments] = useState([]);
   const [department,setDepartment] = useState("");
-  const [startDate,setStartDate] = useState(new Date());
-  const [endDate,setEndDate] = useState(new Date());
+  const [startDate,setStartDate] = useState(null);
+  const [endDate,setEndDate] = useState(null);
   const toast=useToast();
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function GenerateReport(props){
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       >
       <Grid templateColumns='repeat(2, 1fr)' gap={6}>
-        <Box py="8vh" px="8vh" bg="green.100" height="88vh">
+        <Box py="8vh" px="8vh" bg="teal.100" height="88vh">
           <Text>Start Date</Text>
           <Input type="date" onChange={e=>setStartDate(e.target.value)} variant="filled"/>
           <Text>End Date</Text>
@@ -98,7 +98,7 @@ export default function GenerateReport(props){
           </Select>
         </Box>
         <Center py="4vh">
-            {(department!="" && endDate!=null && startDate!=null)?<Button onClick={generate}>Generate Report</Button>:null}
+            {(department!="" && endDate!= null && startDate!= null)?<Button onClick={generate}>Generate Report</Button>:null}
         </Center>
       </Grid>
     </Box>

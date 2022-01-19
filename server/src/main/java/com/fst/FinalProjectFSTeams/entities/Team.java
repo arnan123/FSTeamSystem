@@ -28,7 +28,6 @@ public class Team {
     @JoinColumn(name = "deptId",referencedColumnName = "deptId")
     private Department department;
 
-
     @Column(name = "teamName")
     private String name;
 

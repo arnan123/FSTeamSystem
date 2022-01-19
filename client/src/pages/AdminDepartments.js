@@ -65,11 +65,13 @@ export default function AdminDepartments(props){
       <Box display="block" py="4vh" >
         <AddModal setDepartments={setDepartments}/>
       </Box>
-      <SimpleGrid minChildWidth='50vh' spacing='4vh'>
-      {departments.map((department) => (
-        <Card key={department.id} departments={department} setDepartments={setDepartments}/>
-      ))}
-      </SimpleGrid>
+      <Box height="70vh" overflowX="auto" px="10vh">
+        <SimpleGrid minChildWidth='40vh' spacingY="4vh">
+          {departments.map((department) => (
+            <Card key={department.id} departments={department} setDepartments={setDepartments}/>
+          ))}
+        </SimpleGrid>
+      </Box>
     </Box>
     </ChakraProvider>
   );

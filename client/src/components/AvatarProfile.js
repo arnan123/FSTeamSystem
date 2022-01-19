@@ -47,7 +47,7 @@ function AvatarProfile({ size }) {
                   <Box>(Software Engineer)</Box>
                 </VStack>
               </MenuItem>
-              {userdb.role == 'ADMIN' ? (
+              {userdb.role == 'ADMIN' || userdb.role == 'SUPERADMIN' ? (
                 <Link href="/admin/dtr">
                   <MenuItem fontSize={'sm'}>Admin</MenuItem>
                 </Link>

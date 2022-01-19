@@ -6,16 +6,27 @@ import axios from 'axios';
 import AddModal from '../AdminEmployees/AddModal';
 import DeleteModal from '../AdminEmployees/DeleteModal';
 import Search from './Search';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function TableData(){
   const [employees, setEmployees] = useState([]);
   const [ids, setIds] = useState("");
+  const { user }=useAuth0();
 
   useEffect(() => {
-    axios.get("http://localhost:8080/admin/view").then((response) => {
-      setEmployees(response.data);
+    axios.get("http://localhost:8080/user/useremail/"+user.email).then((response) => {
+      if(response.data.role == 'SUPERADMIN'){
+        axios.get("http://localhost:8080/admin/view").then((response) => {
+          setEmployees(response.data);
+        });
+      }
+      else{
+        axios.get("http://localhost:8080/admin/viewByDepartment/"+response.data.department.id).then((response) => {
+          setEmployees(response.data);
+        });
+      }
     });
-  },[]);
+  }, [])
 
   function idsreturn(ischecked,value){
     if(ischecked==true){
@@ -74,7 +85,8 @@ export default function TableData(){
         <Box px="16vh" mb="4vh">
           <Search setEmployees={setEmployees}/>
         </Box>
-        <Table px="4vh" {...getTableProps()}>
+        <Box px="8vh" overflowX="auto" height="50vh">
+        <Table {...getTableProps()}>
           <Thead>
             {headerGroups.map((headerGroup) => (
               <Tr key="" {...headerGroup.getHeaderGroupProps()}>
@@ -117,6 +129,7 @@ export default function TableData(){
             })}
           </Tbody>
         </Table>
+        </Box>
         <Input display="none" value={ids} onChange={(e)=>setIds(e.target.value)}/>
       </>
   );
