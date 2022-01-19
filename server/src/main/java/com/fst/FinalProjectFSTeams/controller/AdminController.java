@@ -19,9 +19,9 @@ public class AdminController {
     @Autowired
     private TeamService teamService;
 
-    @PostMapping("/addEmployee")
-    public void addEmployee(@RequestBody User user){
-        userService.saveUser(user);
+    @PostMapping("/addEmployee/{deptID}/{teamID}")
+    public void addEmployee(@RequestBody User user, @PathVariable Integer teamID,@PathVariable Integer deptID ){
+        userService.saveUser(user, teamID, deptID);
     }
 
     @PutMapping("/disableEmployee/{id}")

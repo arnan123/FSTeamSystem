@@ -17,7 +17,7 @@ function StyleSelect({ setStyle }) {
         <Flex w={isLargerThan1000 ? '50vw' : '80vw'}>
           <Spacer />
           <Box>
-            <Select
+            <Select color="white"
               defaultValue="Calendar"
               size={'md'}
               onChange={(e) => {

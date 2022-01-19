@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
     
-    User saveUser(User user);
+    User saveUser(User user, Integer teamID, Integer deptID);
     User updateEmployee(User user, Integer userID);
     User disableEmployee(Integer userID);
     List<User> searchEmployee(String name);

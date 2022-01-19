@@ -60,15 +60,7 @@ export default function EditModal({attendance, userID}) {
 
   return (
     <>
-      <Button
-        leftIcon={<EditIcon />}
-        maxW="16vh"
-        bg="blue.800"
-        textColor="white"
-        fontSize="sm"
-        onClick={onAddModalOpen}>
-        Edit
-      </Button>
+      <EditIcon cursor="pointer" onClick={onAddModalOpen}/>
 
       <Modal onClose={onAddModalClose} isOpen={isAddModalOpen} isCentered>
         <ModalOverlay />
@@ -78,35 +70,35 @@ export default function EditModal({attendance, userID}) {
           <ModalBody>
             <HStack>
               <Box>
-                <Text mb="1vh">Time Started</Text>
+                <Text mb="2vh">Time Started</Text>
                 <Input
                   value={timeStarted}
                   onChange={(e) => setTimeStarted(e.target.value)}
                 />
               </Box>
               <Box>
-                <Text mb="1vh">Time Ended</Text>
+                <Text mb="2vh">Time Ended</Text>
                 <Input
                   value={timeEnded}
                   onChange={(e) => setTimeEnded(e.target.value)}
                 />
               </Box>
               <Box>
-                <Text mb="1vh">Elapsed Break</Text>
+                <Text mb="2vh">Elapsed Break</Text>
                 <Input
                   value={elapsedBreak}
                   onChange={(e) => setElapsedBreak(e.target.value)}
                 />
               </Box>
               <Box>
-                <Text mb="1vh">Overtime</Text>
+                <Text mb="2vh">Overtime</Text>
                 <Input
                   value={overTime}
                   onChange={(e) => setOverTime(e.target.value)}
                 />
               </Box>
               <Box>
-                <Text mb="1vh">Tardiness</Text>
+                <Text mb="2vh">Tardiness</Text>
                 <Input
                   value={tardiness}
                   onChange={(e) => setTardiness(e.target.value)}
