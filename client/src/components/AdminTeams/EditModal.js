@@ -62,7 +62,7 @@ export default function EditModal({deptid, teamid, setTeams}) {
             <Input placeholder='Team Name' onChange={e=>setName(e.target.value)}/>
           </ModalBody>
           <ModalFooter>
-            <Button bg="blue.800" textColor="white" mx="1vh" onClick={editTeam}>Add</Button>
+            <Button bg="blue.800" textColor="white" mx="1vh" onClick={editTeam}>Edit</Button>
             <Button onClick={onEditModalClose}>Close</Button>
           </ModalFooter>
         </ModalContent>

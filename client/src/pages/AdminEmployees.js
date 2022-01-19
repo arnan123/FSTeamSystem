@@ -12,7 +12,6 @@ import Sidebar from "../components/Sidebar.js";
 import { Navigate } from 'react-router-dom';
 
 export default function AdminEmployees(props){
-
   if(props.isAuthenticated==false){
     return (
       <Navigate to="/"/>

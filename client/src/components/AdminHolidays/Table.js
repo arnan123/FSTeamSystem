@@ -67,6 +67,7 @@ export default function TableData(){
           <AddModal setHolidays={setHolidays}/>
           <DeleteModal setHolidays={setHolidays} ids={ids}/>
     </Box>
+    <Box overflowX="auto" height="50vh">
     <Table {...getTableProps()}>
       <Thead>
         {headerGroups.map((headerGroup) => (
@@ -109,6 +110,7 @@ export default function TableData(){
         })}
       </Tbody>
     </Table>
+    </Box>
     <Input display="none" value={ids} onChange={(e)=>setIds(e.target.value)}/>
     </>
   )

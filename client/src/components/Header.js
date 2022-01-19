@@ -34,7 +34,7 @@ export default function Header(props){
 
   function setData(){
     axios.get("http://localhost:8080/user/useremail/"+user.email).then((response) => {
-      if(response.data.role && response.data.role != "ADMIN"){
+      if(response.data.role && (response.data.role != "ADMIN" && response.data.role != "SUPERADMIN")){
         navigate("/", { replace: true });
       }
       setUserDB(response.data);
